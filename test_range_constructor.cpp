@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 23:34:12 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/17 23:57:28 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/18 15:23:20 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int main(void)
 	std::vector<int>::iterator it;
 	std::vector<int>::iterator it2;
 	std::vector<int> numbers;
+
 	numbers.push_back(23);
 	numbers.push_back(14);
 	numbers.push_back(51);
@@ -31,6 +32,5 @@ int main(void)
 	std::cout << *(numbers2._begin) << std::endl;
 	std::cout << *(numbers2._begin + 1) << std::endl;
 	std::cout << *(numbers2._begin + 2) << std::endl;
-	
 	return (0);
 }

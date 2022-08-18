@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/17 23:32:55 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/18 16:04:14 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,30 @@ public:
 	typedef T									value_type;
 	typedef Allocator							allocator_type;
 	typedef typename allocator_type::pointer	pointer;
+	typedef typename allocator_type::const_pointer	const_pointer;
 	typedef typename allocator_type::size_type	size_type;
-	
+	typedef	pointer								iterator;
+	typedef	const_pointer						const_iterator;
+//////////////////////////////////CONSTRUCTORS//////////////////
 //default constructor 
 	explicit vector (const allocator_type& alloc = allocator_type());
 //fill constructor
-	explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type());
+	explicit vector (size_type n, const value_type& val = value_type(),
+					const allocator_type& alloc = allocator_type());
 //range constructor
 	template <class InputIterator>
 	vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(),
-		typename enable_if<!is_integral<InputIterator>::value>::type* = nullptr);
+			typename enable_if<!is_integral<InputIterator>::value>::type* = nullptr);
+//copy constructor
+	vector (const vector& x);
+
+//destructor
+	~vector(void);
+
+//////////////////////////////////ITERATORS//////////////////
+	iterator		begin(void);
+	const_iterator	begin(void) const;
+
 
 public: ////////SHOULD BE PRIVATE
 	allocator_type		_alloc;
@@ -48,5 +62,6 @@ public: ////////SHOULD BE PRIVATE
 };
 };
 
-#include "ft_vector.tpp"
+#include "ft_vector_construction.tpp"
+#include "ft_vector_iterators.tpp"
 #endif
