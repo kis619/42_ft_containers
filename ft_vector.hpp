@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/18 16:04:14 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/19 20:51:44 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <memory>
 #include <stack>
+#include "ft_iterator.hpp"
 
 using std::enable_if;
 using std::is_integral;
@@ -25,13 +26,14 @@ template <typename T, typename Allocator = std::allocator<T> >
 class vector
 {
 public:
-	typedef T									value_type;
-	typedef Allocator							allocator_type;
-	typedef typename allocator_type::pointer	pointer;
-	typedef typename allocator_type::const_pointer	const_pointer;
-	typedef typename allocator_type::size_type	size_type;
-	typedef	pointer								iterator;
+	typedef T												value_type;
+	typedef Allocator										allocator_type;
+	typedef typename allocator_type::pointer				pointer;
+	typedef typename allocator_type::const_pointer			const_pointer;
+	typedef typename allocator_type::size_type				size_type;
+	typedef	typename ft::random_access_iterator<value_type>	iterator;
 	typedef	const_pointer						const_iterator;
+	
 //////////////////////////////////CONSTRUCTORS//////////////////
 //default constructor 
 	explicit vector (const allocator_type& alloc = allocator_type());
