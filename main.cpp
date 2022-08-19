@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:51:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/19 21:44:06 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/19 22:27:59 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int main(void)
 	// std::iterator<ft::random_access_iterator_tag, int> ko;
 	// #include <typeinfo>
 	// if (typeid(ft::iterator_traits<float*>::iterator_category) == typeid(ft::input_iterator_tag))
-	// 	std::cout << "Float is a random_access_iteratorRRRR" << std::endl;
+	// 	std::cout << "Float is a random_access_iterator" << std::endl;
 
 	std::vector<float>::iterator g;
 	g = numbers.begin();
@@ -47,8 +47,8 @@ int main(void)
 	g -= 2;
 	std::cout<< *(g.base());
 	
-	ft::random_access_iteratorRRRR<int> m;
-	ft::random_access_iteratorRRRR<int> n;
+	ft::random_access_iterator<int> m;
+	ft::random_access_iterator<int> n;
 	ft::vector<int> nums(4, 44);
 	m = nums.begin();
 	std::cout << "\n" << *(nums.begin());

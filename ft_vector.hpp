@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/19 21:44:06 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/19 22:27:59 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ public:
 	typedef typename allocator_type::pointer				pointer;
 	typedef typename allocator_type::const_pointer			const_pointer;
 	typedef typename allocator_type::size_type				size_type;
-	typedef	typename ft::random_access_iteratorRRRR<value_type>	iterator;
+	typedef	typename ft::random_access_iterator<value_type>	iterator;
 	typedef	const_pointer						const_iterator;
 	
 //////////////////////////////////CONSTRUCTORS//////////////////
