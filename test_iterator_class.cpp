@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 21:08:48 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/20 13:47:42 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/20 14:53:33 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,20 +77,43 @@ int main(void)
 	it -= 2;
 	std::cout << "Should be 7: " <<  COLOUR_GREEN << *it << COLOUR_DEFAULT << std::endl;
 
-
+	std::cout << COLOUR_BLUE << "Testing the operator==" << COLOUR_DEFAULT << std::endl;
+	std::cout << "Should be true: " << COLOUR_GREEN << std::boolalpha << (it == it2) << COLOUR_DEFAULT << std::endl;
+	ft::vector<int>::iterator new_it;
+	std::cout << "Should be false: " << COLOUR_GREEN << std::boolalpha << (it == new_it) << COLOUR_DEFAULT << std::endl;
 	
+	std::cout << COLOUR_BLUE << "Testing the operator<" << COLOUR_DEFAULT << std::endl;
+	std::cout << "Should be false: " << COLOUR_GREEN << std::boolalpha << (it < it2) << COLOUR_DEFAULT << std::endl;
+	std::cout << "Should be true: " << COLOUR_GREEN << std::boolalpha << (it < (it2 + 1)) << COLOUR_DEFAULT << std::endl;
+	
+	std::cout << COLOUR_BLUE << "Testing the operator!=" << COLOUR_DEFAULT << std::endl;
+	std::cout << "Should be false: " << COLOUR_GREEN << std::boolalpha << (it != it2) << COLOUR_DEFAULT << std::endl;
+	std::cout << "Should be true: " << COLOUR_GREEN << std::boolalpha << (it != (it2 + 1)) << COLOUR_DEFAULT << std::endl;
+	
+	std::cout << COLOUR_BLUE << "Testing the operator>" << COLOUR_DEFAULT << std::endl;
+	std::cout << "Should be false: " << COLOUR_GREEN << std::boolalpha << (it > it2) << COLOUR_DEFAULT << std::endl;
+	std::cout << "Should be true: " << COLOUR_GREEN << std::boolalpha << (it + 1 > it2) << COLOUR_DEFAULT << std::endl;
+	
+	std::cout << COLOUR_BLUE << "Testing the operator>=" << COLOUR_DEFAULT << std::endl;
+	std::cout << "Should be true: " << COLOUR_GREEN << std::boolalpha << (it >= it2) << COLOUR_DEFAULT << std::endl;
+	std::cout << "Should be false: " << COLOUR_GREEN << std::boolalpha << (it >= (it2 + 1)) << COLOUR_DEFAULT << std::endl;
+	
+	std::cout << COLOUR_BLUE << "Testing the operator<=" << COLOUR_DEFAULT << std::endl;
+	std::cout << "Should be true: " << COLOUR_GREEN << std::boolalpha << (it <= it2) << COLOUR_DEFAULT << std::endl;
+	std::cout << "Should be false: " << COLOUR_GREEN << std::boolalpha << (it + 1 <= it2) << COLOUR_DEFAULT << std::endl;
+
 	// std::vector<int>::iterator og;
-	// std::vector<int>::iterator *gg = &og;
+	// std::vector<int>::iterator nog;
 	// std::vector<int> nummmm;
 	// nummmm.push_back(1);
 	// nummmm.push_back(2);
 	// nummmm.push_back(3);
 	// nummmm.push_back(4);
 	// (og) = nummmm.begin();
-	// // std::cout << (*og).base();
-	// std::cout<< gg->base() << std::endl;
-	// std::cout<< *(gg->base()) << std::endl;
-	// og++;
-	// std::cout<< *(gg->base()) << std::endl;
+	// nog = og;
+	// og[0] = 2341234;
+	// std::cout << nog[0] << std::endl;
+	// if (og == nog)
+	// 	std::cout << COLOUR_GREEN << "Equal\n";
 	return (0);
 }
