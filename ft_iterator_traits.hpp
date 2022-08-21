@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:12:51 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/19 20:19:57 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/21 17:18:03 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ namespace ft
 		typedef typename Iterator::iterator_category	iterator_category;
 	};
 
-	//iterator_traits speacialisation
+	// iterator_traits speacialisation
 	template<typename T>
 	struct iterator_traits<T*>
 	{

@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:41 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/17 23:55:12 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/21 15:44:25 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ namespace ft
 	_begin(nullptr),
 	_end(nullptr)
 	{
-		_begin = _alloc.allocate(last - first + 15);
+		_begin = _alloc.allocate(last - first);
 		_end = _begin;
 		while(first != last)
 		{
@@ -61,6 +61,13 @@ namespace ft
 			_end++;
 			first++;
 		}
+	}
+
+	//destructor
+	template<typename T, typename Allocator>
+	vector<T, Allocator>::~vector(void)
+	{
+		_alloc.deallocate(_begin, _capacity);
 	}
 }
 

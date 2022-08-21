@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 21:08:48 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/21 15:06:46 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/21 17:51:05 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,16 @@ int main(void)
 	ft::vector<int>::iterator it(nums.begin());
 	ft::vector<int>::iterator it2 = nums2.begin();
 	ft::vector<int>::iterator *it3 = &it2;
+	ft::vector<int>::const_iterator it4;
+	ft::vector<int>::const_iterator it5;
 
-	
 	std::cout << COLOUR_BLUE << "Testing the equals operator" << COLOUR_DEFAULT << std::endl;
 	it = it2;
 	std::cout << "Should be 33: " << COLOUR_GREEN <<  *(it.base()) << COLOUR_DEFAULT << std::endl;
+	
+	std::cout << COLOUR_BLUE << "Testing the equals operator with a const" << COLOUR_DEFAULT << std::endl;
+	it4 = it2;
+	std::cout << "Should be 33: " << COLOUR_GREEN <<  *(it4.base()) << COLOUR_DEFAULT << std::endl;
 	
 	std::cout << COLOUR_BLUE << "Testing method base()" << COLOUR_DEFAULT << std::endl;
 	std::cout << "Should be 44: " << COLOUR_GREEN << *(it.base()) << COLOUR_DEFAULT << std::endl;
@@ -106,19 +111,35 @@ int main(void)
 	std::cout << "Should be 9: " << COLOUR_GREEN << *(2 + it) << COLOUR_DEFAULT << std::endl;
 	
 	std::cout << COLOUR_BLUE << "Testing the operator-  with integer first" << COLOUR_DEFAULT << std::endl;
-	std::cout << COLOUR_YELLOW << "*(it2) is: " << *(it2) << std::endl << "*(it) is: " << *(it) << COLOUR_DEFAULT << std::endl;
+	std::cout << COLOUR_YELLOW << "(it2 + 2).base() is: " << (it2 + 2).base() << std::endl << "it.base() is: " << it.base() << COLOUR_DEFAULT << std::endl;
 	std::cout << "(it2 + 2) - (it) should be 2: " << COLOUR_GREEN << (it2 + 2) - (it) << COLOUR_DEFAULT << std::endl;
+	
+	std::cout << COLOUR_BLUE << "Testing the operators  with a const iterator" << COLOUR_DEFAULT << std::endl;
+	if ((it == it4) || (it < it4) || (it != it4) || (it > it4) || (it >= it4) || (it <= it4))
+		std::cout << "Success: " << COLOUR_GREEN << "Works with const iterator as well" << COLOUR_DEFAULT << std::endl;
+	
+	std::cout << COLOUR_BLUE << "Testing the operators  with two const iterators" << COLOUR_DEFAULT << std::endl;
+	if ((it5 == it4) || (it5 < it4) || (it5 != it4) || (it5 > it4) || (it5 >= it4) || (it5 <= it4))
+		std::cout << "Success: " << COLOUR_GREEN << "Works with two const iterators as well" << COLOUR_DEFAULT << std::endl;
+	
+	std::cout << COLOUR_BLUE << "Testing the const operators  with a non-const iterator" << COLOUR_DEFAULT << std::endl;
+	if ((it5 == it) || (it5 < it) || (it5 != it) || (it5 > it) || (it5 >= it) || (it5 <= it))
+		std::cout << "Success: " << COLOUR_GREEN << "Works with const and non-const as well" << COLOUR_DEFAULT << std::endl;
+	
+	std::vector<int>::iterator og;
+	std::vector<int>::iterator nog;
+	std::vector<int>::const_iterator const_og;
+	std::vector<int> nummmm;
+	nummmm.push_back(1);
+	nummmm.push_back(2);
+	nummmm.push_back(3);
+	nummmm.push_back(4);
+	(og) = nummmm.begin();
+	// og = const_og;
+	const_og = og;
+	// *og = 7;
 
-
-	// std::vector<int>::iterator og;
-	// std::vector<int>::iterator nog;
-	// std::vector<int> nummmm;
-	// nummmm.push_back(1);
-	// nummmm.push_back(2);
-	// nummmm.push_back(3);
-	// nummmm.push_back(4);
-	// (og) = nummmm.begin();
-	// nog = nummmm.begin();
+	// og.
 	// std::cout << *(og.base()) << std::endl;
 	// 1 + og;
 
