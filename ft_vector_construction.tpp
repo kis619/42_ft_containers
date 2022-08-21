@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:41 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/18 16:02:46 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/21 22:17:30 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 namespace ft
 {
-	//Default COnstructor
+	//Default Constructor
 	template<typename T, typename Allocator>
 	vector<T, Allocator>::vector(const allocator_type &alloc) :
 	_alloc(alloc),

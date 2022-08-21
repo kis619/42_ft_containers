@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 18:40:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/21 20:36:57 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/21 23:15:51 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ namespace ft
 		reverse_iterator(void) : _it(), current() {}
 		explicit reverse_iterator(iterator_type _x) : _it(_x), current(_x) {}
 		template<typename U>
-		reverse_iterator(const reverse_iterator<U> &copy) : _it(copy.base()), current(current.base()) {}
+		reverse_iterator(const reverse_iterator<U> &copy) : _it(copy.base()), current(copy.base()) {}
 		template<typename U>
 		reverse_iterator	&operator=(const reverse_iterator<U> &other) {_it = current = other.base(); return (*this);}
 		

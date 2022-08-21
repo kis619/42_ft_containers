@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/21 21:06:45 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/21 23:21:23 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,14 @@ public:
 	~vector(void);
 
 //////////////////////////////////ITERATORS//////////////////
-	iterator		begin(void);
-	const_iterator	begin(void) const;
+	iterator				begin(void);
+	const_iterator			begin(void) const;
+	iterator				end(void);
+	const_iterator			end(void) const;
+	reverse_iterator		rbegin(void);
+	const_reverse_iterator	rbegin(void) const;
+	reverse_iterator		rend(void);
+	const_reverse_iterator	rend(void) const;
 
 
 public: ////////SHOULD BE PRIVATE
@@ -65,6 +71,17 @@ public: ////////SHOULD BE PRIVATE
 	size_type			_capacity;
 	pointer				_begin;
 	pointer				_end;
+
+
+
+
+
+
+	reference operator[](size_type n)
+		{
+			return (*(this->_begin + n));
+		}
+
 	
 };
 };
