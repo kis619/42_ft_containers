@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 21:08:48 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/21 17:51:05 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/21 20:46:43 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,29 +125,5 @@ int main(void)
 	std::cout << COLOUR_BLUE << "Testing the const operators  with a non-const iterator" << COLOUR_DEFAULT << std::endl;
 	if ((it5 == it) || (it5 < it) || (it5 != it) || (it5 > it) || (it5 >= it) || (it5 <= it))
 		std::cout << "Success: " << COLOUR_GREEN << "Works with const and non-const as well" << COLOUR_DEFAULT << std::endl;
-	
-	std::vector<int>::iterator og;
-	std::vector<int>::iterator nog;
-	std::vector<int>::const_iterator const_og;
-	std::vector<int> nummmm;
-	nummmm.push_back(1);
-	nummmm.push_back(2);
-	nummmm.push_back(3);
-	nummmm.push_back(4);
-	(og) = nummmm.begin();
-	// og = const_og;
-	const_og = og;
-	// *og = 7;
-
-	// og.
-	// std::cout << *(og.base()) << std::endl;
-	// 1 + og;
-
-	// std::cout << 	nog - og << std::endl;
-	// nog = og;
-	// og[0] = 2341234;
-	// std::cout << nog[0] << std::endl;
-	// if (og == nog)
-	// 	std::cout << COLOUR_GREEN << "Equal\n";
 	return (0);
 }
