@@ -6,51 +6,26 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:51:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/19 22:27:59 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/22 12:40:04 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vector>
-#include <iterator>
-#include "ft_iterator.hpp"
-#include "ft_vector.hpp"
+	// comparing size, capacity and max_size
 #include <iostream>
-// class MyIterator : ft::iterator<ft::random_access_iterator_tag, int>
-// {
-	
-// }
-int main(void)
+#include <vector>
+
+int main ()
 {
-	std::vector<float> numbers;
-	numbers.push_back(1.0);
-	numbers.push_back(2.0);
-	numbers.push_back(3.0);
-	numbers.push_back(4.0);
+  std::vector<int> myvector;
 
-	std::vector<float>::iterator it;
-	
+  // set some content in the vector:
+  // for (int i=0; i<100; i++) myvector.push_back(i);
 
-	it = numbers.begin();
-	std::iterator_traits<int> k;
-	// std::iterator<ft::random_access_iterator_tag, int> ko;
-	// #include <typeinfo>
-	// if (typeid(ft::iterator_traits<float*>::iterator_category) == typeid(ft::input_iterator_tag))
-	// 	std::cout << "Float is a random_access_iterator" << std::endl;
-
-	std::vector<float>::iterator g;
-	g = numbers.begin();
-	std::cout<< *(g.base() + 1);
-	g++;
-	std::cout<< *(g.base());
-	g--;
-	std::cout<< *(g.base());
-	g -= 2;
-	std::cout<< *(g.base());
-	
-	ft::random_access_iterator<int> m;
-	ft::random_access_iterator<int> n;
-	ft::vector<int> nums(4, 44);
-	m = nums.begin();
-	std::cout << "\n" << *(nums.begin());
-	return(0);
+  // std::cout << "size: " << myvector.size() << "\n";
+  // std::cout << "capacity: " << myvector.capacity() << "\n";
+  // std::cout << "max_size: " << myvector.max_size() << "\n";
+ 
+  int *data = myvector.data();
+  std::cout << "First element: " << (data) << std::endl;
+  return 0;
 }

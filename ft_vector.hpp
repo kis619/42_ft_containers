@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/21 23:21:23 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:54:54 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <memory>
 #include <stack>
 #include "ft_iterator.hpp"
+#include <exception>
 
 using std::enable_if;
 using std::is_integral;
@@ -65,8 +66,27 @@ public:
 	reverse_iterator		rend(void);
 	const_reverse_iterator	rend(void) const;
 
+/////////////////////////////////CAPACITY///////////////////////
+	size_type size(void) const;
+	size_type max_size(void) const; //use allocator
+	// void resize (size_type n, value_type val = value_type()); //Member type value_type is the type of the elements in the container, defined in vector as an alias of the first template parameter (T).
+	size_type capacity(void) const;
+	// bool empty() const; //Returns whether the vector is empty (i.e. whether its size is 0).
+	// void reserve (size_type n); //Requests that the vector capacity be at least enough to contain n elements. If n is greater than the current vector capacity, the function causes the container to reallocate its storage increasing its capacity to n (or greater).
 
-public: ////////SHOULD BE PRIVATE
+/////////////////////////////////ELEMENT_ACCESS////////////////
+	reference operator[] (size_type n);
+	const_reference operator[] (size_type n) const;
+	reference at (size_type n); //The function automatically checks whether n is within the bounds of valid elements in the vector, throwing an out_of_range exception if it is not (i.e., if n is greater than, or equal to, its size). This is in contrast with member operator[], that does not check against bounds.
+	// const_reference at (size_type n) const; 
+	// reference front(); //Returns a reference to the first element in the vector. Calling this function on an empty container causes undefined behavior.
+	// const_reference front() const;
+	// reference back(); //Calling this function on an empty container causes undefined behavior.
+	// const_reference back() const;
+	// value_type* data(); //Returns a direct pointer to the memory array used internally by the vector to store its owned elements.
+	// const value_type* data() const;
+
+private:
 	allocator_type		_alloc;
 	size_type			_capacity;
 	pointer				_begin;
@@ -77,10 +97,10 @@ public: ////////SHOULD BE PRIVATE
 
 
 
-	reference operator[](size_type n)
-		{
-			return (*(this->_begin + n));
-		}
+	// reference operator[](size_type n)
+	// 	{
+	// 		return (*(this->_begin + n));
+	// 	}
 
 	
 };
@@ -88,4 +108,6 @@ public: ////////SHOULD BE PRIVATE
 
 #include "ft_vector_construction.tpp"
 #include "ft_vector_iterators.tpp"
+#include "ft_vector_element_access.tpp"
+#include "ft_vector_capacity.tpp"
 #endif
