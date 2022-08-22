@@ -40,5 +40,40 @@ int main(void)
 		my_v.at(3);}
 	catch(std::exception & error){
 		std::cout << "Mine: " << COLOUR_RED << "Exception caught: " << error.what() << COLOUR_DEFAULT << std::endl;}
+
+	std::cout << COLOUR_BLUE << "Testing const method .at() when out_of_range" << COLOUR_DEFAULT << std::endl;
+	try{
+		og_v_const.at(4);}
+	catch(std::exception & error){
+		std::cout << "OG:   " << COLOUR_RED << "Exception caught: " << error.what() << COLOUR_DEFAULT << std::endl;}
+	try{
+		my_v_const.at(4);}
+	catch(std::exception & error){
+		std::cout << "Mine: " << COLOUR_RED << "Exception caught: " << error.what() << COLOUR_DEFAULT << std::endl;}
+
+	std::cout << COLOUR_BLUE << "Testing method .front() " << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: should be 1: " << COLOUR_GREEN << my_v.front() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   should be 1: " << COLOUR_GREEN << og_v.front() << COLOUR_DEFAULT << std::endl;
+
+	std::cout << COLOUR_BLUE << "Testing const method .front() " << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: should be 4: " << COLOUR_GREEN << my_v_const.front() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   should be 4: " << COLOUR_GREEN << og_v_const.front() << COLOUR_DEFAULT << std::endl;
+
+	std::cout << COLOUR_BLUE << "Testing method .back() " << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: should be 3: " << COLOUR_GREEN << my_v.back() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   should be 3: " << COLOUR_GREEN << og_v.back() << COLOUR_DEFAULT << std::endl;
+
+	std::cout << COLOUR_BLUE << "Testing const method .back() " << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: should be 4: " << COLOUR_GREEN << my_v_const.back() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   should be 4: " << COLOUR_GREEN << og_v_const.back() << COLOUR_DEFAULT << std::endl;
+
+	std::cout << COLOUR_BLUE << "Testing method .data() " << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: should be 1: " << COLOUR_GREEN << *(my_v.data()) << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   should be 1: " << COLOUR_GREEN << *(og_v.data()) << COLOUR_DEFAULT << std::endl;
+
+	std::cout << COLOUR_BLUE << "Testing const method .data() " << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: should be 4: " << COLOUR_GREEN << *(my_v_const.data()) << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   should be 4: " << COLOUR_GREEN << *(og_v_const.data()) << COLOUR_DEFAULT << std::endl;
+
 	return (0);
 }
