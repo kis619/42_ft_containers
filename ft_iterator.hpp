@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 17:45:10 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/21 20:17:52 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/22 11:41:15 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,18 @@ namespace ft
 		// virtual ~random_access_iterator(void) {};
 		random_access_iterator	&operator=(const random_access_iterator &other) {_i = other._i; return(*this);};
 		
-		pointer					base() const {return (_i);};
-		reference				operator*(void) const {return (*_i);};
-		pointer					operator->(void) const {return(&(operator*()));};
-		random_access_iterator	operator++(int) {random_access_iterator temp(*this); _i++; return(temp);}; //post-increment;
-		random_access_iterator	&operator++() {_i++; return(*this);}; //post-increment;
-		random_access_iterator	operator--(int) {random_access_iterator temp(*this); _i--; return(temp);}; //post-increment;
-		random_access_iterator	&operator--() {_i--; return(*this);}; //post-decrement;
-		random_access_iterator	operator+(difference_type n) const {return random_access_iterator(_i + n);}
-		random_access_iterator	&operator+=(difference_type n) { _i += n; return (*this);}
-		random_access_iterator	operator-(difference_type n) const {return random_access_iterator(_i - n);}
-		random_access_iterator	&operator-=(difference_type n) { _i -= n; return (*this);}
-		reference				operator[](difference_type n) const {return *(_i + n);};
+		pointer					base()							const	{return (_i);};
+		reference				operator*(void)					const	{return (*_i);};
+		pointer					operator->(void)				const	{return(&(operator*()));};
+		random_access_iterator	operator++(int)							{random_access_iterator temp(*this); _i++; return(temp);}; //post-increment;
+		random_access_iterator	&operator++()							{_i++; return(*this);}; //post-increment;
+		random_access_iterator	operator--(int)							{random_access_iterator temp(*this); _i--; return(temp);}; //post-increment;
+		random_access_iterator	&operator--()							{_i--; return(*this);}; //post-decrement;
+		random_access_iterator	operator+(difference_type n)	const	{return random_access_iterator(_i + n);}
+		random_access_iterator	&operator+=(difference_type n)			{_i += n; return (*this);}
+		random_access_iterator	operator-(difference_type n)	const	{return random_access_iterator(_i - n);}
+		random_access_iterator	&operator-=(difference_type n)			{ _i -= n; return (*this);}
+		reference				operator[](difference_type n)	const	{return *(_i + n);};
 	};
 	
 	//////LOGICAL OPERATORS
@@ -128,7 +128,7 @@ namespace ft
 	class const_random_access_iterator : public ft::iterator<random_access_iterator_tag, T>
 	{
 	public:	
-		typedef const typename ft::iterator<random_access_iterator_tag, T>::value_type		value_type;
+		typedef const typename ft::iterator<random_access_iterator_tag, T>::value_type	value_type;
 		typedef typename ft::iterator<random_access_iterator_tag, T>::difference_type	difference_type;
 		typedef typename ft::iterator<random_access_iterator_tag, T>::pointer			pointer;
 		typedef typename ft::iterator<random_access_iterator_tag, T>::reference			reference;
@@ -145,18 +145,19 @@ namespace ft
 		const_random_access_iterator(const random_access_iterator<U> &copy) : _i(copy.base()) {}
 		// virtual ~const_random_access_iterator(void) {std::cout << "destructor\n";};
 		const_random_access_iterator	&operator=(const const_random_access_iterator &other) {_i = other._i; return(*this);};
-		pointer							base() const {return (_i);};
-		reference						operator*(void) const {return (*_i);};
-		pointer							operator->(void) const {return(&(operator*()));};
-		const_random_access_iterator	operator++(int) {const_random_access_iterator temp(*this); _i++; return(temp);}; //post-increment;
-		const_random_access_iterator	&operator++() {_i++; return(*this);}; //post-increment;
-		const_random_access_iterator	operator--(int) {const_random_access_iterator temp(*this); _i--; return(temp);}; //post-increment;
-		const_random_access_iterator	&operator--() {_i--; return(*this);}; //post-decrement;
-		const_random_access_iterator	operator+(difference_type n) const {return const_random_access_iterator(_i + n);}
-		const_random_access_iterator	&operator+=(difference_type n) { _i += n; return (*this);}
-		const_random_access_iterator	operator-(difference_type n) const {return const_random_access_iterator(_i - n);}
-		const_random_access_iterator	&operator-=(difference_type n) { _i -= n; return (*this);}
-		reference						operator[](difference_type n) const {return *(_i + n);};
+		
+		pointer							base()							const	{return (_i);};
+		reference						operator*(void)					const	{return (*_i);};
+		pointer							operator->(void)				const	{return(&(operator*()));};
+		const_random_access_iterator	operator++(int)							{const_random_access_iterator temp(*this); _i++; return(temp);}; //post-increment;
+		const_random_access_iterator	&operator++()							{_i++; return(*this);}; //post-increment;
+		const_random_access_iterator	operator--(int)							{const_random_access_iterator temp(*this); _i--; return(temp);}; //post-increment;
+		const_random_access_iterator	&operator--()							{_i--; return(*this);}; //post-decrement;
+		const_random_access_iterator	operator+(difference_type n)	const	{return const_random_access_iterator(_i + n);}
+		const_random_access_iterator	&operator+=(difference_type n)			{ _i += n; return (*this);}
+		const_random_access_iterator	operator-(difference_type n)	const	{return const_random_access_iterator(_i - n);}
+		const_random_access_iterator	&operator-=(difference_type n)			{_i -= n; return (*this);}
+		reference						operator[](difference_type n)	const	{return *(_i + n);};
 	};
 
 	template<typename Iter1, typename Iter2>

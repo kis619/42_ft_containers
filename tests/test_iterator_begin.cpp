@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 13:20:18 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/21 23:25:47 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/21 23:27:12 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,5 @@ int main(void)
 	std::cout << COLOUR_YELLOW << "rev_it(vector.rend())\n" << COLOUR_DEFAULT;
 	std::cout << "Mine:     " << COLOUR_GREEN << *(my_r_it) << COLOUR_DEFAULT << std::endl;
 	std::cout << "Original: " << COLOUR_GREEN << *(og_r_it) << COLOUR_DEFAULT << std::endl;
-	
-	
-	
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 18:40:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/21 23:15:51 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/22 11:41:55 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ namespace ft
 												typename iterator_traits<Iterator>::pointer,
 												typename iterator_traits<Iterator>::reference>
 	{
-	private:
+	private: //deprecated
 		Iterator _it;
 		
 	protected:

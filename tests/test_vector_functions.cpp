@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 22:15:33 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/21 22:20:10 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/21 23:28:51 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 int main(void)
 {
 	std::vector<int> numbers;
-	numbers.
 	
 	
 	return (0);
