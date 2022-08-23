@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:00:01 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/20 19:48:46 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/22 17:44:57 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ int main(void)
 {
 	ft::vector<int> test(4, 69);
 
-	std::cout << "Size: " << test._capacity << std::endl;
-	std::cout << "Element 0: " << *(test._begin) << std::endl;
-	std::cout << "Element 1: " << *(test._begin + 1) << std::endl;
-	std::cout << "Element 2: " << *(test._begin + 2) << std::endl;
-	std::cout << "Element 3: " << *(test._begin + 3) << std::endl;
+	std::cout << "Size: " << test.capacity() << std::endl;
+	std::cout << "Element 0: " << *(test.begin()) << std::endl;
+	std::cout << "Element 1: " << *(test.begin() + 1) << std::endl;
+	std::cout << "Element 2: " << *(test.begin() + 2) << std::endl;
+	std::cout << "Element 3: " << *(test.begin() + 3) << std::endl;
 	
 	// Whatever test(4, 69);
 	// std::cout << "Element 0: " << *(test._array - 4) << std::endl;

@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/22 17:02:50 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/23 11:46:58 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ public:
 	reverse_iterator		rend(void);
 	const_reverse_iterator	rend(void) const;
 
-/////////////////////////////////CAPACITY///////////////////////
-	size_type size(void) const;
-	size_type max_size(void) const;
-	// void resize (size_type n, value_type val = value_type()); //Member type value_type is the type of the elements in the container, defined in vector as an alias of the first template parameter (T).
-	size_type capacity(void) const;
-	// bool empty() const; //Returns whether the vector is empty (i.e. whether its size is 0).
+/////////////////////////////////CAPACITY//////////////////////
+	size_type	size(void) const;
+	size_type	max_size(void) const;
+	// void		resize (size_type n, value_type val = value_type()); //Member type value_type is the type of the elements in the container, defined in vector as an alias of the first template parameter (T).
+	size_type	capacity(void) const;
+	bool		empty(void) const;
 	// void reserve (size_type n); //Requests that the vector capacity be at least enough to contain n elements. If n is greater than the current vector capacity, the function causes the container to reallocate its storage increasing its capacity to n (or greater).
 
 /////////////////////////////////ELEMENT_ACCESS////////////////
@@ -86,6 +86,29 @@ public:
 	value_type*			data(void);
 	const value_type*	data(void) const;
 
+/////////////////////////////////MODIFIERS/////////////////////
+	// template <class InputIterator>
+	// void assign (InputIterator first, InputIterator last);
+	// void assign (size_type n, const value_type& val);
+	void pop_back(void);
+	// void push_back (const value_type& val);
+	// iterator insert (iterator position, const value_type& val);
+	// void insert (iterator position, size_type n, const value_type& val);
+	// template <class InputIterator>
+	// void insert (iterator position, InputIterator first, InputIterator last);
+	// iterator erase (iterator position);
+	// iterator erase (iterator first, iterator last);
+	////////?SWAP
+	void clear(void);
+
+/////////////////////////////////ALLOCATOR/////////////////////
+	allocator_type get_allocator(void) const;
+
+
+
+/////////////////////////////////MISCELANIOUS/////////////////////
+	private:
+		void adjust_capacity(); //depending on size and capacity
 private:
 	allocator_type		_alloc;
 	size_type			_capacity;
@@ -110,4 +133,5 @@ private:
 #include "ft_vector_iterators.tpp"
 #include "ft_vector_element_access.tpp"
 #include "ft_vector_capacity.tpp"
+#include "ft_vector_modifiers.tpp"
 #endif

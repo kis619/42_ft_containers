@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector_capacity.tpp                             :+:      :+:    :+:   */
+/*   ft_vector_modifiers.tpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/22 19:52:56 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/23 11:47:58 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,37 @@
 namespace ft
 {
 	template <typename T, typename Allocator>
-	typename vector<T, Allocator>::size_type vector<T, Allocator>::size(void) const
+	void vector<T, Allocator>::clear(void)
 	{
-		return (_end - _begin);
+		size_type old_size = size();
+		
+		for(int i = 0; i < old_size; i++)
+		{
+			_end--;
+			_alloc.destroy(_end);
+		}
 	}
 	
 	template <typename T, typename Allocator>
-	typename vector<T, Allocator>::size_type vector<T, Allocator>::max_size(void) const
+	void vector<T, Allocator>::pop_back(void)
 	{
-		return (_alloc.max_size());
+		_alloc.destroy(&back());
+		_end--;
 	}
 	
 	template <typename T, typename Allocator>
-	typename vector<T, Allocator>::size_type vector<T, Allocator>::capacity(void) const
+	void vector<T, Allocator>::adjust_capacity(void)
 	{
-		return (_capacity);
+		if (size() > _capacity)
+		{
+			
+		}
 	}
+	
 	
 	template <typename T, typename Allocator>
-	bool vector<T, Allocator>::empty(void) const
+	typename vector<T, Allocator>::allocator_type vector<T, Allocator>::get_allocator(void) const
 	{
-		return (_begin == _end);
+		return(_alloc);
 	}
-	
-
-	
-
 };

@@ -6,7 +6,7 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/21 23:30:29 by kmilchev          #+#    #+#              #
-#    Updated: 2022/08/21 23:33:51 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/08/22 17:43:44 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ c++ ./tests/test_default_constructor.cpp && ./a.out
 echo "${RED}test_fill_constructor.cpp\n${NC}"
 c++ ./tests/test_fill_constructor.cpp && ./a.out
 
-echo "${RED}test_iterator_begin.cpp\n${NC}"
-c++ ./tests/test_iterator_begin.cpp && ./a.out
+echo "${RED}test_vector_iter_methods.cpp\n${NC}"
+c++ ./tests/test_vector_iter_methods.cpp && ./a.out
 
 echo "${RED}\ntest_iterator_class.cpp\n${NC}"
 c++ ./tests/test_iterator_class.cpp && ./a.out

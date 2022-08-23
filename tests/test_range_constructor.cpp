@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 23:34:12 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/20 19:49:03 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/22 17:44:19 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,7 @@ int main(void)
 	numbers.push_back(51);
 	it = numbers.begin();
 	it2 = numbers.end();
-	// std::cout << *it << std::endl;
-	// std::cout << *(it2 - 1) << std::endl;
 	ft::vector<int> numbers2(it, it2);
-	std::cout << "Capacity: " << numbers2._capacity << std::endl;
-	std::cout << *(numbers2._begin) << std::endl;
-	std::cout << *(numbers2._begin + 1) << std::endl;
-	std::cout << *(numbers2._begin + 2) << std::endl;
+	std::cout << "Capacity: " << numbers2.capacity() << std::endl;
 	return (0);
 }
