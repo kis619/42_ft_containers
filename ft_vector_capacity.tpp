@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/24 01:50:33 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/24 01:55:05 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,4 @@ namespace ft
 			_capacity = new_capacity;
 		}
 	}
-	
-
-	
-
 };
