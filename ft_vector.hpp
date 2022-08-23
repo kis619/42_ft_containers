@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/24 00:17:24 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/24 01:34:24 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ public:
 	void		resize (size_type n, value_type val = value_type()); //Member type value_type is the type of the elements in the container, defined in vector as an alias of the first template parameter (T).
 	size_type	capacity(void) const;
 	bool		empty(void) const;
-	// void reserve (size_type n); //Requests that the vector capacity be at least enough to contain n elements. If n is greater than the current vector capacity, the function causes the container to reallocate its storage increasing its capacity to n (or greater).
+	void reserve (size_type n);
 
 /////////////////////////////////ELEMENT_ACCESS////////////////
 	reference			operator[] (size_type n);

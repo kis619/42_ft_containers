@@ -150,11 +150,15 @@ int main(void)
 	my_newer_v.resize(36, 2);
 	std::cout << "OG:     Resize(36, 0) Capacity should be 36: " << COLOUR_GREEN << og_newer_v.capacity() << COLOUR_DEFAULT << std::endl;
 	std::cout << "Mine:   Resize(36, 0) Capacity should be 36: " << COLOUR_GREEN << my_newer_v.capacity() << COLOUR_DEFAULT << std::endl;
-	std::cout << "Mine:   Resize(36, 0) Size should be 36:     " << COLOUR_GREEN << my_newer_v.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine:   Resize(36, 0) Size     should be 36: " << COLOUR_GREEN << my_newer_v.size() << COLOUR_DEFAULT << std::endl;
 	og_newer_v.resize(77, 1);
 	my_newer_v.resize(77, 1);
 	std::cout << "OG:     Resize(77, 0) Capacity should be 77: " << COLOUR_GREEN << og_newer_v.capacity() << COLOUR_DEFAULT << std::endl;
 	std::cout << "Mine:   Resize(77, 0) Capacity should be 77: " << COLOUR_GREEN << my_newer_v.capacity() << COLOUR_DEFAULT << std::endl;
+	og_newer_v.resize(78, 1);
+	my_newer_v.resize(78, 1);
+	std::cout << "OG:     Resize(78, 0) Capacity should be 154: " << COLOUR_GREEN << og_newer_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine:   Resize(78, 0) Capacity should be 154: " << COLOUR_GREEN << my_newer_v.capacity() << COLOUR_DEFAULT << std::endl;
 	for (int i = 0; i < og_newer_v.size(); i++)
 	{
 		std::cout << COLOUR_YELLOW << og_newer_v[i] << " ";
@@ -164,5 +168,29 @@ int main(void)
 	{
 		std::cout << COLOUR_GREEN << my_newer_v[i] << " ";
 	}
+	std::vector<int> og_vec(2, 2);
+	ft::vector<int> my_vec(2, 2);
 	std::cout << COLOUR_DEFAULT << std::endl;
+	std::cout << COLOUR_BLUE << "\nTesting method .reserve()" << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   Capacity should be 2: " << COLOUR_GREEN << og_vec.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Capacity should be 2: " << COLOUR_GREEN << my_vec.capacity() << COLOUR_DEFAULT << std::endl;
+	og_vec.reserve(70);
+	my_vec.reserve(70);
+	std::cout << "OG:   .reserve(70)Capacity should be 70: " << COLOUR_GREEN << og_vec.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: .reserve(70)Capacity should be 70: " << COLOUR_GREEN << my_vec.capacity() << COLOUR_DEFAULT << std::endl;
+	og_vec.reserve(1);
+	my_vec.reserve(1);
+	std::cout << "OG:   .reserve(1)Capacity should be 70: " << COLOUR_GREEN << og_vec.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: .reserve(1)Capacity should be 70: " << COLOUR_GREEN << my_vec.capacity() << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < og_vec.size(); i++)
+	{
+		std::cout << COLOUR_YELLOW << og_vec[i] << " ";
+	}
+	std::cout<< std::endl;
+	for (int i = 0; i < my_vec.size(); i++)
+	{
+		std::cout << COLOUR_GREEN << my_vec[i] << " ";
+	}
+
+	std::cout<< std::endl;
 }
