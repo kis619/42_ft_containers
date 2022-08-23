@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/23 12:12:11 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/23 12:37:38 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 #include "ft_iterator.hpp"
 #include <stdexcept>
 
-using std::enable_if;
-using std::is_integral;
+using std::enable_if; ///need to re-write those two
+using std::is_integral; //
 
 namespace ft
 {
@@ -91,7 +91,7 @@ public:
 	// void assign (InputIterator first, InputIterator last);
 	// void assign (size_type n, const value_type& val);
 	void pop_back(void);
-	// void push_back (const value_type& val);
+	void push_back (const value_type &val);
 	// iterator insert (iterator position, const value_type& val);
 	// void insert (iterator position, size_type n, const value_type& val);
 	// template <class InputIterator>

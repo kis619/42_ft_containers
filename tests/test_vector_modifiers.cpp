@@ -35,5 +35,55 @@ int main(void)
 	std::cout << "OG:   should be 0: " << COLOUR_GREEN << og_v.size() << COLOUR_DEFAULT << std::endl;
 	std::cout << "Mine: should be 0: " << COLOUR_GREEN << my_v.size() << COLOUR_DEFAULT << std::endl;
 
+	std::cout << COLOUR_BLUE << "Testing method .push_back()  with enough capacity" << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < my_v.capacity(); i++)
+	{
+		og_v.push_back(i + 1);
+		my_v.push_back(i + 1);
+		std::cout << "OG:   should be " << i + 1  << ": "<< COLOUR_GREEN << og_v[i] << COLOUR_DEFAULT << std::endl;
+		std::cout << "Mine: should be " << i + 1  << ": "<< COLOUR_GREEN << my_v[i] << COLOUR_DEFAULT << std::endl;
+	}
+	std::cout << COLOUR_BLUE << "Testing method .push_back() with insufficient capacity" << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < 9; i ++)
+	{
+		my_v.push_back(78 + i);
+		og_v.push_back(78 + i);
+	}
+	for (int i = 0; i < 9; i ++)
+	{
+		my_v.push_back(78 + i);
+		og_v.push_back(78 + i);
+	}
+	for (int i = 0; i < 9; i ++)
+	{
+		my_v.push_back(78 + i);
+		og_v.push_back(78 + i);
+	}
+	for (int i = 0; i < 9; i ++)
+	{
+		my_v.push_back(78 + i);
+		og_v.push_back(78 + i);
+	}
+	for (int i = 0; i < 9; i ++)
+	{
+		my_v.push_back(78 + i);
+		og_v.push_back(78 + i);
+	}
+	std::cout << "OG:   size should be 12: " << COLOUR_GREEN << og_v.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: size should be 12: " << COLOUR_GREEN << my_v.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   capacity should be 12: " << COLOUR_GREEN << og_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: capacity should be 12: " << COLOUR_GREEN << my_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   size should be 81: " << COLOUR_GREEN << og_v[6] << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: size should be 81: " << COLOUR_GREEN << my_v[6] << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   size should be 82: " << COLOUR_GREEN << og_v.at(7) << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: size should be 82: " << COLOUR_GREEN << my_v.at(7) << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < 9; i ++)
+	{
+		my_v.push_back(78 + i);
+		og_v.push_back(78 + i);
+	}
+	std::cout << "OG:   capacity should be 96: " << COLOUR_GREEN << og_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: capacity should be 96: " << COLOUR_GREEN << my_v.capacity() << COLOUR_DEFAULT << std::endl;
+
 
 }
