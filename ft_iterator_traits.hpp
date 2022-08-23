@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:12:51 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/21 17:18:03 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/23 22:39:42 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ namespace ft
 	template<class Iterator>
 	struct iterator_traits
 	{
-		typedef typename Iterator::difference_type		difference_type;
 		typedef typename Iterator::value_type			value_type;
+		typedef typename Iterator::difference_type		difference_type;
 		typedef typename Iterator::pointer				pointer;
 		typedef typename Iterator::reference			reference;
 		typedef typename Iterator::iterator_category	iterator_category;

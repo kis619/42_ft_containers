@@ -69,10 +69,10 @@ int main(void)
 		my_v.push_back(78 + i);
 		og_v.push_back(78 + i);
 	}
-	std::cout << "OG:   size should be 12: " << COLOUR_GREEN << og_v.size() << COLOUR_DEFAULT << std::endl;
-	std::cout << "Mine: size should be 12: " << COLOUR_GREEN << my_v.size() << COLOUR_DEFAULT << std::endl;
-	std::cout << "OG:   capacity should be 12: " << COLOUR_GREEN << og_v.capacity() << COLOUR_DEFAULT << std::endl;
-	std::cout << "Mine: capacity should be 12: " << COLOUR_GREEN << my_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   size should be 48: " << COLOUR_GREEN << og_v.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: size should be 48: " << COLOUR_GREEN << my_v.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   capacity should be 48: " << COLOUR_GREEN << og_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: capacity should be 48: " << COLOUR_GREEN << my_v.capacity() << COLOUR_DEFAULT << std::endl;
 	std::cout << "OG:   size should be 81: " << COLOUR_GREEN << og_v[6] << COLOUR_DEFAULT << std::endl;
 	std::cout << "Mine: size should be 81: " << COLOUR_GREEN << my_v[6] << COLOUR_DEFAULT << std::endl;
 	std::cout << "OG:   size should be 82: " << COLOUR_GREEN << og_v.at(7) << COLOUR_DEFAULT << std::endl;
@@ -85,7 +85,7 @@ int main(void)
 	std::cout << "OG:   capacity should be 96: " << COLOUR_GREEN << og_v.capacity() << COLOUR_DEFAULT << std::endl;
 	std::cout << "Mine: capacity should be 96: " << COLOUR_GREEN << my_v.capacity() << COLOUR_DEFAULT << std::endl;
 
-	std::cout << COLOUR_BLUE << "Testing method .assign() with iterators" << COLOUR_DEFAULT << std::endl;
+	std::cout << COLOUR_BLUE << "Testing method .assign() range version with iterators" << COLOUR_DEFAULT << std::endl;
 
 	std::vector<int> og_new_v(1, 1);
 	ft::vector<int> my_new_v(1, 1);
@@ -115,4 +115,23 @@ int main(void)
 		std::cout << COLOUR_GREEN << my_new_v[i] << " ";
 	}
 	std::cout << COLOUR_DEFAULT;
+	std::cout << COLOUR_BLUE << "\nTesting method .assign() fill verison" << COLOUR_DEFAULT << std::endl;
+	og_new_v.assign(4, 0);
+	my_new_v.assign(4, 0);
+	std::cout << "OG:   New Capacity: " << COLOUR_RED << og_new_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: New Capacity: " << COLOUR_RED << my_new_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   Size: " << COLOUR_RED << og_new_v.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Size: " << COLOUR_RED << my_new_v.size() << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < my_new_v.size(); i++)
+	{
+		std::cout << COLOUR_YELLOW << og_new_v[i] << " ";
+	}
+	std::cout<< std::endl;
+	for (int i = 0; i < my_new_v.size(); i++)
+	{
+		std::cout << COLOUR_GREEN << my_new_v[i] << " ";
+	}
+	std::cout << COLOUR_DEFAULT;
+
+	// std::cout << enable_if<2>::type <<std::endl;
 }

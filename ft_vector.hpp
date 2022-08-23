@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/23 14:28:18 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/23 22:59:06 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 #include <memory>
 #include <stack>
 #include "ft_iterator.hpp"
+#include "ft_utils.hpp"
 #include <stdexcept>
 
-using std::enable_if; ///need to re-write those two
+// using std::enable_if; ///need to re-write those two
 using std::is_integral; //
 
 namespace ft
@@ -49,9 +50,9 @@ public:
 //range constructor
 	template <class InputIterator>
 	vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(),
-			typename enable_if<!is_integral<InputIterator>::value>::type* = nullptr);
+			typename enable_if<!is_integral<InputIterator>::value>::type* = NULL);
 //copy constructor
-	vector (const vector& x);
+	vector (const vector& x); //TBD
 
 //destructor
 	~vector(void);
@@ -88,8 +89,8 @@ public:
 
 /////////////////////////////////MODIFIERS/////////////////////
 	template <class InputIterator>
-	void assign (InputIterator first, InputIterator last);
-	// void assign (size_type n, const value_type& val);
+	void assign (InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type* = NULL);
+	void assign (size_type n, const value_type& val);
 	void pop_back(void);
 	void push_back (const value_type &val);
 	// iterator insert (iterator position, const value_type& val);

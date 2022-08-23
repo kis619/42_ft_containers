@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:41 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/23 12:26:06 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/23 22:59:33 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ namespace ft
 	vector<T, Allocator>::vector(const allocator_type &alloc) :
 	_alloc(alloc),
 	_capacity(0),
-	_begin(nullptr),
-	_end(nullptr)
+	_begin(NULL),
+	_end(NULL)
 	{
 	}
 	
@@ -30,8 +30,8 @@ namespace ft
 	vector<T, Allocator>::vector(size_type n, const value_type &val, const allocator_type &alloc) :
 	_alloc(alloc),
 	_capacity(n),
-	_begin(nullptr),
-	_end(nullptr)
+	_begin(NULL),
+	_end(NULL)
 	{
 		_begin = _alloc.allocate(n);
 		_end = _begin;
@@ -50,8 +50,8 @@ namespace ft
 		typename enable_if<!is_integral<InputIterator>::value>::type*) :
 	_alloc(alloc),
 	_capacity(last - first),
-	_begin(nullptr),
-	_end(nullptr)
+	_begin(NULL),
+	_end(NULL)
 	{
 		_begin = _alloc.allocate(last - first);
 		_end = _begin;

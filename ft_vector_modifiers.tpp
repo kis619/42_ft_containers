@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/23 15:39:39 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/23 16:25:52 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ namespace ft
 {
 	template <typename T, typename Allocator>
 	template <class InputIterator>
-	void vector<T, Allocator>::assign (InputIterator first, InputIterator last)
+	void vector<T, Allocator>::assign (InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type*)
 	{
 		clear();
 		difference_type n = last - first;
@@ -34,6 +34,27 @@ namespace ft
 			{
 				_alloc.construct(_end++, *(first.base()));
 				first++;
+				n--;
+			}
+		}
+	}
+	
+	template <typename T, typename Allocator>
+	void vector<T, Allocator>::assign(size_type n, const value_type &val)
+	{
+		clear();
+		if (n)
+		{
+			if (n > _capacity)
+			{
+				_alloc.deallocate(_begin, _capacity);
+				_begin = _alloc.allocate(n);
+				_end = _begin;
+				_capacity = n;
+			}
+			while(n)
+			{
+				_alloc.construct(_end++, val);
 				n--;
 			}
 		}
