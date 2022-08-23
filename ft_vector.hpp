@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/23 12:37:38 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/23 13:45:48 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ public:
 
 /////////////////////////////////MISCELANIOUS/////////////////////
 	private:
-		void adjust_capacity(); //depending on size and capacity
+		size_type adjust_capacity(); //depending on size and capacity
 private:
 	allocator_type		_alloc;
 	size_type			_capacity;
