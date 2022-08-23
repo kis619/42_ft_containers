@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/23 22:59:06 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/24 00:17:24 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ public:
 /////////////////////////////////CAPACITY//////////////////////
 	size_type	size(void) const;
 	size_type	max_size(void) const;
-	// void		resize (size_type n, value_type val = value_type()); //Member type value_type is the type of the elements in the container, defined in vector as an alias of the first template parameter (T).
+	void		resize (size_type n, value_type val = value_type()); //Member type value_type is the type of the elements in the container, defined in vector as an alias of the first template parameter (T).
 	size_type	capacity(void) const;
 	bool		empty(void) const;
 	// void reserve (size_type n); //Requests that the vector capacity be at least enough to contain n elements. If n is greater than the current vector capacity, the function causes the container to reallocate its storage increasing its capacity to n (or greater).
@@ -109,7 +109,7 @@ public:
 
 /////////////////////////////////MISCELANIOUS/////////////////////
 	private:
-		size_type adjust_capacity(); //depending on size and capacity
+		size_type adjust_capacity(int n = 0); //depending on size and capacity
 private:
 	allocator_type		_alloc;
 	size_type			_capacity;

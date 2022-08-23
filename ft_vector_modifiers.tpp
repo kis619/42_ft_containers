@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/23 16:25:52 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/24 00:34:47 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,15 @@ namespace ft
 	}
 	
 	template <typename T, typename Allocator>
-	typename vector<T, Allocator>::size_type vector<T, Allocator>::adjust_capacity(void)
+	typename vector<T, Allocator>::size_type vector<T, Allocator>::adjust_capacity(int n)
 	{
 		size_type old_size = size();
 		size_type new_capacity = 1;
 		if (_capacity) 
 			new_capacity = _capacity * 2;
+		if (n > 2 * _capacity)
+			new_capacity = n;
+		// std::cout << "CAPACITY FROM MY FUNCTION: " << new_capacity << std::endl;
 		pointer tmp = _alloc.allocate(new_capacity);
 		for(unsigned int i = 0; i < old_size; i++)
 		{

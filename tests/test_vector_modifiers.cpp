@@ -91,10 +91,10 @@ int main(void)
 	ft::vector<int> my_new_v(1, 1);
 	std::vector<int>::iterator	og_it(og_v.begin());
 	std::vector<int>::iterator	og_it2(og_v.begin() + 10);
-	std::vector<int>::iterator	og_it3(og_v.begin() + 2);
+	std::vector<int>::iterator	og_it3(og_v.begin() + 1);
 	ft::vector<int>::iterator	my_it(my_v.begin());
 	ft::vector<int>::iterator	my_it2(my_v.begin() + 10);
-	ft::vector<int>::iterator	my_it3(my_v.begin() + 2);
+	ft::vector<int>::iterator	my_it3(my_v.begin() + 1);
 	std::cout << "OG:   Capacity before assign: " << COLOUR_RED << og_new_v.capacity() << COLOUR_DEFAULT << std::endl;
 	std::cout << "Mine: Capacity before assign: " << COLOUR_RED << my_new_v.capacity() << COLOUR_DEFAULT << std::endl;
 	std::cout << "OG:   Size: " << COLOUR_RED << og_new_v.size() << COLOUR_DEFAULT << std::endl;
@@ -122,7 +122,7 @@ int main(void)
 	std::cout << "Mine: New Capacity: " << COLOUR_RED << my_new_v.capacity() << COLOUR_DEFAULT << std::endl;
 	std::cout << "OG:   Size: " << COLOUR_RED << og_new_v.size() << COLOUR_DEFAULT << std::endl;
 	std::cout << "Mine: Size: " << COLOUR_RED << my_new_v.size() << COLOUR_DEFAULT << std::endl;
-	for (int i = 0; i < my_new_v.size(); i++)
+	for (int i = 0; i < og_new_v.size(); i++)
 	{
 		std::cout << COLOUR_YELLOW << og_new_v[i] << " ";
 	}
@@ -131,7 +131,38 @@ int main(void)
 	{
 		std::cout << COLOUR_GREEN << my_new_v[i] << " ";
 	}
-	std::cout << COLOUR_DEFAULT;
+	std::cout << COLOUR_DEFAULT << std::endl;
 
-	// std::cout << enable_if<2>::type <<std::endl;
+	std::cout << COLOUR_BLUE << "\nTesting method .resize() with sufficient capacity" << COLOUR_DEFAULT << std::endl;
+	og_new_v.resize(3);
+	my_new_v.resize(3);
+	std::cout << "OG:   Size should be 3: " << COLOUR_GREEN << og_new_v.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Size should be 3: " << COLOUR_GREEN << my_new_v.size() << COLOUR_DEFAULT << std::endl;
+	
+	std::cout << COLOUR_BLUE << "\nTesting method .resize() with insufficient capacity" << COLOUR_DEFAULT << std::endl;
+	std::vector<int> og_newer_v;
+	ft::vector<int> my_newer_v;
+	og_newer_v.resize(0, 0);
+	my_newer_v.resize(0, 0);
+	std::cout << "OG:     Capacity should be 0: " << COLOUR_GREEN << og_newer_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine:   Capacity should be 0: " << COLOUR_GREEN << my_newer_v.capacity() << COLOUR_DEFAULT << std::endl;
+	og_newer_v.resize(36, 2);
+	my_newer_v.resize(36, 2);
+	std::cout << "OG:     Resize(36, 0) Capacity should be 36: " << COLOUR_GREEN << og_newer_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine:   Resize(36, 0) Capacity should be 36: " << COLOUR_GREEN << my_newer_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine:   Resize(36, 0) Size should be 36:     " << COLOUR_GREEN << my_newer_v.size() << COLOUR_DEFAULT << std::endl;
+	og_newer_v.resize(77, 1);
+	my_newer_v.resize(77, 1);
+	std::cout << "OG:     Resize(77, 0) Capacity should be 77: " << COLOUR_GREEN << og_newer_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine:   Resize(77, 0) Capacity should be 77: " << COLOUR_GREEN << my_newer_v.capacity() << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < og_newer_v.size(); i++)
+	{
+		std::cout << COLOUR_YELLOW << og_newer_v[i] << " ";
+	}
+	std::cout<< std::endl;
+	for (int i = 0; i < my_newer_v.size(); i++)
+	{
+		std::cout << COLOUR_GREEN << my_newer_v[i] << " ";
+	}
+	std::cout << COLOUR_DEFAULT << std::endl;
 }
