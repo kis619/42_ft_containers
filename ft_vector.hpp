@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/23 11:46:58 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/23 12:12:11 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,17 +115,6 @@ private:
 	pointer				_begin;
 	pointer				_end;
 
-
-
-
-
-
-	// reference operator[](size_type n)
-	// 	{
-	// 		return (*(this->_begin + n));
-	// 	}
-
-	
 };
 };
 

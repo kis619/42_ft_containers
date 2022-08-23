@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:41 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/23 12:05:42 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/23 12:26:06 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ namespace ft
 	vector<T, Allocator>::~vector(void)
 	{
 		clear();
-		_alloc.deallocate(_begin, capcity());
+		_alloc.deallocate(_begin, capacity());
 	}
 }
