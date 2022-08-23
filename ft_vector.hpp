@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/23 13:45:48 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/23 14:28:18 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ public:
 	const value_type*	data(void) const;
 
 /////////////////////////////////MODIFIERS/////////////////////
-	// template <class InputIterator>
-	// void assign (InputIterator first, InputIterator last);
+	template <class InputIterator>
+	void assign (InputIterator first, InputIterator last);
 	// void assign (size_type n, const value_type& val);
 	void pop_back(void);
 	void push_back (const value_type &val);

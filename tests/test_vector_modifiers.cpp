@@ -85,5 +85,34 @@ int main(void)
 	std::cout << "OG:   capacity should be 96: " << COLOUR_GREEN << og_v.capacity() << COLOUR_DEFAULT << std::endl;
 	std::cout << "Mine: capacity should be 96: " << COLOUR_GREEN << my_v.capacity() << COLOUR_DEFAULT << std::endl;
 
+	std::cout << COLOUR_BLUE << "Testing method .assign() with iterators" << COLOUR_DEFAULT << std::endl;
 
+	std::vector<int> og_new_v(1, 1);
+	ft::vector<int> my_new_v(1, 1);
+	std::vector<int>::iterator	og_it(og_v.begin());
+	std::vector<int>::iterator	og_it2(og_v.begin() + 10);
+	std::vector<int>::iterator	og_it3(og_v.begin() + 2);
+	ft::vector<int>::iterator	my_it(my_v.begin());
+	ft::vector<int>::iterator	my_it2(my_v.begin() + 10);
+	ft::vector<int>::iterator	my_it3(my_v.begin() + 2);
+	std::cout << "OG:   Capacity before assign: " << COLOUR_RED << og_new_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Capacity before assign: " << COLOUR_RED << my_new_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   Size: " << COLOUR_RED << og_new_v.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Size: " << COLOUR_RED << my_new_v.size() << COLOUR_DEFAULT << std::endl;
+	og_new_v.assign(og_it, og_it2);
+	my_new_v.assign(my_it, my_it2);
+	std::cout << "OG:   New Capacity: " << COLOUR_RED << og_new_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: New Capacity: " << COLOUR_RED << my_new_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   Size: " << COLOUR_RED << og_new_v.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Size: " << COLOUR_RED << my_new_v.size() << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < my_new_v.size(); i++)
+	{
+		std::cout << COLOUR_YELLOW << og_new_v[i] << " ";
+	}
+	std::cout<< std::endl;
+	for (int i = 0; i < my_new_v.size(); i++)
+	{
+		std::cout << COLOUR_GREEN << my_new_v[i] << " ";
+	}
+	std::cout << COLOUR_DEFAULT;
 }

@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/23 13:47:42 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:39:39 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,26 @@
 namespace ft
 {
 	template <typename T, typename Allocator>
-	void vector<T, Allocator>::clear(void)
+	template <class InputIterator>
+	void vector<T, Allocator>::assign (InputIterator first, InputIterator last)
 	{
-		size_type old_size = size();
-		
-		for(int i = 0; i < old_size; i++)
+		clear();
+		difference_type n = last - first;
+		if (n)
 		{
-			_end--;
-			_alloc.destroy(_end);
+			if (n > _capacity)
+			{
+				_alloc.deallocate(_begin, _capacity);
+				_begin = _alloc.allocate(n);
+				_end = _begin;
+				_capacity = n;
+			}
+			while(n)
+			{
+				_alloc.construct(_end++, *(first.base()));
+				first++;
+				n--;
+			}
 		}
 	}
 	
@@ -55,36 +67,42 @@ namespace ft
 			_capacity = new_capacity;
 		}
 		//OR//
-		// size_type old_size = adjust_capacity();
-		///
+		// size_type old_size = size();
+		// if (old_size + 1 > _capacity)
+		// 	old_size = adjust_capacity();
 		_alloc.construct(_begin + old_size, val);
 		_end++;
+	}
+	
+	template <typename T, typename Allocator>
+	void vector<T, Allocator>::clear(void)
+	{
+		size_type old_size = size();
+		
+		for(int i = 0; i < old_size; i++)
+		{
+			_end--;
+			_alloc.destroy(_end);
+		}
 	}
 	
 	template <typename T, typename Allocator>
 	typename vector<T, Allocator>::size_type vector<T, Allocator>::adjust_capacity(void)
 	{
 		size_type old_size = size();
-		if (size() > _capacity)
+		size_type new_capacity = 1;
+		if (_capacity) 
+			new_capacity = _capacity * 2;
+		pointer tmp = _alloc.allocate(new_capacity);
+		for(unsigned int i = 0; i < old_size; i++)
 		{
-			size_type old_size = size();
-		if (old_size + 1 >  _capacity)
-		{
-			size_type new_capacity = 1;
-			if (_capacity) 
-				new_capacity = _capacity * 2;
-			pointer tmp = _alloc.allocate(new_capacity);
-			for(unsigned int i = 0; i < old_size; i++)
-			{
-				_alloc.construct(tmp + i, _begin[i]);
-				_alloc.destroy(_begin + i);
-			}
-			_alloc.deallocate(_begin, _capacity);
-			_begin = tmp;
-			_end = _begin + old_size;
-			_capacity = new_capacity;
+			_alloc.construct(tmp + i, _begin[i]);
+			_alloc.destroy(_begin + i);
 		}
-		}
+		_alloc.deallocate(_begin, _capacity);
+		_begin = tmp;
+		_end = _begin + old_size;
+		_capacity = new_capacity;
 		return (old_size);
 	}
 	
