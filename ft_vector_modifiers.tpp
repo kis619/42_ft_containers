@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/24 17:21:50 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/24 18:18:27 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,25 +99,14 @@ namespace ft
 	typename vector<T, Allocator>::iterator vector<T, Allocator>::insert (iterator position, const value_type &val)
 	{
 		size_type pos = end() - position;
-		if(size() + 1 <= _capacity)
-		{
-			for(size_type i = 0; i < pos; i++)
-				_alloc.construct(_end - i, *(_end - i - 1));
-			_end++;
-			_alloc.construct(&(*position), val);
-		}
-		else
-		{
-			// size_type pos = end() - position;
-			adjust_capacity();
-			for(size_type i = 0; i < pos; i++)
-			{
-				_alloc.construct(_end - i, *(_end - i - 1));
-			}
-			_alloc.construct(_end - pos, val);
-			_end++;
-		}
 		size_type diff = position - begin();
+		
+		if(size() + 1 > _capacity)
+			adjust_capacity();
+		for(size_type i = 0; i < pos; i++)
+			_alloc.construct(_end - i, *(_end - i - 1));
+		_alloc.construct(_end - pos, val);
+		_end++;
 		return(begin() + diff);
 	}
 	

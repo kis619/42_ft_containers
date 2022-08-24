@@ -152,10 +152,14 @@ int main(void)
 	std::cout << "Mine: Size:     " << COLOUR_RED << my_new_v.size() << COLOUR_DEFAULT << std::endl;
 	std::cout << "OG:   Capacity: " << COLOUR_RED << og_new_v.capacity() << COLOUR_DEFAULT << std::endl;
 	std::cout << "Mine: Capacity: " << COLOUR_RED << my_new_v.capacity() << COLOUR_DEFAULT << std::endl;
-	std::vector<int>::iterator og_it_insert_return = og_new_v.insert(og_new_v.begin(), 42);
-	ft::vector<int>::iterator my_it_insert_return = my_new_v.insert(my_new_v.begin(), 42);
-	std::cout << "OG:   should be 42 " << COLOUR_GREEN << *og_it_insert_return << COLOUR_DEFAULT << std::endl;
+	std::vector<int>::iterator og_it_insert_return = og_new_v.insert(og_new_v.end(), 77);
+	ft::vector<int>::iterator my_it_insert_return = my_new_v.insert(my_new_v.end(), 77);
+	std::cout << "OG:   should be 77 " << COLOUR_GREEN << *(og_new_v.end() - 1) << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   should be 77 " << COLOUR_GREEN << *(my_new_v.end() - 1) << COLOUR_DEFAULT << std::endl;
+	og_it_insert_return = og_new_v.insert(og_new_v.begin(), 42);
+	my_it_insert_return = my_new_v.insert(my_new_v.begin(), 42);
 	std::cout << "Mine: should be 42 " << COLOUR_GREEN << *my_it_insert_return << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   should be 42 " << COLOUR_GREEN << *og_it_insert_return << COLOUR_DEFAULT << std::endl;
 	
 	// std::cout << my_new_v.begin() + 1 - (my_new_v.begin()) << std::endl;
 }
