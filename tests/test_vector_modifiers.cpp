@@ -156,10 +156,35 @@ int main(void)
 	ft::vector<int>::iterator my_it_insert_return = my_new_v.insert(my_new_v.end(), 77);
 	std::cout << "OG:   should be 77 " << COLOUR_GREEN << *(og_new_v.end() - 1) << COLOUR_DEFAULT << std::endl;
 	std::cout << "OG:   should be 77 " << COLOUR_GREEN << *(my_new_v.end() - 1) << COLOUR_DEFAULT << std::endl;
-	og_it_insert_return = og_new_v.insert(og_new_v.begin(), 42);
-	my_it_insert_return = my_new_v.insert(my_new_v.begin(), 42);
-	std::cout << "Mine: should be 42 " << COLOUR_GREEN << *my_it_insert_return << COLOUR_DEFAULT << std::endl;
-	std::cout << "OG:   should be 42 " << COLOUR_GREEN << *og_it_insert_return << COLOUR_DEFAULT << std::endl;
 	
-	// std::cout << my_new_v.begin() + 1 - (my_new_v.begin()) << std::endl;
+	std::cout << COLOUR_BLUE << "\nTesting method .insert() fill with insufficient capacity" << COLOUR_DEFAULT << std::endl;
+	og_new_v.assign(0, 0);
+	my_new_v.assign(0, 0);
+	og_new_v.insert(og_new_v.begin(), 1, 5);
+	my_new_v.insert(my_new_v.begin(), 1, 5);
+	og_new_v.insert(og_new_v.begin(), 3, 6);
+	my_new_v.insert(my_new_v.begin(), 3, 6);
+	for (int i = 0; i < og_new_v.size(); i++)
+		std::cout << COLOUR_YELLOW << og_new_v[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < my_new_v.size(); i++)
+		std::cout << COLOUR_GREEN << my_new_v[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	og_new_v.insert(og_new_v.begin(), 1, 7);
+	my_new_v.insert(my_new_v.begin(), 1, 7);
+	og_new_v.insert(og_new_v.begin(), 6, 8);
+	my_new_v.insert(my_new_v.begin(), 6, 8);
+	og_new_v.insert(og_new_v.begin(), 1, 9);
+	my_new_v.insert(my_new_v.begin(), 1, 9);
+	og_new_v.insert(og_new_v.begin(), 200, 321);
+	my_new_v.insert(my_new_v.begin(), 200, 321);
+	std::cout << "OG:   Size:     " << COLOUR_RED << og_new_v.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Size:     " << COLOUR_RED << my_new_v.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   Capacity: " << COLOUR_RED << og_new_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Capacity: " << COLOUR_RED << my_new_v.capacity() << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < og_new_v.size(); i++)
+		std::cout << COLOUR_YELLOW << og_new_v[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < my_new_v.size(); i++)
+		std::cout << COLOUR_GREEN << my_new_v[i] << " ";
 }

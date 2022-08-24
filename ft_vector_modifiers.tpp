@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/24 18:18:27 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/24 21:13:36 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,38 @@ namespace ft
 		_end++;
 		return(begin() + diff);
 	}
+	
+	template <typename T, typename Allocator>
+	void vector<T, Allocator>::insert (iterator position, size_type n, const value_type& val)
+	{
+		if (n)
+		{
+			size_type pos = end() - position;
+			// std::cout << "Position: " << pos << std::endl;
+			if(size() + n > _capacity)
+			{
+				// std::cout << "here\n";
+				adjust_capacity(size() + n);
+				// std::cout << "Size: " << size() << std::endl;
+				// resize()
+			}
+			// std::cout << "Size: " << size() << std::endl;
+			for(size_type i = 0; i <= pos; i++)
+			{
+				// std::cout << "IDX: " << i << "Value at end - i" <<
+				// std::cout << *(_end - i) << std::endl;
+				_alloc.construct(_end - i + n, *(_end - i));
+			}
+			// std::cout << "Size after for loop: " << size() << std::endl;
+			for (size_type i = 0; i < n; i++)
+			{
+				// std::cout << COLOUR_YELLOW << "IDX: " << i << "\nVal" << val <<COLOUR_DEFAULT << std::endl;
+				_alloc.construct(_end - (pos), val);
+				_end++;
+			}
+		}
+	}
+	
 	
 	template <typename T, typename Allocator>
 	void vector<T, Allocator>::clear(void)
