@@ -187,4 +187,20 @@ int main(void)
 	std::cout << COLOUR_DEFAULT << std::endl;
 	for (int i = 0; i < my_new_v.size(); i++)
 		std::cout << COLOUR_GREEN << my_new_v[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+
+	std::cout << COLOUR_BLUE << "\n\nTesting method .insert() range" << COLOUR_DEFAULT << std::endl;
+	og_new_v.assign(6, 0);
+	my_new_v.assign(6, 0);
+	std::vector<int> og_vec(2, 2);
+	ft::vector<int> my_vec(2, 2);
+
+	og_vec.insert(og_vec.end(), og_new_v.begin(), og_new_v.end());
+	my_vec.insert(my_vec.end(), my_new_v.begin(), my_new_v.end());
+	for (int i = 0; i < og_vec.size(); i++)
+		std::cout << COLOUR_YELLOW << og_vec[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < my_new_v.size(); i++)
+		std::cout << COLOUR_GREEN << my_vec[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
 }

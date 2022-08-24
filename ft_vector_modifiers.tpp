@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/24 21:13:36 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/24 22:09:56 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,31 +116,50 @@ namespace ft
 		if (n)
 		{
 			size_type pos = end() - position;
-			// std::cout << "Position: " << pos << std::endl;
 			if(size() + n > _capacity)
-			{
-				// std::cout << "here\n";
 				adjust_capacity(size() + n);
-				// std::cout << "Size: " << size() << std::endl;
-				// resize()
-			}
-			// std::cout << "Size: " << size() << std::endl;
+			////moved the elements
 			for(size_type i = 0; i <= pos; i++)
-			{
-				// std::cout << "IDX: " << i << "Value at end - i" <<
-				// std::cout << *(_end - i) << std::endl;
 				_alloc.construct(_end - i + n, *(_end - i));
-			}
-			// std::cout << "Size after for loop: " << size() << std::endl;
+			////add the new ones
 			for (size_type i = 0; i < n; i++)
 			{
-				// std::cout << COLOUR_YELLOW << "IDX: " << i << "\nVal" << val <<COLOUR_DEFAULT << std::endl;
 				_alloc.construct(_end - (pos), val);
 				_end++;
 			}
 		}
 	}
 	
+	template <typename T, typename Allocator>
+	template<class InputIterator>
+	void vector<T, Allocator>::insert (iterator position, InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type*)
+	{
+		size_type n = last - first;
+		int i = 0;
+		if (n)
+		{
+			size_type pos = end() - position;
+			if(size() + n > _capacity)
+					adjust_capacity(size() + n);
+			for(size_type i = 0; i <= pos; i++)
+					_alloc.construct(_end - i + n, *(_end - i));
+			while (first != last)
+			{
+				_alloc.construct(_end - (pos), *(first.base()));
+				first++;
+				_end++;
+				std::cout << "idx: " << i++ << std::endl;
+				
+			}
+		}
+		// _end += n;
+		// while (first != last)
+		// {
+		// 	_alloc.construct(&(*position), *first);
+		// 	first++;
+		// 	position++;
+		// }
+	}
 	
 	template <typename T, typename Allocator>
 	void vector<T, Allocator>::clear(void)

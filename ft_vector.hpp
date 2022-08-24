@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/24 18:25:14 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/24 21:40:46 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ public:
 	void push_back (const value_type &val);
 	iterator insert (iterator position, const value_type& val);
 	void insert (iterator position, size_type n, const value_type& val);
-	// template <class InputIterator>
-	// void insert (iterator position, InputIterator first, InputIterator last);
+	template <class InputIterator>
+	void insert (iterator position, InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type* = NULL);
 	// iterator erase (iterator position);
 	// iterator erase (iterator first, iterator last);
 	////////?SWAP
