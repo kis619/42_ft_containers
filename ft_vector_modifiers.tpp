@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/24 01:46:57 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/24 17:10:13 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,32 @@ namespace ft
 	}
 	
 	template <typename T, typename Allocator>
+	typename vector<T, Allocator>::iterator vector<T, Allocator>::insert (iterator position, const value_type &val)
+	{
+		size_type pos = end() - position;
+		if(size() + 1 <= _capacity)
+		{
+			for(size_type i = 0; i < pos; i++)
+				_alloc.construct(_end - i, *(_end - i - 1));
+			_end++;
+			_alloc.construct(&(*position), val);
+		}
+		else
+		{
+			// size_type pos = end() - position;
+			adjust_capacity();
+			for(size_type i = 0; i < pos; i++)
+			{
+				_alloc.construct(_end - i, *(_end - i - 1));
+			}
+			_alloc.construct(_end - pos, val);
+			_end++;
+		}
+		size_type diff = position - begin();
+		return(begin() + diff);
+	}
+	
+	template <typename T, typename Allocator>
 	void vector<T, Allocator>::clear(void)
 	{
 		size_type old_size = size();
@@ -105,6 +131,12 @@ namespace ft
 			_end--;
 			_alloc.destroy(_end);
 		}
+	}
+	
+	template <typename T, typename Allocator>
+	typename vector<T, Allocator>::allocator_type vector<T, Allocator>::get_allocator(void) const
+	{
+		return(_alloc);
 	}
 	
 	template <typename T, typename Allocator>
@@ -129,10 +161,4 @@ namespace ft
 		return (old_size);
 	}
 	
-	
-	template <typename T, typename Allocator>
-	typename vector<T, Allocator>::allocator_type vector<T, Allocator>::get_allocator(void) const
-	{
-		return(_alloc);
-	}
 };
