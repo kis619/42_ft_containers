@@ -6,40 +6,26 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:51:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/24 13:05:47 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/22 12:40:04 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// inserting into a vector
+	// comparing size, capacity and max_size
 #include <iostream>
 #include <vector>
 
 int main ()
 {
-  std::vector<int> myvector (3,100);
-  std::vector<int>::iterator it;
+  std::vector<int> myvector;
 
-  it = myvector.begin();
-  std::cout << *it << std::endl;
-  it = myvector.insert ( it , 200 );
-  std::cout << *it << std::endl;
+  // set some content in the vector:
+  // for (int i=0; i<100; i++) myvector.push_back(i);
 
-  myvector.insert (it,2,300);
-  std::cout << *it << std::endl;
-
-  // "it" no longer valid, get a new one:
-  // it = myvector.begin();
-
-  // std::vector<int> anothervector (2,400);
-  // myvector.insert (it+2,anothervector.begin(),anothervector.end());
-
-  // int myarray [] = { 501,502,503 };
-  // myvector.insert (myvector.begin(), myarray, myarray+3);
-
-  // std::cout << "myvector contains:";
-  // for (it=myvector.begin(); it<myvector.end(); it++)
-  //   std::cout << ' ' << *it;
-  // std::cout << '\n';
-
+  // std::cout << "size: " << myvector.size() << "\n";
+  // std::cout << "capacity: " << myvector.capacity() << "\n";
+  // std::cout << "max_size: " << myvector.max_size() << "\n";
+ 
+  int *data = myvector.data();
+  std::cout << "First element: " << (data) << std::endl;
   return 0;
 }
