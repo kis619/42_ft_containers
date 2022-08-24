@@ -41,6 +41,7 @@ int main(void)
 		std::cout << "OG:   should be " << i + 1  << ": "<< COLOUR_GREEN << og_v[i] << COLOUR_DEFAULT << std::endl;
 		std::cout << "Mine: should be " << i + 1  << ": "<< COLOUR_GREEN << my_v[i] << COLOUR_DEFAULT << std::endl;
 	}
+
 	std::cout << COLOUR_BLUE << "Testing method .push_back() with insufficient capacity" << COLOUR_DEFAULT << std::endl;
 	for (int i = 0; i < 9; i ++)
 	{
@@ -84,15 +85,14 @@ int main(void)
 	std::cout << "Mine: capacity should be 96: " << COLOUR_GREEN << my_v.capacity() << COLOUR_DEFAULT << std::endl;
 
 	std::cout << COLOUR_BLUE << "Testing method .assign() range version with iterators" << COLOUR_DEFAULT << std::endl;
-
 	std::vector<int> og_new_v(1, 1);
 	ft::vector<int> my_new_v(1, 1);
 	std::vector<int>::iterator	og_it(og_v.begin());
 	std::vector<int>::iterator	og_it2(og_v.begin() + 10);
-	std::vector<int>::iterator	og_it3(og_v.begin() + 1);
+	std::vector<int>::iterator	og_it3(og_v.begin() + 2);
 	ft::vector<int>::iterator	my_it(my_v.begin());
 	ft::vector<int>::iterator	my_it2(my_v.begin() + 10);
-	ft::vector<int>::iterator	my_it3(my_v.begin() + 1);
+	ft::vector<int>::iterator	my_it3(my_v.begin() + 2);
 	std::cout << "OG:   Capacity before assign: " << COLOUR_RED << og_new_v.capacity() << COLOUR_DEFAULT << std::endl;
 	std::cout << "Mine: Capacity before assign: " << COLOUR_RED << my_new_v.capacity() << COLOUR_DEFAULT << std::endl;
 	std::cout << "OG:   Size: " << COLOUR_RED << og_new_v.size() << COLOUR_DEFAULT << std::endl;
@@ -113,6 +113,7 @@ int main(void)
 		std::cout << COLOUR_GREEN << my_new_v[i] << " ";
 	}
 	std::cout << COLOUR_DEFAULT;
+
 	std::cout << COLOUR_BLUE << "\nTesting method .assign() fill verison" << COLOUR_DEFAULT << std::endl;
 	og_new_v.assign(4, 0);
 	my_new_v.assign(4, 0);
@@ -121,15 +122,40 @@ int main(void)
 	std::cout << "OG:   Size: " << COLOUR_RED << og_new_v.size() << COLOUR_DEFAULT << std::endl;
 	std::cout << "Mine: Size: " << COLOUR_RED << my_new_v.size() << COLOUR_DEFAULT << std::endl;
 	for (int i = 0; i < og_new_v.size(); i++)
-	{
 		std::cout << COLOUR_YELLOW << og_new_v[i] << " ";
-	}
 	std::cout<< std::endl;
 	for (int i = 0; i < my_new_v.size(); i++)
-	{
 		std::cout << COLOUR_GREEN << my_new_v[i] << " ";
-	}
 	std::cout << COLOUR_DEFAULT << std::endl;
 
+	std::cout << COLOUR_BLUE << "\nTesting method .insert() single element sufficient capacity" << COLOUR_DEFAULT << std::endl;
+	og_new_v.insert(og_new_v.begin(), 7);
+	my_new_v.insert(my_new_v.begin(), 7);
+	std::cout << "OG:   Size:     " << COLOUR_RED << og_new_v.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Size:     " << COLOUR_RED << my_new_v.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   Capacity: " << COLOUR_RED << og_new_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Capacity: " << COLOUR_RED << my_new_v.capacity() << COLOUR_DEFAULT << std::endl;
+
+	std::cout << COLOUR_BLUE << "\nTesting method .insert() single element insufficient capacity" << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < 56; i++)
+	{
+		og_new_v.insert(og_new_v.begin() + 2, 69);
+		my_new_v.insert(my_new_v.begin() + 2, 69);
+	}
+	for (int i = 0; i < og_new_v.size(); i++)
+		std::cout << COLOUR_YELLOW << og_new_v[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < my_new_v.size(); i++)
+		std::cout << COLOUR_GREEN << my_new_v[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   Size:     " << COLOUR_RED << og_new_v.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Size:     " << COLOUR_RED << my_new_v.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   Capacity: " << COLOUR_RED << og_new_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Capacity: " << COLOUR_RED << my_new_v.capacity() << COLOUR_DEFAULT << std::endl;
+	std::vector<int>::iterator og_it_insert_return = og_new_v.insert(og_new_v.begin(), 42);
+	ft::vector<int>::iterator my_it_insert_return = my_new_v.insert(my_new_v.begin(), 42);
+	std::cout << "OG:   should be 42 " << COLOUR_GREEN << *og_it_insert_return << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: should be 42 " << COLOUR_GREEN << *my_it_insert_return << COLOUR_DEFAULT << std::endl;
 	
+	// std::cout << my_new_v.begin() + 1 - (my_new_v.begin()) << std::endl;
 }

@@ -6,7 +6,7 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/21 23:30:29 by kmilchev          #+#    #+#              #
-#    Updated: 2022/08/23 21:09:23 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/08/24 17:25:39 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,3 +28,6 @@ c++ ./tests/test_reverse_iterator.cpp && ./a.out
 
 echo "${RED}test_vector_functions.cpp\n${NC}"
 c++ ./tests/test_vector_functions.cpp && ./a.out
+
+echo "${RED}test_vector_modifiers.cpp\n${NC}"
+c++ ./tests/test_vector_modifiers.cpp && ./a.out
