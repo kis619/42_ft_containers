@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/24 22:09:56 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:16:43 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ namespace ft
 	void vector<T, Allocator>::insert (iterator position, InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type*)
 	{
 		size_type n = last - first;
-		int i = 0;
 		if (n)
 		{
 			size_type pos = end() - position;
@@ -148,17 +147,9 @@ namespace ft
 				_alloc.construct(_end - (pos), *(first.base()));
 				first++;
 				_end++;
-				std::cout << "idx: " << i++ << std::endl;
 				
 			}
 		}
-		// _end += n;
-		// while (first != last)
-		// {
-		// 	_alloc.construct(&(*position), *first);
-		// 	first++;
-		// 	position++;
-		// }
 	}
 	
 	template <typename T, typename Allocator>

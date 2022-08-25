@@ -176,8 +176,8 @@ int main(void)
 	my_new_v.insert(my_new_v.begin(), 6, 8);
 	og_new_v.insert(og_new_v.begin(), 1, 9);
 	my_new_v.insert(my_new_v.begin(), 1, 9);
-	og_new_v.insert(og_new_v.begin(), 200, 321);
-	my_new_v.insert(my_new_v.begin(), 200, 321);
+	og_new_v.insert(og_new_v.begin(), 20, 321);
+	my_new_v.insert(my_new_v.begin(), 20, 321);
 	std::cout << "OG:   Size:     " << COLOUR_RED << og_new_v.size() << COLOUR_DEFAULT << std::endl;
 	std::cout << "Mine: Size:     " << COLOUR_RED << my_new_v.size() << COLOUR_DEFAULT << std::endl;
 	std::cout << "OG:   Capacity: " << COLOUR_RED << og_new_v.capacity() << COLOUR_DEFAULT << std::endl;
@@ -195,12 +195,14 @@ int main(void)
 	std::vector<int> og_vec(2, 2);
 	ft::vector<int> my_vec(2, 2);
 
+	og_vec.insert(og_vec.begin(), og_new_v.begin(), og_new_v.end());
 	og_vec.insert(og_vec.end(), og_new_v.begin(), og_new_v.end());
+	my_vec.insert(my_vec.begin(), my_new_v.begin(), my_new_v.end());
 	my_vec.insert(my_vec.end(), my_new_v.begin(), my_new_v.end());
 	for (int i = 0; i < og_vec.size(); i++)
 		std::cout << COLOUR_YELLOW << og_vec[i] << " ";
 	std::cout << COLOUR_DEFAULT << std::endl;
-	for (int i = 0; i < my_new_v.size(); i++)
+	for (int i = 0; i < my_vec.size(); i++)
 		std::cout << COLOUR_GREEN << my_vec[i] << " ";
 	std::cout << COLOUR_DEFAULT << std::endl;
 }
