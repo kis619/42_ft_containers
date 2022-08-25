@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/25 17:46:21 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/25 21:56:05 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ public:
 	template <class InputIterator>
 	void		insert (iterator position, InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type* = NULL);
 	iterator	erase (iterator position);
-	// iterator erase (iterator first, iterator last);
+	iterator erase (iterator first, iterator last);
 	////////?SWAP
 	void clear(void);
 

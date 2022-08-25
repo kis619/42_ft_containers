@@ -226,30 +226,75 @@ int main(void)
 		std::cout << COLOUR_GREEN << my_vec[i] << " ";
 	std::cout << COLOUR_DEFAULT << std::endl;
 
-	std::cout << COLOUR_BLUE << "\n\nTesting method .erase() range" << COLOUR_DEFAULT << std::endl;
+	std::cout << COLOUR_BLUE << "\n\nTesting method .erase() single" << COLOUR_DEFAULT << std::endl;
 	og_it = og_vec.erase(og_vec.end() - 1);
 	my_it = my_vec.erase(my_vec.end() - 1);
 	std::cout << "OG:   Iterator value: " << COLOUR_RED << *og_it << COLOUR_DEFAULT << std::endl;
 	std::cout << "Mine: Iterator value: " << COLOUR_RED << *my_it << COLOUR_DEFAULT << std::endl;
-	// og_vec.erase(og_vec.end()) - 1;
-	// my_vec.erase(my_vec.end()) - 1;
 	og_vec.erase(og_vec.end() - 1);
 	my_vec.erase(my_vec.end() - 1);
 	og_vec.erase(og_vec.end() - 1);
 	my_vec.erase(my_vec.end() - 1);
 	og_vec.erase(og_vec.end() - 1);
 	my_vec.erase(my_vec.end() - 1);
-	og_vec.erase(og_vec.end() - 1);
-	my_vec.erase(my_vec.end() - 1);
+	og_vec.erase(og_vec.begin());
+	my_vec.erase(my_vec.begin());
+	og_vec.erase(og_vec.begin());
+	my_vec.erase(my_vec.begin());
 	for (int i = 0; i < og_vec.size(); i++)
 		std::cout << COLOUR_YELLOW << og_vec[i] << " ";
 	std::cout << COLOUR_DEFAULT << std::endl;
 	for (int i = 0; i < my_vec.size(); i++)
 		std::cout << COLOUR_GREEN << my_vec[i] << " ";
 	std::cout << COLOUR_DEFAULT << std::endl;
-// // 
-// 	std::cout << "OG:   Size:     " << COLOUR_RED << og_vec.size() << COLOUR_DEFAULT << std::endl;
-// 	std::cout << "Mine: Size:     " << COLOUR_RED << my_vec.size() << COLOUR_DEFAULT << std::endl;
-// 	std::cout << "OG:   Capacity: " << COLOUR_RED << og_vec.capacity() << COLOUR_DEFAULT << std::endl;
-// 	std::cout << "Mine: Capacity: " << COLOUR_RED << my_vec.capacity() << COLOUR_DEFAULT << std::endl;
+
+	std::cout << "OG:   Size:     " << COLOUR_RED << og_vec.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Size:     " << COLOUR_RED << my_vec.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   Capacity: " << COLOUR_RED << og_vec.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Capacity: " << COLOUR_RED << my_vec.capacity() << COLOUR_DEFAULT << std::endl;
+
+	std::cout << COLOUR_BLUE << "\n\nTesting method .erase() range" << COLOUR_DEFAULT << std::endl;
+	og_vec.assign(0, 0);
+	my_vec.assign(0, 0);
+	for (int i = 0; i < 10; i++)
+	{
+		og_vec.push_back(i + 1);
+		my_vec.push_back(i + 1);
+	}
+	og_vec.erase(og_vec.begin(), og_vec.begin() + 2);
+	my_vec.erase(my_vec.begin(), my_vec.begin() + 2);
+	for (int i = 0; i < og_vec.size(); i++)
+		std::cout << COLOUR_YELLOW << og_vec[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < my_vec.size(); i++)
+		std::cout << COLOUR_GREEN << my_vec[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   Size:     " << COLOUR_RED << og_vec.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Size:     " << COLOUR_RED << my_vec.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   Capacity: " << COLOUR_RED << og_vec.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Capacity: " << COLOUR_RED << my_vec.capacity() << COLOUR_DEFAULT << std::endl;
+	og_vec.erase(og_vec.begin(), og_vec.begin() + 2);
+	my_vec.erase(my_vec.begin(), my_vec.begin() + 2);
+	for (int i = 0; i < og_vec.size(); i++)
+		std::cout << COLOUR_YELLOW << og_vec[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < my_vec.size(); i++)
+		std::cout << COLOUR_GREEN << my_vec[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   Size:     " << COLOUR_RED << og_vec.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Size:     " << COLOUR_RED << my_vec.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   Capacity: " << COLOUR_RED << og_vec.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Capacity: " << COLOUR_RED << my_vec.capacity() << COLOUR_DEFAULT << std::endl;
+	og_vec.erase(og_vec.begin(), og_vec.begin() + 2);
+	my_vec.erase(my_vec.begin(), my_vec.begin() + 2);
+	for (int i = 0; i < og_vec.size(); i++)
+		std::cout << COLOUR_YELLOW << og_vec[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < my_vec.size(); i++)
+		std::cout << COLOUR_GREEN << my_vec[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   Size:     " << COLOUR_RED << og_vec.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Size:     " << COLOUR_RED << my_vec.size() << COLOUR_DEFAULT << std::endl;
+	std::cout << "OG:   Capacity: " << COLOUR_RED << og_vec.capacity() << COLOUR_DEFAULT << std::endl;
+	std::cout << "Mine: Capacity: " << COLOUR_RED << my_vec.capacity() << COLOUR_DEFAULT << std::endl;
 }

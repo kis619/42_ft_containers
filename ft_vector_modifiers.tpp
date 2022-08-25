@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/25 21:54:43 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/25 22:26:41 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,6 @@ namespace ft
 		if (pos <= 0) //the original segfaults//couldn't recreate it hence forcing it 
 		{
 			raise(SIGSEGV);
-			return (position);
 		}
 		pointer p = &(*position);
 		for (size_type i = 0; i < pos - 1; i++)
@@ -167,6 +166,28 @@ namespace ft
 			_alloc.construct(p + i, *(p + i + 1));
 		}
 		_end--;
+		return (iterator(p));
+	}
+	
+	template <typename T, typename Allocator>
+	typename vector<T, Allocator>::iterator vector<T, Allocator>::erase(iterator first, iterator last)
+	{
+		size_type pos = end() - first;
+		size_type diff = last - first;
+		if (pos <= 0) //the original segfaults//couldn't recreate it hence forcing it 
+			raise(SIGSEGV);
+		pointer p = &(*first);
+		while(first != last)
+		{
+			_alloc.destroy(&(*first));
+			first++;
+			_end--;
+		}
+		for (size_type i = 0; i < pos - diff; i++)
+		{
+			_alloc.destroy(p + i);
+			_alloc.construct(p + i, *(p + i + diff));
+		}
 		return (iterator(p));
 	}
 	
