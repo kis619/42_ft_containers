@@ -6,13 +6,13 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/25 17:16:43 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/25 21:54:43 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.hpp"
 #include "tests/colours.h"
-
+#include <signal.h>
 namespace ft
 {
 	template <typename T, typename Allocator>
@@ -118,7 +118,7 @@ namespace ft
 			size_type pos = end() - position;
 			if(size() + n > _capacity)
 				adjust_capacity(size() + n);
-			////moved the elements
+			////move the elements
 			for(size_type i = 0; i <= pos; i++)
 				_alloc.construct(_end - i + n, *(_end - i));
 			////add the new ones
@@ -147,9 +147,27 @@ namespace ft
 				_alloc.construct(_end - (pos), *(first.base()));
 				first++;
 				_end++;
-				
 			}
 		}
+	}
+	
+	template <typename T, typename Allocator>
+	typename vector<T, Allocator>::iterator vector<T, Allocator>::erase(iterator position)
+	{
+		size_type pos = end() - position;
+		if (pos <= 0) //the original segfaults//couldn't recreate it hence forcing it 
+		{
+			raise(SIGSEGV);
+			return (position);
+		}
+		pointer p = &(*position);
+		for (size_type i = 0; i < pos - 1; i++)
+		{
+			_alloc.destroy(p + i);
+			_alloc.construct(p + i, *(p + i + 1));
+		}
+		_end--;
+		return (iterator(p));
 	}
 	
 	template <typename T, typename Allocator>
