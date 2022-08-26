@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/26 15:43:39 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/26 20:50:35 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ public:
 
 //destructor
 	~vector(void);
+
+//assignment operator
+	// vector &operator=(const vector& x); //TBD
 
 //////////////////////////////////ITERATORS//////////////////
 	iterator				begin(void);

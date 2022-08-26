@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:41 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/24 17:20:04 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/26 20:57:40 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,14 @@ namespace ft
 	template<typename T, typename Allocator>
 	vector<T, Allocator>::vector(const vector &x)
 	{
-		// this = x;
+		size_type n = x.size();
+		_begin = _alloc.allocate(n);
+		_end = _begin;
+		for (size_type i = 0; i < n; i++)
+		{
+			_alloc.construct(_end, x[i]);
+			_end++;
+		}
 	}
 
 	template<typename T, typename Allocator>
