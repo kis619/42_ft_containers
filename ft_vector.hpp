@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/25 21:56:05 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/26 15:24:41 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <memory>
 #include <stack>
-#include "ft_iterator.hpp"
+#include "ft_random_access_iterator.hpp"
 #include "ft_utils.hpp"
 #include <stdexcept>
 
@@ -68,55 +68,60 @@ public:
 	const_reverse_iterator	rend(void) const;
 
 /////////////////////////////////CAPACITY//////////////////////
-	size_type	size(void) const;
-	size_type	max_size(void) const;
-	void		resize (size_type n, value_type val = value_type());
-	size_type	capacity(void) const;
-	bool		empty(void) const;
-	void		reserve (size_type n);
+	size_type				size(void) const;
+	size_type				max_size(void) const;
+	void					resize (size_type n, value_type val = value_type());
+	size_type				capacity(void) const;
+	bool					empty(void) const;
+	void					reserve (size_type n);
 
 /////////////////////////////////ELEMENT_ACCESS////////////////
-	reference			operator[] (size_type n);
-	const_reference		operator[] (size_type n) const;
-	reference			at (size_type n); 
-	const_reference		at (size_type n) const; 
-	reference			front(void);
-	const_reference		front(void) const;
-	reference			back(void);
-	const_reference		back(void) const;
-	value_type*			data(void);
-	const value_type*	data(void) const;
+	reference				operator[](size_type n);
+	const_reference			operator[](size_type n) const;
+	reference				at(size_type n); 
+	const_reference			at(size_type n) const; 
+	reference				front(void);
+	const_reference			front(void) const;
+	reference				back(void);
+	const_reference			back(void) const;
+	value_type*				data(void);
+	const value_type*		data(void) const;
 
 /////////////////////////////////MODIFIERS/////////////////////
 	template <class InputIterator>
-	void		assign (InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type* = NULL);
-	void		assign (size_type n, const value_type& val);
-	void		pop_back(void);
-	void		push_back (const value_type &val);
-	iterator	insert (iterator position, const value_type& val);
-	void		insert (iterator position, size_type n, const value_type& val);
+	void					assign(InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type* = NULL);
+	void					assign(size_type n, const value_type& val);
+	void					pop_back(void);
+	void					push_back(const value_type &val);
+	iterator				insert(iterator position, const value_type& val);
+	void					insert(iterator position, size_type n, const value_type& val);
 	template <class InputIterator>
-	void		insert (iterator position, InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type* = NULL);
-	iterator	erase (iterator position);
-	iterator erase (iterator first, iterator last);
-	////////?SWAP
-	void clear(void);
+	void					insert(iterator position, InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type* = NULL);
+	iterator				erase(iterator position);
+	iterator				erase(iterator first, iterator last);
+	void					swap(vector &x);
+	void					clear(void);
 
 /////////////////////////////////ALLOCATOR/////////////////////
-	allocator_type get_allocator(void) const;
+	allocator_type			get_allocator(void) const;
 
 	
 
 /////////////////////////////////MISCELANIOUS/////////////////////
 	private:
-		size_type adjust_capacity(int n = 0); //depending on size and capacity
+	size_type				adjust_capacity(int n = 0); //depending on size and capacity
 private:
-	allocator_type		_alloc;
-	size_type			_capacity;
-	pointer				_begin;
-	pointer				_end;
+	allocator_type			_alloc;
+	size_type				_capacity;
+	pointer					_begin;
+	pointer					_end;
 
 };
+	// template<class T, class Alloc>
+	// void swap(vector<T, Alloc> &x, vector<T, Alloc> &y)
+	// {
+	// 	x.swap(y);
+	// }
 };
 
 #include "ft_vector_construction.tpp"

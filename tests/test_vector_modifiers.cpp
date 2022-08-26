@@ -285,8 +285,8 @@ int main(void)
 	std::cout << "Mine: Size:     " << COLOUR_RED << my_vec.size() << COLOUR_DEFAULT << std::endl;
 	std::cout << "OG:   Capacity: " << COLOUR_RED << og_vec.capacity() << COLOUR_DEFAULT << std::endl;
 	std::cout << "Mine: Capacity: " << COLOUR_RED << my_vec.capacity() << COLOUR_DEFAULT << std::endl;
-	og_vec.erase(og_vec.begin(), og_vec.begin() + 2);
-	my_vec.erase(my_vec.begin(), my_vec.begin() + 2);
+	og_vec.erase(og_vec.end() - 5, og_vec.end());
+	my_vec.erase(my_vec.end() - 5, my_vec.end());
 	for (int i = 0; i < og_vec.size(); i++)
 		std::cout << COLOUR_YELLOW << og_vec[i] << " ";
 	std::cout << COLOUR_DEFAULT << std::endl;
@@ -297,4 +297,39 @@ int main(void)
 	std::cout << "Mine: Size:     " << COLOUR_RED << my_vec.size() << COLOUR_DEFAULT << std::endl;
 	std::cout << "OG:   Capacity: " << COLOUR_RED << og_vec.capacity() << COLOUR_DEFAULT << std::endl;
 	std::cout << "Mine: Capacity: " << COLOUR_RED << my_vec.capacity() << COLOUR_DEFAULT << std::endl;
+
+	std::cout << COLOUR_BLUE << "\n\nTesting method .swap()" << COLOUR_DEFAULT << std::endl;
+	std::vector<int> og_vec_new(7, 7);
+	ft::vector<int> my_vec_new(7, 7);
+	std::cout << COLOUR_PURPLE << "\nOG before .swap()" << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < og_vec.size(); i++)
+		std::cout << COLOUR_YELLOW << og_vec[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < og_vec_new.size(); i++)
+		std::cout << COLOUR_GREEN << og_vec_new[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	og_vec.swap(og_vec_new);
+	std::cout << COLOUR_PURPLE << "\nOG after .swap()" << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < og_vec.size(); i++)
+		std::cout << COLOUR_GREEN << og_vec[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < og_vec_new.size(); i++)
+		std::cout << COLOUR_YELLOW << og_vec_new[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+
+	std::cout << COLOUR_PURPLE << "\nMINE before .swap()" << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < my_vec.size(); i++)
+		std::cout << COLOUR_YELLOW << my_vec[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < my_vec_new.size(); i++)
+		std::cout << COLOUR_GREEN << my_vec_new[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	my_vec.swap(my_vec_new);
+	std::cout << COLOUR_PURPLE << "\nMINE after .swap()" << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < my_vec.size(); i++)
+		std::cout << COLOUR_GREEN << my_vec[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
+	for (int i = 0; i < my_vec_new.size(); i++)
+		std::cout << COLOUR_YELLOW << my_vec_new[i] << " ";
+	std::cout << COLOUR_DEFAULT << std::endl;
 }

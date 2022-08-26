@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 21:08:48 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/24 17:22:40 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/26 14:37:13 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int main(void)
 	std::cout << "Should be 33: " << COLOUR_GREEN <<  *(it4.base()) << COLOUR_DEFAULT << std::endl;
 	
 	std::cout << COLOUR_BLUE << "Testing method base()" << COLOUR_DEFAULT << std::endl;
-	std::cout << "Should be 44: " << COLOUR_GREEN << *(it.base()) << COLOUR_DEFAULT << std::endl;
+	std::cout << "Should be 33: " << COLOUR_GREEN << *(it.base()) << COLOUR_DEFAULT << std::endl;
 	
 	std::cout << COLOUR_BLUE << "Testing operator*" << COLOUR_DEFAULT << std::endl;
-	std::cout << "Should be 44: " << COLOUR_GREEN << *it << COLOUR_DEFAULT << std::endl;
+	std::cout << "Should be 33: " << COLOUR_GREEN << *it << COLOUR_DEFAULT << std::endl;
 	
 	std::cout << COLOUR_BLUE << "Testing the operator->" << COLOUR_DEFAULT << std::endl;
 	std::cout << "Should be an address: " <<  COLOUR_GREEN << it.operator->() << COLOUR_DEFAULT << std::endl;

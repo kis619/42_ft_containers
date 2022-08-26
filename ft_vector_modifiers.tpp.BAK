@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/26 15:29:24 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/26 14:52:22 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,25 +194,17 @@ namespace ft
 	template <typename T, typename Allocator>
 	void vector<T, Allocator>::swap(vector &x)
 	{
-		pointer			temp_beign;	
-		pointer			temp_end;
-		size_type		temp_capacity;
-		allocator_type	temp_alloc;
+		pointer temp_beign;	
+		pointer temp_end;
+		size_type temp_capacity;
 		
-		temp_alloc		=	_alloc;
-		temp_beign		=	_begin;
-		temp_end		=	_end;
-		temp_capacity	=	_capacity;
+		temp_beign = _begin;
+		temp_end = _end;
+		temp_capacity = _capacity;
 		
-		_alloc			=	x._alloc;
-		_begin			=	x._begin;
-		_end			=	x._end;
-		_capacity		=	x._capacity;
-
-		x._alloc		=	temp_alloc;
-		x._begin		=	temp_beign;
-		x._end			=	temp_end;
-		x._capacity		=	temp_capacity;
+		_begin = x._begin;
+		_end = x._end;
+		_capacity = x._capacity;
 	}
 	
 	template <typename T, typename Allocator>
