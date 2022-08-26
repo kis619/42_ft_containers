@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/26 15:24:41 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/26 15:43:39 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,6 @@ public:
 /////////////////////////////////ALLOCATOR/////////////////////
 	allocator_type			get_allocator(void) const;
 
-	
-
 /////////////////////////////////MISCELANIOUS/////////////////////
 	private:
 	size_type				adjust_capacity(int n = 0); //depending on size and capacity
@@ -117,11 +115,11 @@ private:
 	pointer					_end;
 
 };
-	// template<class T, class Alloc>
-	// void swap(vector<T, Alloc> &x, vector<T, Alloc> &y)
-	// {
-	// 	x.swap(y);
-	// }
+	template<class T, class Alloc>
+	void swap(vector<T, Alloc> &x, vector<T, Alloc> &y)
+	{
+		x.swap(y);
+	}
 };
 
 #include "ft_vector_construction.tpp"

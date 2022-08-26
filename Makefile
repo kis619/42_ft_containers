@@ -6,7 +6,7 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 13:21:52 by kmilchev          #+#    #+#              #
-#    Updated: 2022/08/26 14:42:49 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/08/26 15:41:14 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,3 +32,6 @@ test_vector_iter_methods:
 
 test_vector_modifiers:
 	$(CC) -g tests/test_vector_modifiers.cpp && ./a.out
+
+test_vector_non_member_swap:
+	$(CC) -g tests/test_vector_non_member_swap.cpp && ./a.out
