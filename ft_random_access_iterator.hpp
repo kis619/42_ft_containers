@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_iterator.hpp                                    :+:      :+:    :+:   */
+/*   ft_random_access_iterator.hpp                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 17:45:10 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/24 17:19:30 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/26 18:39:22 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,14 @@ namespace ft
 	
 	template<typename Iter1>
 	ft::random_access_iterator<int>::difference_type operator-(const random_access_iterator<Iter1>& _x, const random_access_iterator<Iter1>& _y)
+		{return (_x.base() - _y.base());}
+	
+	template<typename Iter1>
+	ft::random_access_iterator<int>::difference_type operator-(const const_random_access_iterator<Iter1>& _x, const random_access_iterator<Iter1>& _y)
+		{return (_x.base() - _y.base());}
+	
+	template<typename Iter1>
+	ft::random_access_iterator<int>::difference_type operator-(const random_access_iterator<Iter1>& _x, const const_random_access_iterator<Iter1>& _y)
 		{return (_x.base() - _y.base());}
 
 	/*CONSTANT ITERATOR - same but with value_type as a const. Lets me assign a non-const iterator to a const one
