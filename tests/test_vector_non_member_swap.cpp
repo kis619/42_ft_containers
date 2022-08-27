@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 21:08:48 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/27 20:34:42 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/27 22:06:54 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,14 @@ int main(void)
 			
 		ft::swap(v1, v2);
 		//after swap
-		for (int i = 0; i < v1.size(); i++)
+		for (int i = 0; i < v1_copy.size(); i++)
 			assert(v1_copy[i] == v2[i]);
+		assert(v1_copy.capacity() == v2.capacity());
+		assert(v1_copy.size() == v2.size());
+		
+		for (int i = 0; i < v1.size(); i++)
+			assert(v2_copy[i] == v1[i]);
+		assert(v2_copy.capacity() == v1.capacity());
+		assert(v2_copy.size() == v1.size());
 	}
 }

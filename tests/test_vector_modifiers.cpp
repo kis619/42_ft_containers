@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 20:49:56 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/27 21:40:30 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/27 22:10:18 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,21 @@ int main(void)
 	const std::vector<int>	og_v_const(3, 4);
 
 	{
-		std::cout << COLOUR_BLUE << "Testing method .pop_back()" << COLOUR_DEFAULT << std::endl;
+		test_name("Testing method .pop_back()");
 		og_v.pop_back();
 		my_v.pop_back();
 		assert(og_v.size() == my_v.size());
 	}
 	
 	{
-		std::cout << COLOUR_BLUE << "Testing method .clear()" << COLOUR_DEFAULT << std::endl;
+		test_name("Testing method .clear()");
 		og_v.clear();
 		my_v.clear();
 		assert(og_v.size() == my_v.size());
 	}
 	
 	{
-		std::cout << COLOUR_BLUE << "Testing method .push_back() with enough capacity" << COLOUR_DEFAULT << std::endl;
+		test_name("Testing method .push_back() with enough capacity");
 		for (int i = 0; i < my_v.capacity(); i++)
 		{
 			og_v.push_back(i + 1);
@@ -58,7 +58,7 @@ int main(void)
 	}
 	
 	{
-		std::cout << COLOUR_BLUE << "Testing method .push_back() with insufficient capacity" << COLOUR_DEFAULT << std::endl;
+		test_name("Testing method .push_back() with insufficient capacity");
 		for (int i = 0; i < 45; i++)
 		{
 			my_v.push_back(78 + i);
@@ -77,28 +77,28 @@ int main(void)
 	ft::vector<int>::iterator	my_it3(my_v.begin() + 2);
 	
 	{
-		std::cout << COLOUR_BLUE << "Testing method .assign() range version with iterators" << COLOUR_DEFAULT << std::endl;
+		test_name("Testing method .assign() range version with iterators");
 		og_new_v.assign(og_it, og_it2);
 		my_new_v.assign(my_it, my_it2);
 		test_capacity_size_values(my_new_v, og_new_v);
 	}
 
 	{
-		std::cout << COLOUR_BLUE << "Testing method .assign() fill verison" << COLOUR_DEFAULT << std::endl;
+		test_name("Testing method .assign() fill verison");
 		og_new_v.assign(4, 0);
 		my_new_v.assign(4, 0);
 		test_capacity_size_values(my_new_v, og_new_v);
 	}
 	
 	{
-		std::cout << COLOUR_BLUE << "Testing method .insert() single element sufficient capacity" << COLOUR_DEFAULT << std::endl;
+		test_name("Testing method .insert() single element sufficient capacity");
 		og_new_v.insert(og_new_v.begin(), 7);
 		my_new_v.insert(my_new_v.begin(), 7);
 		test_capacity_size_values(my_new_v, og_new_v);
 	}
 	
 	{
-		std::cout << COLOUR_BLUE << "Testing method .insert() single element insufficient capacity" << COLOUR_DEFAULT << std::endl;
+		test_name("Testing method .insert() single element insufficient capacity");
 		for (int i = 0; i < 56; i++)
 		{
 			og_new_v.insert(og_new_v.begin() + 2, 69);
@@ -112,7 +112,7 @@ int main(void)
 	}
 	
 	{
-		std::cout << COLOUR_BLUE << "Testing method .insert() fill with insufficient capacity" << COLOUR_DEFAULT << std::endl;
+		test_name("Testing method .insert() fill with insufficient capacity");
 		og_new_v.assign(0, 0);
 		my_new_v.assign(0, 0);
 		og_new_v.insert(og_new_v.begin(), 1, 5);
@@ -133,145 +133,80 @@ int main(void)
 		test_capacity_size_values(my_new_v, og_new_v);
 	}
 	
-	// std::cout << COLOUR_BLUE << "\n\nTesting method .insert() range" << COLOUR_DEFAULT << std::endl;
-	// og_new_v.assign(6, 0);
-	// my_new_v.assign(6, 0);
-	// for (int i = 0; i < og_new_v.size(); i++)
-	// 	std::cout << COLOUR_YELLOW << og_new_v[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < my_new_v.size(); i++)
-	// 	std::cout << COLOUR_GREEN << my_new_v[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// std::vector<int> og_vec(2, 2);
-	// ft::vector<int> my_vec(2, 2);
-	// for (int i = 0; i < og_vec.size(); i++)
-	// 	std::cout << COLOUR_YELLOW << og_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < my_vec.size(); i++)
-	// 	std::cout << COLOUR_GREEN << my_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
+	std::vector<int> og_vec(2, 2);
+	ft::vector<int> my_vec(2, 2);
+	
+	{
+		test_name("Testing method .insert() range");
+		og_new_v.assign(6, 0);
+		my_new_v.assign(6, 0);
+		og_vec.insert(og_vec.begin(), og_new_v.begin(), og_new_v.end());
+		my_vec.insert(my_vec.begin(), my_new_v.begin(), my_new_v.end());
+		og_vec.insert(og_vec.end(), og_new_v.begin(), og_new_v.end());
+		my_vec.insert(my_vec.end(), my_new_v.begin(), my_new_v.end());
+		test_capacity_size_values(my_vec, og_vec);
+	}
+	
+	{
+		test_name("Testing method .erase() single");
+		og_it = og_vec.erase(og_vec.end() - 1);
+		my_it = my_vec.erase(my_vec.end() - 1);
+		assert(*og_it == *my_it);
+		og_vec.erase(og_vec.end() - 1);
+		my_vec.erase(my_vec.end() - 1);
+		og_vec.erase(og_vec.end() - 1);
+		my_vec.erase(my_vec.end() - 1);
+		og_vec.erase(og_vec.end() - 1);
+		my_vec.erase(my_vec.end() - 1);
+		og_vec.erase(og_vec.begin());
+		my_vec.erase(my_vec.begin());
+		og_vec.erase(og_vec.begin());
+		my_vec.erase(my_vec.begin());
+		test_capacity_size_values(my_vec, og_vec);
+	}
+	
+	{
+		test_name("Testing method .erase() range");
+		og_vec.assign(0, 0);
+		my_vec.assign(0, 0);
+		for (int i = 0; i < 10; i++)
+		{
+			og_vec.push_back(i + 1);
+			my_vec.push_back(i + 1);
+		}
+		og_vec.erase(og_vec.begin(), og_vec.begin() + 2);
+		my_vec.erase(my_vec.begin(), my_vec.begin() + 2);
+		test_capacity_size_values(my_vec, og_vec);
+		
+		og_vec.erase(og_vec.begin(), og_vec.begin() + 2);
+		my_vec.erase(my_vec.begin(), my_vec.begin() + 2);
+		test_capacity_size_values(my_vec, og_vec);
+		
+		og_vec.erase(og_vec.end() - 5, og_vec.end());
+		my_vec.erase(my_vec.end() - 5, my_vec.end());
+		test_capacity_size_values(my_vec, og_vec);
+	}
 
-	// og_vec.insert(og_vec.begin(), og_new_v.begin(), og_new_v.end());
-	// my_vec.insert(my_vec.begin(), my_new_v.begin(), my_new_v.end());
-	// og_vec.insert(og_vec.end(), og_new_v.begin(), og_new_v.end());
-	// my_vec.insert(my_vec.end(), my_new_v.begin(), my_new_v.end());
-	// for (int i = 0; i < og_vec.size(); i++)
-	// 	std::cout << COLOUR_YELLOW << og_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < my_vec.size(); i++)
-	// 	std::cout << COLOUR_GREEN << my_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < og_vec.size(); i++)
-	// 	std::cout << COLOUR_YELLOW << og_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < my_vec.size(); i++)
-	// 	std::cout << COLOUR_GREEN << my_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
+	{
+		test_name("Testing method .swap()");
+		ft::vector<int> v1(2, 2);
+		ft::vector<int> v2(3, 3);
+		ft::vector<int> v1_copy(v1);
+		ft::vector<int> v2_copy(v2);
 
-	// std::cout << COLOUR_BLUE << "\n\nTesting method .erase() single" << COLOUR_DEFAULT << std::endl;
-	// og_it = og_vec.erase(og_vec.end() - 1);
-	// my_it = my_vec.erase(my_vec.end() - 1);
-	// std::cout << "OG:   Iterator value: " << COLOUR_RED << *og_it << COLOUR_DEFAULT << std::endl;
-	// std::cout << "Mine: Iterator value: " << COLOUR_RED << *my_it << COLOUR_DEFAULT << std::endl;
-	// og_vec.erase(og_vec.end() - 1);
-	// my_vec.erase(my_vec.end() - 1);
-	// og_vec.erase(og_vec.end() - 1);
-	// my_vec.erase(my_vec.end() - 1);
-	// og_vec.erase(og_vec.end() - 1);
-	// my_vec.erase(my_vec.end() - 1);
-	// og_vec.erase(og_vec.begin());
-	// my_vec.erase(my_vec.begin());
-	// og_vec.erase(og_vec.begin());
-	// my_vec.erase(my_vec.begin());
-	// for (int i = 0; i < og_vec.size(); i++)
-	// 	std::cout << COLOUR_YELLOW << og_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < my_vec.size(); i++)
-	// 	std::cout << COLOUR_GREEN << my_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-
-	// std::cout << "OG:   Size:     " << COLOUR_RED << og_vec.size() << COLOUR_DEFAULT << std::endl;
-	// std::cout << "Mine: Size:     " << COLOUR_RED << my_vec.size() << COLOUR_DEFAULT << std::endl;
-	// std::cout << "OG:   Capacity: " << COLOUR_RED << og_vec.capacity() << COLOUR_DEFAULT << std::endl;
-	// std::cout << "Mine: Capacity: " << COLOUR_RED << my_vec.capacity() << COLOUR_DEFAULT << std::endl;
-
-	// std::cout << COLOUR_BLUE << "\n\nTesting method .erase() range" << COLOUR_DEFAULT << std::endl;
-	// og_vec.assign(0, 0);
-	// my_vec.assign(0, 0);
-	// for (int i = 0; i < 10; i++)
-	// {
-	// 	og_vec.push_back(i + 1);
-	// 	my_vec.push_back(i + 1);
-	// }
-	// og_vec.erase(og_vec.begin(), og_vec.begin() + 2);
-	// my_vec.erase(my_vec.begin(), my_vec.begin() + 2);
-	// for (int i = 0; i < og_vec.size(); i++)
-	// 	std::cout << COLOUR_YELLOW << og_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < my_vec.size(); i++)
-	// 	std::cout << COLOUR_GREEN << my_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// std::cout << "OG:   Size:     " << COLOUR_RED << og_vec.size() << COLOUR_DEFAULT << std::endl;
-	// std::cout << "Mine: Size:     " << COLOUR_RED << my_vec.size() << COLOUR_DEFAULT << std::endl;
-	// std::cout << "OG:   Capacity: " << COLOUR_RED << og_vec.capacity() << COLOUR_DEFAULT << std::endl;
-	// std::cout << "Mine: Capacity: " << COLOUR_RED << my_vec.capacity() << COLOUR_DEFAULT << std::endl;
-	// og_vec.erase(og_vec.begin(), og_vec.begin() + 2);
-	// my_vec.erase(my_vec.begin(), my_vec.begin() + 2);
-	// for (int i = 0; i < og_vec.size(); i++)
-	// 	std::cout << COLOUR_YELLOW << og_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < my_vec.size(); i++)
-	// 	std::cout << COLOUR_GREEN << my_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// std::cout << "OG:   Size:     " << COLOUR_RED << og_vec.size() << COLOUR_DEFAULT << std::endl;
-	// std::cout << "Mine: Size:     " << COLOUR_RED << my_vec.size() << COLOUR_DEFAULT << std::endl;
-	// std::cout << "OG:   Capacity: " << COLOUR_RED << og_vec.capacity() << COLOUR_DEFAULT << std::endl;
-	// std::cout << "Mine: Capacity: " << COLOUR_RED << my_vec.capacity() << COLOUR_DEFAULT << std::endl;
-	// og_vec.erase(og_vec.end() - 5, og_vec.end());
-	// my_vec.erase(my_vec.end() - 5, my_vec.end());
-	// for (int i = 0; i < og_vec.size(); i++)
-	// 	std::cout << COLOUR_YELLOW << og_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < my_vec.size(); i++)
-	// 	std::cout << COLOUR_GREEN << my_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// std::cout << "OG:   Size:     " << COLOUR_RED << og_vec.size() << COLOUR_DEFAULT << std::endl;
-	// std::cout << "Mine: Size:     " << COLOUR_RED << my_vec.size() << COLOUR_DEFAULT << std::endl;
-	// std::cout << "OG:   Capacity: " << COLOUR_RED << og_vec.capacity() << COLOUR_DEFAULT << std::endl;
-	// std::cout << "Mine: Capacity: " << COLOUR_RED << my_vec.capacity() << COLOUR_DEFAULT << std::endl;
-
-	// std::cout << COLOUR_BLUE << "\n\nTesting method .swap()" << COLOUR_DEFAULT << std::endl;
-	// std::vector<int> og_vec_new(7, 7);
-	// ft::vector<int> my_vec_new(7, 7);
-	// std::cout << COLOUR_PURPLE << "\nOG before .swap()" << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < og_vec.size(); i++)
-	// 	std::cout << COLOUR_YELLOW << og_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < og_vec_new.size(); i++)
-	// 	std::cout << COLOUR_GREEN << og_vec_new[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// og_vec.swap(og_vec_new);
-	// std::cout << COLOUR_PURPLE << "\nOG after .swap()" << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < og_vec.size(); i++)
-	// 	std::cout << COLOUR_GREEN << og_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < og_vec_new.size(); i++)
-	// 	std::cout << COLOUR_YELLOW << og_vec_new[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-
-	// std::cout << COLOUR_PURPLE << "\nMINE before .swap()" << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < my_vec.size(); i++)
-	// 	std::cout << COLOUR_YELLOW << my_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < my_vec_new.size(); i++)
-	// 	std::cout << COLOUR_GREEN << my_vec_new[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// my_vec.swap(my_vec_new);
-	// std::cout << COLOUR_PURPLE << "\nMINE after .swap()" << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < my_vec.size(); i++)
-	// 	std::cout << COLOUR_GREEN << my_vec[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
-	// for (int i = 0; i < my_vec_new.size(); i++)
-	// 	std::cout << COLOUR_YELLOW << my_vec_new[i] << " ";
-	// std::cout << COLOUR_DEFAULT << std::endl;
+		//befor swap
+		for (int i = 0; i < v1.size(); i++)
+			assert(v1_copy[i] == v1[i]);
+		v1.swap(v2);
+		//after swap
+		for (int i = 0; i < v1_copy.size(); i++)
+			assert(v1_copy[i] == v2[i]);
+		assert(v1_copy.capacity() == v2.capacity());
+		assert(v1_copy.size() == v2.size());
+		
+		for (int i = 0; i < v1.size(); i++)
+			assert(v2_copy[i] == v1[i]);
+		assert(v2_copy.capacity() == v1.capacity());
+		assert(v2_copy.size() == v1.size());
+	}
 }
