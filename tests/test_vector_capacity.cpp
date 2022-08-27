@@ -3,6 +3,7 @@
 #include <vector>
 #include <iterator>
 #include <iostream>
+#include "utils.hpp"
 
 int main(void)
 {
@@ -11,22 +12,22 @@ int main(void)
 	const ft::vector<int>	my_v_const(3, 4);
 	const std::vector<int>	og_v_const(3, 4);
 
-	std::cout << COLOUR_BLUE << "Testing method .size()" << COLOUR_RED << std::endl;
+	test_name("Testing method .size()");
 	assert(3 == my_v.size());
 
-	std::cout << COLOUR_BLUE << "Testing method .max_size()" << COLOUR_RED << std::endl;
+	test_name("Testing method .max_size()");
 	assert(og_v.max_size() == my_v.max_size());
 
-	std::cout << COLOUR_BLUE << "Testing method .capacity()" << COLOUR_RED << std::endl;
+	test_name("Testing method .capacity()");
 	assert(3 == my_v.capacity());
 
+	test_name("Testing method .empty()");
 	ft::vector<int> my_2nd_v;
-	std::cout << COLOUR_BLUE << "Testing method .empty()" << COLOUR_RED << std::endl;
 	assert(true == my_2nd_v.empty());
 	assert(false == my_v.empty());
 
 	{
-		std::cout << COLOUR_BLUE << "Testing method .resize() with sufficient capacity" << COLOUR_RED << std::endl;
+		test_name("Testing method .resize() with sufficient capacity");
 		std::vector<int> og_new_v(1, 1);
 		ft::vector<int> my_new_v(1, 1);
 		og_new_v.resize(3);
@@ -35,7 +36,7 @@ int main(void)
 	}
 	
 	{
-		std::cout << COLOUR_BLUE << "Testing method .resize() with insufficient capacity" << COLOUR_RED << std::endl;
+		test_name("Testing method .resize() with insufficient capacity");
 		std::vector<int> og_newer_v;
 		ft::vector<int> my_newer_v;
 		og_newer_v.resize(0, 0);
@@ -58,7 +59,7 @@ int main(void)
 	}
 
 	{
-		std::cout << COLOUR_BLUE << "Testing method .reserve()" << COLOUR_RED << std::endl;
+		test_name("Testing method .reserve()");
 		std::vector<int> og_vec(2, 2);
 		ft::vector<int> my_vec(2, 2);
 		og_vec.reserve(70);
