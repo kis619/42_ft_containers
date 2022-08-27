@@ -1,8 +1,21 @@
-#include "../ft_vector.hpp"
-#include "colours.h"
-#include <vector>
-#include <iterator>
-#include <iostream>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_vector_element_access.cpp                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/27 18:34:33 by kmilchev          #+#    #+#             */
+/*   Updated: 2022/08/27 18:40:45 by kmilchev         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+# include "../ft_vector.hpp"
+# include "colours.h"
+# include <vector>
+# include <iterator>
+# include <iostream>
+# include "utils.hpp"
 
 int main(void)
 {
@@ -11,69 +24,75 @@ int main(void)
 	const ft::vector<int> my_v_const(3, 4);
 	const std::vector<int> og_v_const(3, 4);
 
-	std::cout << COLOUR_BLUE << "Testing operator[]" << COLOUR_DEFAULT << std::endl;
-	for (int i = 0; i < 3; i++)
 	{
-		my_v[i] = i + 1;
-		og_v.at(i) = i + 1;
+		test_name("Testing operator[]");
+		for (int i = 0; i < 3; i++)
+		{
+			my_v[i] = i + 1;
+			og_v.at(i) = i + 1;
+		}
+		assert(1 == my_v[0]);
+		assert(2 == my_v[1]);
+		assert(3 == my_v[2]);
+
+		test_name("Testing const operator[]");
+		assert(4 == my_v_const[2]);
 	}
-	std::cout << "Mine: Num at idx 0 should be 1: " << COLOUR_GREEN << my_v[0] << COLOUR_DEFAULT << std::endl;
-	std::cout << "Mine: Num at idx 1 should be 2: " << COLOUR_GREEN << my_v[1] << COLOUR_DEFAULT << std::endl;
-	std::cout << "OG: Num at idx 0 should be 1:   " << COLOUR_GREEN << og_v[0] << COLOUR_DEFAULT << std::endl;
-	std::cout << "OG: Num at idx 1 should be 2:   " << COLOUR_GREEN << og_v[1] << COLOUR_DEFAULT << std::endl;
-	
-	std::cout << COLOUR_BLUE << "Testing const operator[]" << COLOUR_DEFAULT << std::endl;
-	std::cout << "Mine: Num at idx 0 should be 4: " << COLOUR_GREEN << my_v_const[0] << COLOUR_DEFAULT << std::endl;
-	std::cout << "OG: Num at idx 1 should be 4:   " << COLOUR_GREEN << og_v_const[0] << COLOUR_DEFAULT << std::endl;
-	
-	std::cout << COLOUR_BLUE << "Testing method .at() " << COLOUR_DEFAULT << std::endl;
-	std::cout << "Mine: Num at idx 0 should be 1: " << COLOUR_GREEN << my_v.at(0) << COLOUR_DEFAULT << std::endl;
-	std::cout << "OG:   Num at idx 0 should be 1: " << COLOUR_GREEN << og_v.at(0) << COLOUR_DEFAULT << std::endl;
 
+	{
+		test_name("Testing method .at()");
+		assert(1 == my_v.at(0));
 
-	std::cout << COLOUR_BLUE << "Testing method .at() when out_of_range" << COLOUR_DEFAULT << std::endl;
-	try{
-		og_v.at(3);}
-	catch(std::exception & error){
-		std::cout << "OG:   " << COLOUR_RED << "Exception caught: " << error.what() << COLOUR_DEFAULT << std::endl;}
-	try{
-		my_v.at(3);}
-	catch(std::exception & error){
-		std::cout << "Mine: " << COLOUR_RED << "Exception caught: " << error.what() << COLOUR_DEFAULT << std::endl;}
+		test_name("Testing const method .at()");
+		assert(4 == my_v_const.at(0));
+	}
 
-	std::cout << COLOUR_BLUE << "Testing const method .at() when out_of_range" << COLOUR_DEFAULT << std::endl;
-	try{
-		og_v_const.at(4);}
-	catch(std::exception & error){
-		std::cout << "OG:   " << COLOUR_RED << "Exception caught: " << error.what() << COLOUR_DEFAULT << std::endl;}
-	try{
-		my_v_const.at(4);}
-	catch(std::exception & error){
-		std::cout << "Mine: " << COLOUR_RED << "Exception caught: " << error.what() << COLOUR_DEFAULT << std::endl;}
+	{
+		test_name("Testing method .at() when out_of_range");
+		try{
+			og_v.at(3);}
+		catch(std::exception & error){
+			std::cout << "OG:   " << COLOUR_RED << "Exception caught: " << error.what() << COLOUR_RED << std::endl;}
+		try{
+			my_v.at(3);}
+		catch(std::exception & error){
+			std::cout << "Mine: " << COLOUR_RED << "Exception caught: " << error.what() << COLOUR_RED << std::endl;}
+	}
 
-	std::cout << COLOUR_BLUE << "Testing method .front() " << COLOUR_DEFAULT << std::endl;
-	std::cout << "Mine: should be 1: " << COLOUR_GREEN << my_v.front() << COLOUR_DEFAULT << std::endl;
-	std::cout << "OG:   should be 1: " << COLOUR_GREEN << og_v.front() << COLOUR_DEFAULT << std::endl;
+	{
+		test_name("Testing const method .at() when out_of_range");
+		try{
+			og_v_const.at(4);}
+		catch(std::exception & error){
+			std::cout << "OG:   " << COLOUR_RED << "Exception caught: " << error.what() << COLOUR_RED << std::endl;}
+		try{
+			my_v_const.at(4);}
+		catch(std::exception & error){
+			std::cout << "Mine: " << COLOUR_RED << "Exception caught: " << error.what() << COLOUR_RED << std::endl;}
+	}
 
-	std::cout << COLOUR_BLUE << "Testing const method .front() " << COLOUR_DEFAULT << std::endl;
-	std::cout << "Mine: should be 4: " << COLOUR_GREEN << my_v_const.front() << COLOUR_DEFAULT << std::endl;
-	std::cout << "OG:   should be 4: " << COLOUR_GREEN << og_v_const.front() << COLOUR_DEFAULT << std::endl;
+	{
+		test_name("Testing method .front()");
+		assert(1 == my_v.front());
 
-	std::cout << COLOUR_BLUE << "Testing method .back() " << COLOUR_DEFAULT << std::endl;
-	std::cout << "Mine: should be 3: " << COLOUR_GREEN << my_v.back() << COLOUR_DEFAULT << std::endl;
-	std::cout << "OG:   should be 3: " << COLOUR_GREEN << og_v.back() << COLOUR_DEFAULT << std::endl;
+		test_name("Testing const method .front()");
+		assert(4 == my_v_const.front());
+	}
 
-	std::cout << COLOUR_BLUE << "Testing const method .back() " << COLOUR_DEFAULT << std::endl;
-	std::cout << "Mine: should be 4: " << COLOUR_GREEN << my_v_const.back() << COLOUR_DEFAULT << std::endl;
-	std::cout << "OG:   should be 4: " << COLOUR_GREEN << og_v_const.back() << COLOUR_DEFAULT << std::endl;
+	{
+		test_name("Testing method .back()");
+		assert(3 == my_v.back());
 
-	std::cout << COLOUR_BLUE << "Testing method .data() " << COLOUR_DEFAULT << std::endl;
-	std::cout << "Mine: should be 1: " << COLOUR_GREEN << *(my_v.data()) << COLOUR_DEFAULT << std::endl;
-	std::cout << "OG:   should be 1: " << COLOUR_GREEN << *(og_v.data()) << COLOUR_DEFAULT << std::endl;
+		test_name("Testing const method .back()");
+		assert(4 == my_v_const.front());
+	}
 
-	std::cout << COLOUR_BLUE << "Testing const method .data() " << COLOUR_DEFAULT << std::endl;
-	std::cout << "Mine: should be 4: " << COLOUR_GREEN << *(my_v_const.data()) << COLOUR_DEFAULT << std::endl;
-	std::cout << "OG:   should be 4: " << COLOUR_GREEN << *(og_v_const.data()) << COLOUR_DEFAULT << std::endl;
+	{
+		test_name("Testing method .back()");
+		assert(1 == *(my_v.data()));
 
+		test_name("Testing const method .data()");
+		assert(4 == *(my_v_const.data()));
+	}
 	return (0);
 }
