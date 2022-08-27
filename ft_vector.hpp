@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/27 17:19:54 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/27 23:24:42 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,12 @@ public:
 //copy constructor
 	vector (const vector& x);
 
+//assignment operator
+	vector &operator=(const vector& x); //TBD
+	
 //destructor
 	~vector(void);
 
-//assignment operator
-	// vector &operator=(const vector& x); //TBD
 
 //////////////////////////////////ITERATORS//////////////////
 	iterator				begin(void);
@@ -118,6 +119,51 @@ private:
 	pointer					_end;
 
 };
+
+	template<class T, class Alloc>
+	bool operator==(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+	{
+		if (lhs.size() != rhs.size())
+			return (false);
+		for (typename Alloc::size_type i = 0; i < lhs.size(); i++)
+		{
+			if (lhs[i] != rhs[i])
+				return (false);
+		}
+		return (true);
+	}
+
+	template<class T, class Alloc>
+	bool operator!=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+	{
+		return (!(lhs == rhs));
+	}
+
+	
+	// template<class T, class Alloc>  //I need to check what lexicographical comparison is
+	// bool operator<(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+	// {
+	// 	return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+	// }
+
+	template<class T, class Alloc>
+	bool operator<=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+	{
+		return (!(rhs < lhs));
+	}
+
+	template<class T, class Alloc>
+	bool operator>(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+	{
+		return (rhs < lhs);
+	}
+
+	template<class T, class Alloc>
+	bool operator>=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+	{
+		return (!(lhs < rhs));
+	}
+	
 	template<class T, class Alloc>
 	void swap(vector<T, Alloc> &x, vector<T, Alloc> &y)
 	{
