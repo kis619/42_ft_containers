@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/26 20:50:35 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/27 17:19:54 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <stdexcept>
 
 // using std::enable_if; ///need to re-write those two
-using std::is_integral; //
+// using std::is_integral; //
 
 namespace ft
 {
@@ -52,7 +52,7 @@ public:
 	vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(),
 			typename enable_if<!is_integral<InputIterator>::value>::type* = NULL);
 //copy constructor
-	vector (const vector& x); //TBD
+	vector (const vector& x);
 
 //destructor
 	~vector(void);

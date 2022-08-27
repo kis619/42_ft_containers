@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:41 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/26 20:57:40 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/27 15:48:45 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ namespace ft
 		}
 	}
 
-	//copy constructor TBD
+	//copy constructor 
 	template<typename T, typename Allocator>
 	vector<T, Allocator>::vector(const vector &x)
 	{
@@ -77,6 +77,7 @@ namespace ft
 		}
 	}
 
+	//destructor
 	template<typename T, typename Allocator>
 	vector<T, Allocator>::~vector(void)
 	{
