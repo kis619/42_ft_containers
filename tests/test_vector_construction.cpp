@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 13:20:18 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/27 20:48:48 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/27 21:31:35 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,18 @@ int main(void)
 
 	{
 		test_name("Testing the copy constructor");
-		ft::vector<int> numbers(6, 33);
-		ft::vector<int> new_vec(numbers);
-		std::vector<int> whatever(6, 33);
-		std::vector<int> new_vec_og(whatever);
+		ft::vector<int> my_numbers(6, 33);
+		std::vector<int> og_numbers(6, 33);
+		og_numbers.reserve(17);
+		my_numbers.reserve(17);
+		ft::vector<int> new_vec(my_numbers);
+		std::vector<int> new_vec_og(og_numbers);
+		
 		for (int i = 0; i < new_vec.size(); i++)
-			assert((new_vec[i] == whatever[i]) == (numbers[i] == new_vec_og[i]));
+			assert((new_vec[i] == og_numbers[i]) == (my_numbers[i] == new_vec_og[i]));
+		assert(my_numbers.size() == new_vec.capacity());
+		assert(og_numbers.size() == new_vec_og.capacity());
+		assert(my_numbers.size() == new_vec_og.capacity());
 	}
 	
 	return (0);

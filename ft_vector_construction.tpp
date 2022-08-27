@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:41 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/27 15:48:45 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/27 21:32:56 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,11 @@ namespace ft
 	template<typename T, typename Allocator>
 	vector<T, Allocator>::vector(const vector &x)
 	{
-		size_type n = x.size();
-		_begin = _alloc.allocate(n);
+		std::cout << "Constructor copy called\n";
+		_capacity = x.size();
+		_begin = _alloc.allocate(_capacity);
 		_end = _begin;
-		for (size_type i = 0; i < n; i++)
+		for (size_type i = 0; i < _capacity; i++)
 		{
 			_alloc.construct(_end, x[i]);
 			_end++;
