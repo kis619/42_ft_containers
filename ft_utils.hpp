@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:19:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/24 17:19:44 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/27 23:47:04 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,18 @@ namespace ft
 	template <> struct is_integral<unsigned int> : true_type {};
 	template <> struct is_integral<unsigned long int> : true_type {};
 	template <> struct is_integral<unsigned long long int> : true_type {};
+
+	template< class InputIt1, class InputIt2 >
+	bool lexicographical_compare(	InputIt1 first1, InputIt1 last1,
+									InputIt2 first2, InputIt2 last2 )
+	{
+		for ( ; (first1 != last1) && (first2 != last2); ++first1, ++first2)  //original was (void) ++first2
+		{
+			if (*first1 < *first2)
+				return true;
+			if (*first2 < *first1)
+				return false;
+		}
+		return (first1 == last1) && (first2 != last2);
+	}
 }
