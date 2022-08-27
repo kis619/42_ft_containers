@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:41 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/27 22:04:21 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/27 23:51:39 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ namespace ft
 		}
 	}
 	
-	// range constructor  //need to ask Kacper about this enable_if thingy
+	// range constructor
 	template<typename T, typename Allocator>
 	template <class InputIterator>
 	vector<T, Allocator>::vector(InputIterator first, InputIterator last, const allocator_type &alloc,
@@ -67,6 +67,7 @@ namespace ft
 	template<typename T, typename Allocator>
 	vector<T, Allocator>::vector(const vector &x)
 	{
+		// std::cout << "copy\n";
 		_capacity = x.size();
 		_begin = _alloc.allocate(_capacity);
 		_end = _begin;
@@ -77,7 +78,24 @@ namespace ft
 		}
 	}
 
-	//destructor
+	template<typename T, typename Allocator>
+	vector<T, Allocator> & vector<T, Allocator>::operator=(const vector &x)
+	{
+		// std::cout << "assignment\n";
+		this->~vector();
+
+		// new (this) vector(x); //ask Rene about this syntax || calls the copy constructor but new?? placement new operator
+		_capacity = x.size();
+		_begin = _alloc.allocate(_capacity);
+		_end = _begin;
+		for (size_type i = 0; i < _capacity; i++)
+		{
+			_alloc.construct(_end, x[i]);
+			_end++;
+		}
+		return (*this);
+	}
+	
 	template<typename T, typename Allocator>
 	vector<T, Allocator>::~vector(void)
 	{
