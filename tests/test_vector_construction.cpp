@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 13:20:18 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/27 18:19:00 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/27 18:22:28 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 
 int main(void)
 {
-	std::cout << COLOUR_BLUE << "Testing the default constructor " << COLOUR_DEFAULT << std::endl;
+	std::cout << COLOUR_BLUE << "Testing the default constructor " << COLOUR_RED << std::endl;
 	ft::vector<int> test;
 	assert(0 == test.capacity());
 	assert(0 == test.size());
 	
-	std::cout << COLOUR_BLUE << "Testing the fill constructor " << COLOUR_DEFAULT << std::endl;
+	std::cout << COLOUR_BLUE << "Testing the fill constructor " << COLOUR_RED << std::endl;
 	ft::vector<int> test1(4, 69);
 	assert(4 == test1.capacity());
 	assert(4 == test1.size());
@@ -30,7 +30,7 @@ int main(void)
 		assert(69 == *(test1.begin()));
 	
 	{
-		std::cout << COLOUR_BLUE << "Testing the range constructor " << COLOUR_DEFAULT << std::endl;
+		std::cout << COLOUR_BLUE << "Testing the range constructor " << COLOUR_RED << std::endl;
 		ft::vector<int>::iterator it;
 		ft::vector<int>::iterator it2;
 		ft::vector<int> numbers(6, 33);
