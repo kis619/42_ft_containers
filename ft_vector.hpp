@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/28 22:00:15 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/28 22:56:19 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,9 @@
 # define VECTOR_HPP
 
 #include <memory>
-#include <stack>
 #include "ft_random_access_iterator.hpp"
 #include "ft_utils.hpp"
 #include <stdexcept>
-
-// using std::enable_if; ///need to re-write those two
-// using std::is_integral; //
 
 namespace ft
 {
@@ -55,7 +51,7 @@ public:
 	vector (const vector& x);
 
 //assignment operator
-	vector &operator=(const vector& x); //TBD
+	vector &operator=(const vector& x);
 	
 //destructor
 	~vector(void);
@@ -120,55 +116,55 @@ private:
 
 };
 
-	template<class T, class Alloc>
-	bool operator==(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+template<class T, class Alloc>
+bool operator==(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+{
+	if (lhs.size() != rhs.size())
+		return (false);
+	for (typename Alloc::size_type i = 0; i < lhs.size(); i++)
 	{
-		if (lhs.size() != rhs.size())
+		if (lhs[i] != rhs[i])
 			return (false);
-		for (typename Alloc::size_type i = 0; i < lhs.size(); i++)
-		{
-			if (lhs[i] != rhs[i])
-				return (false);
-		}
-		return (true);
 	}
+	return (true);
+}
 
-	template<class T, class Alloc>
-	bool operator!=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
-	{
-		return (!(lhs == rhs));
-	}
+template<class T, class Alloc>
+bool operator!=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+{
+	return (!(lhs == rhs));
+}
 
-	
-	template<class T, class Alloc>
-	bool operator<(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
-	{
-		return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
-	}
 
-	template<class T, class Alloc>
-	bool operator<=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
-	{
-		return (!(rhs < lhs));
-	}
+template<class T, class Alloc>
+bool operator<(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+{
+	return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+}
 
-	template<class T, class Alloc>
-	bool operator>(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
-	{
-		return (rhs < lhs);
-	}
+template<class T, class Alloc>
+bool operator<=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+{
+	return (!(rhs < lhs));
+}
 
-	template<class T, class Alloc>
-	bool operator>=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
-	{
-		return (!(lhs < rhs));
-	}
-	
-	template<class T, class Alloc>
-	void swap(vector<T, Alloc> &x, vector<T, Alloc> &y)
-	{
-		x.swap(y);
-	}
+template<class T, class Alloc>
+bool operator>(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+{
+	return (rhs < lhs);
+}
+
+template<class T, class Alloc>
+bool operator>=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+{
+	return (!(lhs < rhs));
+}
+
+template<class T, class Alloc>
+void swap(vector<T, Alloc> &x, vector<T, Alloc> &y)
+{
+	x.swap(y);
+}
 };
 
 #include "ft_vector_construction.tpp"
