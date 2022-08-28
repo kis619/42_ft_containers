@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 13:20:18 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/27 21:31:35 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/27 23:45:59 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,32 @@ int main(void)
 		assert(og_numbers.size() == new_vec_og.capacity());
 		assert(my_numbers.size() == new_vec_og.capacity());
 	}
+	
+	{
+		test_name("Testing the assignment operator");
+		std::vector<int> og_numbers(6, 33);
+		std::vector<int> og_empty;
+
+		og_empty = og_numbers;
+		std::cout << og_empty.data() << std::endl;
+		std::cout << og_numbers.data() << std::endl;
+		
+		ft::vector<int> my_numbers(6, 33);
+		ft::vector<int> my_empty;
+		my_empty = my_numbers;
+		og_numbers.reserve(123);
+		if (my_empty == my_numbers)
+			std::cout << my_numbers.data() << std::endl;
+			
+		std::cout << my_empty.data() << std::endl;
+	}
+
+	std::vector<int> v1(10, 33);
+	std::vector<int> v2(9, 34);
+
+	std::cout << std::boolalpha <<  ft::lexicographical_compare(v1.begin(), v1.end(), v2.begin(), v2.end()) << std::endl;
+	// std::cout << std::boolalpha <<  std::equal(v1.begin(), v1.end(), v2.begin()) << std::endl;
+
 	
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 13:21:52 by kmilchev          #+#    #+#              #
-#    Updated: 2022/08/27 18:35:22 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/08/28 21:53:33 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,3 +36,6 @@ test_vector_modifiers:
 
 test_vector_non_member_swap:
 	$(CC) -g tests/utils.cpp tests/test_vector_non_member_swap.cpp && ./a.out
+
+test_vector_logical_operators:
+	$(CC) -g tests/utils.cpp tests/test_vector_logical_operators.cpp && ./a.out

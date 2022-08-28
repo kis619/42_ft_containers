@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/27 23:24:42 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/08/28 21:50:27 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,11 +140,11 @@ private:
 	}
 
 	
-	// template<class T, class Alloc>  //I need to check what lexicographical comparison is
-	// bool operator<(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
-	// {
-	// 	return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
-	// }
+	template<class T, class Alloc>  //I need to check what lexicographical comparison is
+	bool operator<(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
+	{
+		return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+	}
 
 	template<class T, class Alloc>
 	bool operator<=(const vector<T, Alloc> &lhs, const vector<T, Alloc> &rhs)
