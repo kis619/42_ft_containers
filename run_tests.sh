@@ -6,25 +6,36 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/21 23:30:29 by kmilchev          #+#    #+#              #
-#    Updated: 2022/08/26 15:31:59 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/08/28 22:34:38 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PURPLE='\033[1;35m'
 NC='\033[0m'
 
+echo "${PURPLE}\ntest_iterator_class.cpp${NC}"
+c++ ./tests/utils.cpp ./tests/test_iterator_class.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
 
-echo "${PURPLE}test_vector_construction.cpp\n${NC}"
-c++ ./tests/test_vector_construction.cpp && ./a.out
+echo "${PURPLE}\ntest_reverse_iterator.cpp${NC}"
+c++ ./tests/utils.cpp ./tests/test_reverse_iterator.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
 
-echo "${PURPLE}test_vector_iter_methods.cpp\n${NC}"
-c++ ./tests/test_vector_iter_methods.cpp && ./a.out
+echo "${PURPLE}\ntest_vector_capacity.cpp${NC}"
+c++ tests/utils.cpp tests/test_vector_capacity.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
 
-echo "${PURPLE}\ntest_iterator_class.cpp\n${NC}"
-c++ ./tests/test_iterator_class.cpp && ./a.out
+echo "${PURPLE}\ntest_vector_construction.cpp${NC}"
+c++ ./tests/utils.cpp ./tests/test_vector_construction.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
 
-echo "${PURPLE}test_reverse_iterator.cpp\n${NC}"
-c++ ./tests/test_reverse_iterator.cpp && ./a.out
+echo "${PURPLE}\ntest_vector_element_access.cpp${NC}"
+c++ ./tests/utils.cpp ./tests/test_vector_element_access.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
 
-echo "${PURPLE}test_vector_modifiers.cpp\n${NC}"
-c++ ./tests/test_vector_modifiers.cpp && ./a.out
+echo "${PURPLE}\ntest_vector_iter_methods.cpp${NC}"
+c++ ./tests/utils.cpp ./tests/test_vector_iter_methods.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
+
+echo "${PURPLE}\ntest_vector_modifiers.cpp${NC}"
+c++ ./tests/utils.cpp ./tests/test_vector_modifiers.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
+
+echo "${PURPLE}\ntest_vector_non_member_swap.cpp${NC}"
+c++ ./tests/utils.cpp ./tests/test_vector_non_member_swap.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
+
+echo "${PURPLE}\ntest_vector_logical_operators.cpp${NC}"
+c++ ./tests/utils.cpp ./tests/test_vector_logical_operators.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
