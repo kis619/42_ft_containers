@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/01 10:49:00 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/01 10:53:54 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ int main(void)
 	ft::pair<int, int> my_pair_for_assignment;
 	my_pair_for_assignment = my_pair;
 	assert(my_pair_for_assignment == my_pair);
-	
+
+	test_name("Testing make_pair");
+	ft::pair<int, int> made_pair = ft::make_pair(1, 2);
+	assert(my_pair == made_pair);
 	return(0);
 }
