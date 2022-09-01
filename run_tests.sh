@@ -6,7 +6,7 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/21 23:30:29 by kmilchev          #+#    #+#              #
-#    Updated: 2022/08/28 22:34:38 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/09/01 09:58:53 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,3 +39,6 @@ c++ ./tests/utils.cpp ./tests/test_vector_non_member_swap.cpp && leaks -atExit -
 
 echo "${PURPLE}\ntest_vector_logical_operators.cpp${NC}"
 c++ ./tests/utils.cpp ./tests/test_vector_logical_operators.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
+
+echo "${PURPLE}\test_pair_construction.cpp${NC}"
+c++ ./tests/utils.cpp ./tests/test_pair_construction.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
