@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:51:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/31 22:41:39 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/01 09:48:59 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ class Node
 #include <iostream>
 #include <map>
 #include <functional>
+#include "ft_vector.hpp"
+#include <string.h>
 
 template <class T, class U>
 class Test_Functor : public std::binary_function<T, U, bool>
@@ -79,11 +81,11 @@ class Test_Functor : public std::binary_function<T, U, bool>
 
 int main ()
 {
-	// std::binary_function<int, int, bool> confustion;
-	Test_Functor<int, float> test;
-	// test.first_argument_type;
-	std::cout << test.do_nothing();
-	std::cout << test.do_nothing_still();
+
+	ft::pair<int, int> my_pair;
+	
+	std::cout << my_pair.first << "\n";
+	std::cout << my_pair.second << "\n";
 	
 	return 0;
 }

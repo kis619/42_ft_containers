@@ -6,13 +6,14 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/31 23:07:11 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/01 11:12:10 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <functional>
 #include <utility>
 #include <memory>
+// #include "ft_utils.hpp"
 
 namespace ft
 {
@@ -46,7 +47,6 @@ namespace ft
 					{return comp(lhs.first, rhs.second);}
 		};
 		
-		explicit map (	const key_compare &comp = key_compare(),
-						const allocator_type &alloc = allocator_type()); 
+		explicit map (const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type());
 	};
 };
