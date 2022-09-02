@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/02 21:44:18 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/02 22:07:08 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ class RBTree
 		new_node->data		= val;
 	}
 	
-	void insert(value_type val)
+	node_ptr insert(value_type val)
 	{
 		//Binary Search Insertion
 		node_ptr new_node	= node_alloc.allocate(1);
@@ -104,7 +104,7 @@ class RBTree
 			else if (new_node->data.first > current->data.first)
 				current = current->right;
 			else
-				return;
+				return (current);
 		}
 
 		// Set the parent and insert the new node
@@ -116,7 +116,19 @@ class RBTree
 		else
 			parent->right = new_node;
 		
+		// if new_node is the root node, recolor it to black and end
+		if (new_node->parent == NULL)
+		{
+			new_node->colour = BLACK;
+			return (new_node);
+		}
+		
+		// if parent is root (grandparent is null) then end
+		if (new_node->parent->parent == NULL)
+			return (new_node);
+				
 		fix_insert(new_node);
+		return(new_node);
 	}
 
 	// rotate left at node x
