@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:19:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/01 10:52:53 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/02 19:05:15 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ namespace ft
 		pair(void) : first(), second() {};
 		//copy constructor
 		template<class U, class V>
-		pair (const pair<U,V> &pr){(*this) = pr;}
+		pair (const pair<U,V> &pr) : first(pr.first), second(pr.second) {}
 		//initialising constructor
 		pair(const T1 &x, const T2 &y) : first(x), second(y) {};
 		//assignment operator
