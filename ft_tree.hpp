@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/02 18:58:58 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/02 20:02:48 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,19 @@
 
 namespace ft
 {
-template <	class Key, class T >
+template <	class Key,
+			class T,
+			class Allocator = std::allocator<pair<const Key, T> >,
+			class Compare = std::less<Key> >
 class RBTree
 {
 	// struct Node;
 	public:
-		typedef ft::pair<const Key, T>							value_type;
 		typedef Key												key_type;
 		typedef T												mapped_type;
+		typedef ft::pair< Key, T>								value_type;
+		typedef Allocator										allocator_type;
+		typedef Compare											key_compare;
 	
 	
 	struct Node
@@ -42,14 +47,16 @@ class RBTree
 
 	typedef Node*									node_ptr;
 
-	node_ptr				root; //should be private
-	node_ptr				nil_node; //should be private
-	std::allocator<Node>	_node_alloc;
+	node_ptr				root; // should be private
+	node_ptr				nil_node; // should be private
+	std::allocator<Node>	node_alloc; // should be private
+	allocator_type			alloc;
 
 	
-	RBTree(void)
+	RBTree(const key_compare &comp = key_compare(),
+					const allocator_type &alloc = allocator_type())
 	{
-		nil_node = _node_alloc.allocate(1);
+		nil_node = node_alloc.allocate(1);
 		nil_node->colour = BLACK;
 		nil_node->parent = NULL;
 		nil_node->left = NULL;
@@ -60,45 +67,59 @@ class RBTree
 
 	// ~RBTree(void)
 	// {
-	// 	_node_alloc.deallocate(root, 1);
+	// 	node_alloc.deallocate(root, 1);
 	// }
 	
 	void initialise_NULL_node(node_ptr node, node_ptr parent)
 	{
-		node			= _node_alloc.allocate(1);
+		node			= node_alloc.allocate(1);
 		node->parent	= parent;
 		node->left		= NULL;
 		node->right		= NULL;
 		node->colour	= BLACK;
-		// node->data		= 0;
 	}
 	
-	node_ptr initialise_RED_node(node_ptr new_node, value_type val)
+	void initialise_RED_node(node_ptr new_node, value_type val)
 	{
-		new_node 			= _node_alloc.allocate(1);
+		new_node 			= node_alloc.allocate(1);
 		new_node->parent	= NULL;
 		new_node->left		= NULL;
 		new_node->right		= NULL;
 		new_node->colour	= RED;
-		// new_node->data		= val;
+		new_node->data		= val;
 	}
 	
 	void insert(value_type val)
 	{
-		node_ptr new_node	= initialise_RED_node(new_node, val);
+		node_ptr new_node;
+		// initialise_RED_node(new_node, val);
+		new_node 			= node_alloc.allocate(1);
+		new_node->parent	= NULL;
+		new_node->left		= nil_node;
+		new_node->right		= nil_node;
+		new_node->colour	= RED;
+		new_node->data		= val;
+		
 		node_ptr parent		= NULL;
 		node_ptr current	= root;
 
 		while(current != nil_node)
 		{
 			parent = current;
-			if (new_node->data.first < val)
+			if (new_node->data.first < current->data.first)
 				current = current->left;
-			else if (new_node->data.first > val)
+			else if (new_node->data.first > current->data.first)
 				current = current->right;
 			else
 				return;
 		}
+		new_node->parent = parent;
+		if (parent == NULL)
+			root = new_node;
+		else if (new_node->data.first < parent->data.first)
+			parent->left = new_node;
+		else
+			parent->right = new_node;
 		
 	}
 
