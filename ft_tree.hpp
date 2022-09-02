@@ -6,15 +6,15 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/02 20:02:48 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/02 21:44:18 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RED_BLACK_TREE_HPP
 # define RED_BLACK_TREE_HPP
 
-# define RED false
-# define BLACK true
+# define RED true
+# define BLACK false
 # include "ft_utils.hpp"
 
 namespace ft
@@ -81,28 +81,21 @@ class RBTree
 	
 	void initialise_RED_node(node_ptr new_node, value_type val)
 	{
-		new_node 			= node_alloc.allocate(1);
 		new_node->parent	= NULL;
-		new_node->left		= NULL;
-		new_node->right		= NULL;
+		new_node->left		= nil_node;
+		new_node->right		= nil_node;
 		new_node->colour	= RED;
 		new_node->data		= val;
 	}
 	
 	void insert(value_type val)
 	{
-		node_ptr new_node;
-		// initialise_RED_node(new_node, val);
-		new_node 			= node_alloc.allocate(1);
-		new_node->parent	= NULL;
-		new_node->left		= nil_node;
-		new_node->right		= nil_node;
-		new_node->colour	= RED;
-		new_node->data		= val;
-		
+		//Binary Search Insertion
+		node_ptr new_node	= node_alloc.allocate(1);
 		node_ptr parent		= NULL;
 		node_ptr current	= root;
 
+		initialise_RED_node(new_node, val);
 		while(current != nil_node)
 		{
 			parent = current;
@@ -113,6 +106,8 @@ class RBTree
 			else
 				return;
 		}
+
+		// Set the parent and insert the new node
 		new_node->parent = parent;
 		if (parent == NULL)
 			root = new_node;
@@ -121,29 +116,128 @@ class RBTree
 		else
 			parent->right = new_node;
 		
+		fix_insert(new_node);
 	}
 
-	// void print_tree(void) const
-	// 	{
-	// 		_printHelper("ss", root, false);
-	// 	}
+	// rotate left at node x
+	void rotate_left(node_ptr x)
+	{
+		node_ptr y = x->right;
+		x->right = y->left;
+		
+		if (y->left != nil_node)
+			y->left->parent = x;
+		
+		y->parent = x->parent;
+		if (x->parent == NULL)
+			root = y;
+		else if (x == x->parent->left)
+			x->parent->left = y;
+		else
+			x->parent->right = y;
+		y->left = x;
+		x->parent = y;
+	}
 
-	// void _printHelper(const std::string& prefix, const node_ptr n, bool isLeft) const
-	// {
-	// 	if (n != nil_node && n != nullptr)
-	// 	{
-	// 		std::cout << prefix;
+	// rotate right at node x
+	void rotate_right(node_ptr x)
+	{
+		node_ptr y = x->left;
+		x->left = y->right;
+		if (y->right != nil_node)
+			y->right->parent = x;
+		
+		y->parent = x->parent;
+		if (x->parent == NULL)
+			root = y;
+		else if (x == x->parent->right)
+			x->parent->right = y;
+		else
+			x->parent->left = y;
+		y->right = x;
+		x->parent = y;
+	}
+	
+	void fix_insert(node_ptr child)
+	{
+		node_ptr uncle;
+		
+		while(child->parent->colour == RED)
+		{
+			if (child->parent == child->parent->parent->right)
+			{
+				uncle = child->parent->parent->left;
+				if (uncle->colour == RED)
+				{
+					uncle->colour = BLACK;
+					child->parent->colour = BLACK;
+					child->parent->parent->colour = RED;
+					child = child->parent->parent;
+				}
+				else if (uncle->colour == BLACK) //just else
+				{
+					if (child == child->parent->left)
+					{
+						child = child->parent;
+						rotate_right(child);
+					}
+					child->parent->colour = BLACK;
+					child->parent->parent->colour = RED;
+					rotate_left(child->parent->parent);
+				}
+				
+			}
+			else
+			{
+				uncle = child->parent->parent->right;
+				
+				if (uncle->colour == RED)
+				{
+					uncle->colour = BLACK;
+					child->parent->colour = BLACK;
+					child->parent->parent->colour = RED;
+					child = child->parent->parent;
+				}
+				else if (uncle->colour == BLACK) //just else
+				{
+					if (child == child->parent->right)
+					{
+						child = child->parent;
+						rotate_left(child);
+					}
+					child->parent->colour = BLACK;
+					child->parent->parent->colour = RED;
+					rotate_right(child->parent->parent);
+				}
+			}
+			
+			if (child == root)
+				break ;
+		}
+		root->colour = BLACK;
+	}
+	
+	void print_tree(void) const
+		{
+			_printHelper("", root, false);
+		}
 
-	// 		std::cout << (isLeft ? "├──" : "└──" );
+	void _printHelper(const std::string& prefix, const node_ptr n, bool isLeft) const
+	{
+		if (n != nil_node && n != nullptr)
+		{
+			std::cout << prefix;
 
-	// 		// print the value of the node
-	// 		std::cout << n->data.first << std::endl;
+			std::cout << (isLeft ? "├──" : "└──" );
 
-	// 		// enter the next tree level - left and right branch
-	// 		_printHelper(prefix + (isLeft ? "│   " : "    "), n->left, true);
-	// 		_printHelper(prefix + (isLeft ? "│   " : "    "), n->right, false);
-	// 	}
-	// }
+			// print the value of the node
+			std::cout << n->data.first << std::endl;
+
+			// enter the next tree level - left and right branch
+			_printHelper(prefix + (isLeft ? "│   " : "    "), n->left, true);
+			_printHelper(prefix + (isLeft ? "│   " : "    "), n->right, false);
+		}
+	}
 
 };
 }
