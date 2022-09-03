@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/03 16:41:33 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/03 16:46:07 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ namespace ft
 		public:
 			typedef Key												key_type;
 			typedef T												mapped_type;
-			typedef ft::pair<const key_type, mapped_type>			value_type; //need to implement pair myself //so no std..
+			typedef ft::pair<const key_type, mapped_type>			value_type;
 			typedef Compare											key_compare;
 			typedef Allocator										allocator_type;
 			typedef typename allocator_type::reference				reference;

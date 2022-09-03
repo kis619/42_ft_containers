@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/03 16:35:47 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/03 17:59:04 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ class RBTree
 	RBTree(const key_compare &comp = key_compare(),
 					const allocator_type &alloc = allocator_type())
 	{
-		nil_node = node_alloc.allocate(1);
+		nil_node = node_alloc.allocate(sizeof(struct Node));
 		nil_node->colour = BLACK;
 		nil_node->parent = NULL;
 		nil_node->left = NULL;
@@ -57,10 +57,10 @@ class RBTree
 		root = nil_node;
 	}
 
-	~RBTree(void)
-	{
-		node_alloc.deallocate(root, 1);
-	}
+	// ~RBTree(void)
+	// {
+	// 	node_alloc.deallocate(root, sizeof(struct Node));
+	// }
 	
 	void initialise_RED_node(node_ptr new_node, value_type val)
 	{
@@ -71,7 +71,7 @@ class RBTree
 		new_node->data		= val;
 	}
 	
-	node_ptr insert(value_type val)
+	node_ptr insert(value_type &val)
 	{
 		//Binary Search Insertion
 		node_ptr new_node	= node_alloc.allocate(1);
@@ -217,7 +217,6 @@ class RBTree
 		_printHelper("", root, false);
 	}
 
-
 	void _printHelper(const std::string& prefix, const node_ptr n, bool isLeft) const
 	{
 		if (n != nil_node && n != nullptr)
@@ -235,7 +234,104 @@ class RBTree
 		}
 	}
 
+	void erase(value_type val)
+	{
+		//find the node
+		node_ptr temp = root;
+		node_ptr found_node;
+		node_ptr x;
+		node_ptr y;
 
+		while(temp != nil_node)
+		{
+			if (temp->data == val)
+			{
+				found_node = temp;
+				break ;
+			}
+			if (compare(val, temp->data))
+				found_node = temp->left;
+			else
+				found_node = temp->right;
+		}
+
+		if (found_node == nil_node) //will adapt this later
+		{
+			std::cout << "No node\n"; 
+		}
+
+		//BST delete
+		y = found_node;
+		bool y_og_colour = y->colour;
+
+		//if there is only one node
+		if (found_node == root && (found_node->left == nil_node && found_node->right == nil_node)) //could use size == 0 here maybe
+		{
+			//free found_note or simply root
+			//root = nil_node
+			//exit()
+		}
+		
+		if (found_node->left == nil_node)
+		{
+			x = found_node->right;
+			rb_transplant(found_node, found_node->left);
+		}
+		else if (found_node->right == nil_node)
+		{
+			x = found_node->left;
+			rb_transplant(found_node, found_node->left);
+		}
+		else
+		{
+			y = min(found_node->right);
+			y_og_colour = y->colour;
+			x = y->right;
+			if (y->parent == found_node)
+				x->parent = y;
+			else
+			{
+				rb_transplant(y, y->right);
+				y->right = found_node->right;
+				y->right->parent = y;
+			}
+			rb_transplant(found_node, y);
+			y->left = found_node->left;
+			y->left->parent = y;
+			y->colour = found_node->colour;
+		}
+		//free found_node;
+		if (y_og_colour == BLACK)
+			fix_delete(); TBD
+		
+		///saw it in Kacper's code // need to check with him what for
+		/*node *temp = this->_root;
+		while (temp->right != this->_nil)
+			temp = temp->right;
+		this->_nil->parent = temp; */
+		
+		
+	}
+
+	//util for delete
+	void rb_transplant(node_ptr u, node_ptr v)
+	{
+		if (u->parent == NULL)
+			root = v;
+		else if (u == u->parent->left)
+			u->parent->left = v;
+		else
+			u->parent->right = v;
+		v->parent = u->parent;
+	}
+	
+	//util for delete
+	node_ptr min(node_ptr node)
+	{
+		while(node->left != nil_node)
+			node = node->left;
+		return (node);
+	}
 };
 }
 #endif
