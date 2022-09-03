@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:19:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/03 16:42:38 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:13:49 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ namespace ft
 		return (first1 == last1) && (first2 != last2);
 	};
 
-	template< class T1, class T2 >
+	template< typename T1, typename T2 >
 	struct pair
 	{
-		T1	first;
-		T2	second;
+		const T1	first;
+		const T2	second;
 		
 		pair(void) : first(), second() {};
 		//copy constructor
@@ -84,12 +84,15 @@ namespace ft
 		//initialising constructor
 		pair(const T1 &x, const T2 &y) : first(x), second(y) {};
 		//assignment operator
-		pair &operator=( const pair& other )
+		pair &operator=( const pair &other )
 		{
-			first = other.first;
-			second = other.second;
+			// first = other.first;
+			// second = other.second;
+			
+			new (this) pair(other.first, other.second);
 			return (*this);
 		}
+		
 	};
 	
 	template< class T1, class T2 >
