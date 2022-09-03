@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/02 22:07:08 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/03 16:35:47 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,18 @@
 
 namespace ft
 {
-template <	class Key,
-			class T,
-			class Allocator = std::allocator<pair<const Key, T> >,
-			class Compare = std::less<Key> >
+template <class T,  class Compare, class Allocator>
 class RBTree
 {
 	// struct Node;
 	public:
-		typedef Key												key_type;
-		typedef T												mapped_type;
-		typedef ft::pair< Key, T>								value_type;
+		typedef T												value_type;
 		typedef Allocator										allocator_type;
 		typedef Compare											key_compare;
-	
 	
 	struct Node
 	{
 		bool		colour;
-		// key_type	key_value;
-		// mapped_type	mapped_value;
 		value_type	data;
 		Node		*parent;
 		Node		*left;
@@ -50,9 +42,9 @@ class RBTree
 	node_ptr				root; // should be private
 	node_ptr				nil_node; // should be private
 	std::allocator<Node>	node_alloc; // should be private
-	allocator_type			alloc;
+	allocator_type			alloc; //should be private
+	key_compare				compare;
 
-	
 	RBTree(const key_compare &comp = key_compare(),
 					const allocator_type &alloc = allocator_type())
 	{
@@ -65,18 +57,9 @@ class RBTree
 		root = nil_node;
 	}
 
-	// ~RBTree(void)
-	// {
-	// 	node_alloc.deallocate(root, 1);
-	// }
-	
-	void initialise_NULL_node(node_ptr node, node_ptr parent)
+	~RBTree(void)
 	{
-		node			= node_alloc.allocate(1);
-		node->parent	= parent;
-		node->left		= NULL;
-		node->right		= NULL;
-		node->colour	= BLACK;
+		node_alloc.deallocate(root, 1);
 	}
 	
 	void initialise_RED_node(node_ptr new_node, value_type val)
@@ -99,9 +82,9 @@ class RBTree
 		while(current != nil_node)
 		{
 			parent = current;
-			if (new_node->data.first < current->data.first)
+			if (compare(new_node->data, current->data))
 				current = current->left;
-			else if (new_node->data.first > current->data.first)
+			else if (compare(current->data, new_node->data))
 				current = current->right;
 			else
 				return (current);
@@ -111,7 +94,7 @@ class RBTree
 		new_node->parent = parent;
 		if (parent == NULL)
 			root = new_node;
-		else if (new_node->data.first < parent->data.first)
+		else if (compare(new_node->data, parent->data))
 			parent->left = new_node;
 		else
 			parent->right = new_node;
@@ -186,7 +169,7 @@ class RBTree
 					child->parent->parent->colour = RED;
 					child = child->parent->parent;
 				}
-				else if (uncle->colour == BLACK) //just else
+				else if (uncle->colour == BLACK)
 				{
 					if (child == child->parent->left)
 					{
@@ -210,7 +193,7 @@ class RBTree
 					child->parent->parent->colour = RED;
 					child = child->parent->parent;
 				}
-				else if (uncle->colour == BLACK) //just else
+				else if (uncle->colour == BLACK)
 				{
 					if (child == child->parent->right)
 					{
@@ -230,9 +213,10 @@ class RBTree
 	}
 	
 	void print_tree(void) const
-		{
-			_printHelper("", root, false);
-		}
+	{
+		_printHelper("", root, false);
+	}
+
 
 	void _printHelper(const std::string& prefix, const node_ptr n, bool isLeft) const
 	{
@@ -250,6 +234,7 @@ class RBTree
 			_printHelper(prefix + (isLeft ? "│   " : "    "), n->right, false);
 		}
 	}
+
 
 };
 }
