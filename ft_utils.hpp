@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:19:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/03 22:13:49 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:33:56 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ namespace ft
 	template< typename T1, typename T2 >
 	struct pair
 	{
-		const T1	first;
-		const T2	second;
+		T1	first;
+		T2	second;
 		
 		pair(void) : first(), second() {};
 		//copy constructor

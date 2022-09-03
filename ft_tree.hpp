@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/03 17:59:04 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:26:39 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ class RBTree
 	allocator_type			alloc; //should be private
 	key_compare				compare;
 
-	RBTree(const key_compare &comp = key_compare(),
-					const allocator_type &alloc = allocator_type())
+	RBTree(const key_compare &compare_, const allocator_type &alloc_) : compare(compare_), alloc(alloc_)
 	{
 		nil_node = node_alloc.allocate(sizeof(struct Node));
 		nil_node->colour = BLACK;
@@ -57,12 +56,12 @@ class RBTree
 		root = nil_node;
 	}
 
-	// ~RBTree(void)
-	// {
-	// 	node_alloc.deallocate(root, sizeof(struct Node));
-	// }
+	~RBTree(void)
+	{
+		// node_alloc.deallocate(nil_node, sizeof(struct Node));
+	}
 	
-	void initialise_RED_node(node_ptr new_node, value_type val)
+	void initialise_RED_node(node_ptr new_node, const value_type &val)
 	{
 		new_node->parent	= NULL;
 		new_node->left		= nil_node;
@@ -71,12 +70,17 @@ class RBTree
 		new_node->data		= val;
 	}
 	
-	node_ptr insert(value_type &val)
+	node_ptr insert(const value_type &val)
 	{
 		//Binary Search Insertion
 		node_ptr new_node	= node_alloc.allocate(1);
 		node_ptr parent		= NULL;
 		node_ptr current	= root;
+		// new_node->parent	= NULL;
+		// new_node->left		= nil_node;
+		// new_node->right		= nil_node;
+		// new_node->colour	= RED;
+		// new_node->data		= val;
 
 		initialise_RED_node(new_node, val);
 		while(current != nil_node)
@@ -301,8 +305,8 @@ class RBTree
 			y->colour = found_node->colour;
 		}
 		//free found_node;
-		if (y_og_colour == BLACK)
-			fix_delete(); TBD
+		// if (y_og_colour == BLACK)
+		// 	fix_delete(); TBD
 		
 		///saw it in Kacper's code // need to check with him what for
 		/*node *temp = this->_root;
