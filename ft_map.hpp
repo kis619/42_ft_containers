@@ -6,14 +6,14 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/01 11:12:10 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/03 16:41:33 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <functional>
 #include <utility>
 #include <memory>
-// #include "ft_utils.hpp"
+#include "ft_utils.hpp"
 
 namespace ft
 {
@@ -24,7 +24,7 @@ namespace ft
 		public:
 			typedef Key												key_type;
 			typedef T												mapped_type;
-			typedef std::pair<const key_type, mapped_type>			value_type; //need to implement pair myself //so no std..
+			typedef ft::pair<const key_type, mapped_type>			value_type; //need to implement pair myself //so no std..
 			typedef Compare											key_compare;
 			typedef Allocator										allocator_type;
 			typedef typename allocator_type::reference				reference;
@@ -44,7 +44,7 @@ namespace ft
 				value_compare(key_compare c) : comp(c) {}
 			public:
 				bool operator()(const value_type &lhs, const value_type &rhs) const
-					{return comp(lhs.first, rhs.second);}
+					{return comp(lhs.first, rhs.first);}
 		};
 		
 		explicit map (const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type());
