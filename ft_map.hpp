@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/03 16:46:07 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:15:03 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <utility>
 #include <memory>
 #include "ft_utils.hpp"
+#include "ft_tree.hpp"
 
 namespace ft
 {
@@ -47,6 +48,15 @@ namespace ft
 					{return comp(lhs.first, rhs.first);}
 		};
 		
-		explicit map (const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type());
+		// map(void);
+		explicit map (const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type()) : tree(comp, alloc)
+		{};
+
+		private:
+			typedef ft::RBTree< value_type, value_compare, allocator_type>		tree_type;
+
+		public: //should be private
+			tree_type	tree;
+			
 	};
 };
