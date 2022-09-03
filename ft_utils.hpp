@@ -6,10 +6,12 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:19:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/02 19:05:15 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/03 16:42:38 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef UTILS_HPP
+# define UTILS_HPP
 #include <stdint.h>
 
 namespace ft
@@ -133,3 +135,4 @@ namespace ft
 	}
 	
 }
+#endif
