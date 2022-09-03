@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:19:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/03 22:33:56 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:56:38 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ namespace ft
 			// first = other.first;
 			// second = other.second;
 			
-			new (this) pair(other.first, other.second);
+			new (this) pair(other.first, other.second); //placement new operator
 			return (*this);
 		}
 		
