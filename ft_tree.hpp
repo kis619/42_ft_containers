@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/04 18:36:19 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:00:56 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,24 @@ class RBTree
 		}
 		return (node);
 	}
+	
+	template<class Key>
+	value_type find_by_only_key(const Key &key)
+	{
+		node_ptr node = root;
 
+		while(node != nil_node)
+		{
+			if (node->value.first == key)
+				return (node->value);
+			if (key < node->value.first)
+				node = node->left;
+			else if (key > node->value.first)
+				node = node->right;
+		}
+		return (value_type());
+	}
+	
 	size_t size(void)
 	{
 		return (_size);

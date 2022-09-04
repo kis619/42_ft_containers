@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/04 18:41:31 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:06:15 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include <memory>
 #include "ft_utils.hpp"
 #include "ft_tree.hpp"
-
+#include <stdexcept>
+#include "tests/colours.h"
 namespace ft
 {
 	template <	class Key, class T, class Compare = std::less<Key>,
@@ -73,7 +74,10 @@ namespace ft
 		///Element access
 		mapped_type at(const Key &key)
 		{
-			
+			mapped_type val = tree.find_by_only_key(key).first;
+			if (val)
+				return (val);
+			throw std::out_of_range("key not found");
 		}
 	};
 };

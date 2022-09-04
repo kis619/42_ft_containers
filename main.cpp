@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:51:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/04 18:18:00 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:06:34 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,15 @@ int main(void)
 	mappy.tree.insert(test93);
 	mappy.tree.print_tree();
 	std::cout << "Size: " << mappy.tree.size() << std::endl;
+	std::cout << "Value at should be 3: " << mappy.at(3) << std::endl;
+	try
+	{
+		std::cout << "Value at should be 3: " << mappy.at(16) << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << COLOUR_RED << e.what() << '\n' << COLOUR_DEFAULT;
+	}
 	
 	std::cout << mappy.erase(1) << std::endl;
 	mappy.tree.erase(test2);
@@ -67,7 +76,7 @@ int main(void)
 	mappy.tree.print_tree();
 	// std::cout << "\nConfusion\n";
 	std::cout << "Size after everything is erased: " << mappy.tree.size() << std::endl;
-
+	
 
 
 	std::map<int, int> mappty;
@@ -77,8 +86,16 @@ int main(void)
 	mappty.insert(one);
 	mappty.insert(two);
 	mappty.insert(three);
-
-	std::cout << mappty.at(0);
+	try
+	{
+		std::cout << mappty.at(0);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
+	
 	mappty.erase(3);
 	// mappty.erase(two);
 
