@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/03 22:33:49 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/04 17:08:14 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ namespace ft
 			typedef typename allocator_type::const_pointer			const_pointer;
 			typedef typename allocator_type::size_type				size_type;
 			typedef typename allocator_type::difference_type		difference_type;
-
 		
 		class value_compare : public std::binary_function<value_type, value_type, bool>
 		{
@@ -57,6 +56,11 @@ namespace ft
 
 		public: //should be private
 			tree_type	tree;
+
+		void erase(key_type key)
+		{
+			tree.erase(key);
+		}
 			
 	};
 };

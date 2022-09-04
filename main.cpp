@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:51:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/04 14:38:02 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/04 17:27:03 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,6 @@
 int main(void)
 {
 
-	// ft::RBTree<int, double> tree = ft::RBTree<int, double>();
-
-	// std::cout << std::boolalpha << tree.nil_node->colour << std::endl;
-
-	// tree.insert(ft::make_pair(1, 1.1));
-	// tree.insert(ft::make_pair(2, 2.1));
-	// tree.insert(ft::make_pair(0, 7.1));
-	// tree.insert(ft::make_pair(8, 7.1));
-	// tree.insert(ft::make_pair(9, 7.1));
-	// tree.insert(ft::make_pair(4, 7.1));
-
-	// std::cout << tree.root->right->data.first << std::endl;
-	// std::cout << tree.root->right->data.second << std::endl;
-	// std::cout << tree.root->left->data.second << std::endl;
-	// tree.print_tree();
-	// std::map<int, int> mappy;
-	// Test::g = 10;
 	ft::map<int, int> mappy;
 	// std::cout << &mappy << std::endl;
 	int a = 1;
@@ -45,36 +28,58 @@ int main(void)
 	ft::pair<int, int> test3 = ft::make_pair(3, 1);
 	ft::pair<int, int> test4 = ft::make_pair(4, 1);
 	ft::pair<int, int> test5 = ft::make_pair(5, 1);
-	// ft::pair<int, int> test = ft::make_pair(5, 1);
-	
+	ft::pair<int, int> test6 = ft::make_pair(6, 1);
+	ft::pair<int, int> test7 = ft::make_pair(7, 1);
+	ft::pair<int, int> test8 = ft::make_pair(8, 1);
+	ft::pair<int, int> test9 = ft::make_pair(9, 1);
+	ft::pair<int, int> test91 = ft::make_pair(91, 1);
+	ft::pair<int, int> test92 = ft::make_pair(92, 1);
+	ft::pair<int, int> test93 = ft::make_pair(93, 1);
+	ft::pair<int, int> test94 = ft::make_pair(94, 1);
 	mappy.tree.insert(test1);
-	mappy.tree.print_tree();
 	mappy.tree.insert(test2);
-	mappy.tree.print_tree();
 	mappy.tree.insert(test3);
-	mappy.tree.print_tree();
 	mappy.tree.insert(test4);
-	mappy.tree.print_tree();
 	mappy.tree.insert(test5);
+	mappy.tree.insert(test6);
+	mappy.tree.insert(test7);
+	mappy.tree.insert(test8);
+	mappy.tree.insert(test9);
+	mappy.tree.insert(test91);
+	mappy.tree.insert(test92);
+	mappy.tree.insert(test93);
 	mappy.tree.print_tree();
+	std::cout << "Size: " << mappy.tree.size() << std::endl;
+	
 	mappy.tree.erase(test1);
-	mappy.tree.print_tree();
 	mappy.tree.erase(test2);
-	mappy.tree.print_tree();
 	mappy.tree.erase(test3);
 	mappy.tree.erase(test4);
 	mappy.tree.erase(test5);
-	// mappy.tree.print_tree();
+	mappy.tree.erase(test6);
+	mappy.tree.erase(test7);
+	mappy.tree.erase(test8);
+	mappy.tree.erase(test9);
+	mappy.tree.erase(test91);
+	mappy.tree.erase(test92);
+	mappy.tree.erase(test93);
+	mappy.tree.print_tree();
+	// std::cout << "\nConfusion\n";
+	std::cout << "Size after everything is erased: " << mappy.tree.size() << std::endl;
 
 
 
-	std::map<int, int> mappty;
-	mappty.insert(std::make_pair(1, 9));
-	mappty.insert(std::make_pair(2, 10));
-	mappty.insert(std::make_pair(3, 11));
+	// std::map<int, int> mappty;
+	// std::pair<int, int> one = std::make_pair(1, 9);
+	// std::pair<int, int> two = std::make_pair(2, 9);
+	// std::pair<int, int> three = std::make_pair(3, 9);
+	// mappty.insert(one);
+	// mappty.insert(two);
+	// mappty.insert(three);
 
-	mappty.erase(3);
-	// mappty.
+	// mappty.erase(3);
+	// mappty.erase(two);
+
 	return (0);
 }
 
