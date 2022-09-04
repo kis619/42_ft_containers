@@ -6,9 +6,12 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/04 17:08:14 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/04 18:32:37 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef MAP_HPP
+# define MAP_HPP
 
 #include <functional>
 #include <utility>
@@ -25,7 +28,7 @@ namespace ft
 		public:
 			typedef Key												key_type;
 			typedef T												mapped_type;
-			typedef ft::pair<const key_type, mapped_type>			value_type;
+			typedef ft::pair<const Key, T>							value_type;
 			typedef Compare											key_compare;
 			typedef Allocator										allocator_type;
 			typedef typename allocator_type::reference				reference;
@@ -57,10 +60,24 @@ namespace ft
 		public: //should be private
 			tree_type	tree;
 
-		void erase(key_type key)
+		size_type erase(key_type key)
 		{
-			tree.erase(key);
+			return(tree.erase_unique(key));
 		}
+		
+		allocator_type get_allocator(void) const
+		{
+			return (tree.get_allocator());
+		}
+
+		///Element access
+		mapped_type at(const Key &key)
+		{
 			
+		}
 	};
 };
+
+#include "ft_map_erase.tpp"
+#include "ft_map_insert.tpp"
+#endif //MAP_HPP

@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:51:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/04 17:27:03 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/04 18:18:00 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int main(void)
 	mappy.tree.print_tree();
 	std::cout << "Size: " << mappy.tree.size() << std::endl;
 	
-	mappy.tree.erase(test1);
+	std::cout << mappy.erase(1) << std::endl;
 	mappy.tree.erase(test2);
 	mappy.tree.erase(test3);
 	mappy.tree.erase(test4);
@@ -61,7 +61,8 @@ int main(void)
 	mappy.tree.erase(test8);
 	mappy.tree.erase(test9);
 	mappy.tree.erase(test91);
-	mappy.tree.erase(test92);
+	std::cout << mappy.erase(92) << std::endl;
+	std::cout << "Size after everything nut one is erased: " << mappy.tree.size() << std::endl;
 	mappy.tree.erase(test93);
 	mappy.tree.print_tree();
 	// std::cout << "\nConfusion\n";
@@ -69,15 +70,16 @@ int main(void)
 
 
 
-	// std::map<int, int> mappty;
-	// std::pair<int, int> one = std::make_pair(1, 9);
-	// std::pair<int, int> two = std::make_pair(2, 9);
-	// std::pair<int, int> three = std::make_pair(3, 9);
-	// mappty.insert(one);
-	// mappty.insert(two);
-	// mappty.insert(three);
+	std::map<int, int> mappty;
+	std::pair<int, int> one = std::make_pair(1, 9);
+	std::pair<int, int> two = std::make_pair(2, 10);
+	std::pair<int, int> three = std::make_pair(3, 11);
+	mappty.insert(one);
+	mappty.insert(two);
+	mappty.insert(three);
 
-	// mappty.erase(3);
+	std::cout << mappty.at(0);
+	mappty.erase(3);
 	// mappty.erase(two);
 
 	return (0);
