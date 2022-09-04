@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/04 18:32:37 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/04 18:41:31 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ namespace ft
 	};
 };
 
-#include "ft_map_erase.tpp"
-#include "ft_map_insert.tpp"
+#include "ft_tree_erase.tpp"
+#include "ft_tree_insert.tpp"
 #endif //MAP_HPP
