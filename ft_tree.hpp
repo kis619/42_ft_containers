@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/03 22:26:39 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/04 14:37:44 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ class RBTree
 	public:
 		typedef T												value_type;
 		typedef Allocator										allocator_type;
-		typedef Compare											key_compare;
+		typedef Compare											value_compare;
 	
 	struct Node
 	{
 		bool		colour;
-		value_type	data;
+		value_type	value;
 		Node		*parent;
 		Node		*left;
 		Node		*right;
@@ -43,16 +43,16 @@ class RBTree
 	node_ptr				nil_node; // should be private
 	std::allocator<Node>	node_alloc; // should be private
 	allocator_type			alloc; //should be private
-	key_compare				compare;
+	value_compare				compare;
 
-	RBTree(const key_compare &compare_, const allocator_type &alloc_) : compare(compare_), alloc(alloc_)
+	RBTree(const value_compare &compare_, const allocator_type &alloc_) : compare(compare_), alloc(alloc_)
 	{
 		nil_node = node_alloc.allocate(sizeof(struct Node));
 		nil_node->colour = BLACK;
 		nil_node->parent = NULL;
-		nil_node->left = NULL;
-		nil_node->right = NULL;
-		// nil_node->data = NULL;
+		nil_node->left = nil_node;
+		nil_node->right = nil_node;
+		// nil_node->value = NULL;
 		root = nil_node;
 	}
 
@@ -67,7 +67,7 @@ class RBTree
 		new_node->left		= nil_node;
 		new_node->right		= nil_node;
 		new_node->colour	= RED;
-		new_node->data		= val;
+		new_node->value		= val;
 	}
 	
 	node_ptr insert(const value_type &val)
@@ -80,15 +80,15 @@ class RBTree
 		// new_node->left		= nil_node;
 		// new_node->right		= nil_node;
 		// new_node->colour	= RED;
-		// new_node->data		= val;
+		// new_node->value		= val;
 
 		initialise_RED_node(new_node, val);
 		while(current != nil_node)
 		{
 			parent = current;
-			if (compare(new_node->data, current->data))
+			if (compare(new_node->value, current->value))
 				current = current->left;
-			else if (compare(current->data, new_node->data))
+			else if (compare(current->value, new_node->value))
 				current = current->right;
 			else
 				return (current);
@@ -98,7 +98,7 @@ class RBTree
 		new_node->parent = parent;
 		if (parent == NULL)
 			root = new_node;
-		else if (compare(new_node->data, parent->data))
+		else if (compare(new_node->value, parent->value))
 			parent->left = new_node;
 		else
 			parent->right = new_node;
@@ -230,7 +230,7 @@ class RBTree
 			std::cout << (isLeft ? "├──" : "└──" );
 
 			// print the value of the node
-			std::cout << n->data.first << std::endl;
+			std::cout << n->value.first << std::endl;
 
 			// enter the next tree level - left and right branch
 			_printHelper(prefix + (isLeft ? "│   " : "    "), n->left, true);
@@ -238,30 +238,16 @@ class RBTree
 		}
 	}
 
-	void erase(value_type val)
+	void erase(const value_type &val)
 	{
-		//find the node
-		node_ptr temp = root;
-		node_ptr found_node;
+		node_ptr found_node = find(val);
 		node_ptr x;
 		node_ptr y;
 
-		while(temp != nil_node)
-		{
-			if (temp->data == val)
-			{
-				found_node = temp;
-				break ;
-			}
-			if (compare(val, temp->data))
-				found_node = temp->left;
-			else
-				found_node = temp->right;
-		}
-
 		if (found_node == nil_node) //will adapt this later
 		{
-			std::cout << "No node\n"; 
+			std::cout << "No node\n";
+			return ;
 		}
 
 		//BST delete
@@ -309,10 +295,10 @@ class RBTree
 		// 	fix_delete(); TBD
 		
 		///saw it in Kacper's code // need to check with him what for
-		/*node *temp = this->_root;
-		while (temp->right != this->_nil)
-			temp = temp->right;
-		this->_nil->parent = temp; */
+		// Node *temp1 = this->root;
+		// while (temp1->right != this->nil_node)
+		// 	temp1 = temp1->right;
+		// this->nil_node->parent = temp1;
 		
 		
 	}
@@ -334,6 +320,22 @@ class RBTree
 	{
 		while(node->left != nil_node)
 			node = node->left;
+		return (node);
+	}
+
+	node_ptr find(const value_type &val)
+	{
+		node_ptr node = root;
+
+		while(node != nil_node)
+		{
+			if (node->value == val)
+				return (node);
+			if (compare(val, node->value))
+				node = node->left;
+			else if (compare(node->value, val))
+				node = node->right;
+		}
 		return (node);
 	}
 };

@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:51:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/03 22:26:57 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/04 14:38:02 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,41 @@ int main(void)
 	// std::cout << &mappy << std::endl;
 	int a = 1;
 	int b = 2;
-	mappy.tree.insert(ft::make_pair(a, b));
-	// mappy.tree.insert(ft::make_pair(2, b));
-	// mappy.tree.insert(ft::make_pair(3, b));
-	// mappy.tree.insert(ft::make_pair(4, b));
-	// mappy.tree.insert(ft::make_pair(5, b));
-
+	ft::pair<int, int> test1 = ft::make_pair(1, 1);
+	ft::pair<int, int> test2 = ft::make_pair(2, 1);
+	ft::pair<int, int> test3 = ft::make_pair(3, 1);
+	ft::pair<int, int> test4 = ft::make_pair(4, 1);
+	ft::pair<int, int> test5 = ft::make_pair(5, 1);
+	// ft::pair<int, int> test = ft::make_pair(5, 1);
+	
+	mappy.tree.insert(test1);
 	mappy.tree.print_tree();
+	mappy.tree.insert(test2);
+	mappy.tree.print_tree();
+	mappy.tree.insert(test3);
+	mappy.tree.print_tree();
+	mappy.tree.insert(test4);
+	mappy.tree.print_tree();
+	mappy.tree.insert(test5);
+	mappy.tree.print_tree();
+	mappy.tree.erase(test1);
+	mappy.tree.print_tree();
+	mappy.tree.erase(test2);
+	mappy.tree.print_tree();
+	mappy.tree.erase(test3);
+	mappy.tree.erase(test4);
+	mappy.tree.erase(test5);
+	// mappy.tree.print_tree();
+
+
+
+	std::map<int, int> mappty;
+	mappty.insert(std::make_pair(1, 9));
+	mappty.insert(std::make_pair(2, 10));
+	mappty.insert(std::make_pair(3, 11));
+
+	mappty.erase(3);
+	// mappty.
 	return (0);
 }
 
