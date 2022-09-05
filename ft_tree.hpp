@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/04 19:00:56 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/05 11:54:13 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define RED true
 # define BLACK false
 # include "ft_utils.hpp"
+# include "ft_rbt_iterator.hpp"
 
 namespace ft
 {
@@ -46,7 +47,7 @@ class RBTree
 		node_ptr				nil_node;
 		std::allocator<Node>	node_alloc;
 		allocator_type			alloc;
-		value_comp			comp;
+		value_comp				comp;
 		size_type				_size;
 	
 	public:
@@ -74,142 +75,43 @@ class RBTree
 		new_node->colour	= RED;
 		new_node->value		= val;
 	}
-	
 
-	// rotate left at node x
-	void rotate_left(node_ptr x)
-	{
-		node_ptr y = x->right;
-		x->right = y->left;
-		
-		if (y->left != nil_node)
-			y->left->parent = x;
-		
-		y->parent = x->parent;
-		if (x->parent == NULL)
-			root = y;
-		else if (x == x->parent->left)
-			x->parent->left = y;
-		else
-			x->parent->right = y;
-		y->left = x;
-		x->parent = y;
-	}
-
-	// rotate right at node x
-	void rotate_right(node_ptr x)
-	{
-		node_ptr y = x->left;
-		x->left = y->right;
-		if (y->right != nil_node)
-			y->right->parent = x;
-		
-		y->parent = x->parent;
-		if (x->parent == NULL)
-			root = y;
-		else if (x == x->parent->right)
-			x->parent->right = y;
-		else
-			x->parent->left = y;
-		y->right = x;
-		x->parent = y;
-	}
-	
-	
-	void print_tree(void) const
-	{
-		_printHelper("", root, false);
-	}
-
-	void _printHelper(const std::string& prefix, const node_ptr n, bool isLeft) const
-	{
-		if (n != nil_node && n != nullptr)
-		{
-			std::cout << prefix;
-
-			std::cout << (isLeft ? "├──" : "└──" );
-
-			// print the value of the node
-			std::cout << n->value.first << std::endl;
-
-			// enter the next tree level - left and right branch
-			_printHelper(prefix + (isLeft ? "│   " : "    "), n->left, true);
-			_printHelper(prefix + (isLeft ? "│   " : "    "), n->right, false);
-		}
-	}
 
 	///INSERT
 	node_ptr insert(const value_type &val);
 	void fix_insert(node_ptr child);
+	void rotate_left(node_ptr x); //util for insert and erase
+	void rotate_right(node_ptr x); //util for insert and erase
 	
 	///ERASE
 	template<class Key>
 	size_type erase_unique(const Key &key);
 	void erase(const value_type &val);
 	void fix_erase(node_ptr x);
-	void rb_transplant(node_ptr u, node_ptr v); 	//util for delete
+	void rb_transplant(node_ptr u, node_ptr v); 	//util for erase
+	node_ptr min(node_ptr node); //util for erase
 
-	
-	//util for delete
-	node_ptr min(node_ptr node)
-	{
-		while(node->left != nil_node)
-			node = node->left;
-		return (node);
-	}
-
-	node_ptr find(const value_type &val)
-	{
-		node_ptr node = root;
-
-		while(node != nil_node)
-		{
-			if (!comp(val, node->value) && !comp(node->value, val))
-				return (node);
-			if (comp(val, node->value))
-				node = node->left;
-			else if (comp(node->value, val))
-				node = node->right;
-		}
-		return (node);
-	}
-	
+	///MISCELLANEOUS
+	void print_tree(void) const;
+	void _printHelper(const std::string& prefix, const node_ptr n, bool isLeft) const;
+	node_ptr find(const value_type &val);
 	template<class Key>
-	value_type find_by_only_key(const Key &key)
-	{
-		node_ptr node = root;
-
-		while(node != nil_node)
-		{
-			if (node->value.first == key)
-				return (node->value);
-			if (key < node->value.first)
-				node = node->left;
-			else if (key > node->value.first)
-				node = node->right;
-		}
-		return (value_type());
-	}
+	value_type find_by_only_key(const Key &key);
+	size_type size(void);
+	bool empty(void);
+	allocator_type get_allocator(void) const;
+	value_comp get_comp(void);
+	void clearNode(node_ptr n);
 	
-	size_t size(void)
+	///ITERATORS
+	RBTreeIterator<Node> test(void)
 	{
-		return (_size);
+		return (RBTreeIterator<Node>(root));
 	}
-
-	bool empty(void)
-	{
-		return (_size == 0);
-	}
-
-	allocator_type get_allocator(void) const
-	{
-		return (alloc);
-	}
-
-	// key_comp get_comp()
-	// {
-	// 	return (comp);
-	// }
 };
 }
+
+#include "ft_tree_erase.tpp"
+#include "ft_tree_insert.tpp"
+#include "ft_tree_miscellaneous.tpp"
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map_insert.tpp                                  :+:      :+:    :+:   */
+/*   ft_tree_insert.tpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/04 18:35:35 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/05 11:47:18 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,46 @@ namespace ft
 				break ;
 		}
 		root->colour = BLACK;
+	}
+	
+	// rotate left at node x
+	template <class T,  class Compare, class Allocator>
+	void RBTree<T, Compare, Allocator>::rotate_left(node_ptr x)
+	{
+		node_ptr y = x->right;
+		x->right = y->left;
+		
+		if (y->left != nil_node)
+			y->left->parent = x;
+		
+		y->parent = x->parent;
+		if (x->parent == NULL)
+			root = y;
+		else if (x == x->parent->left)
+			x->parent->left = y;
+		else
+			x->parent->right = y;
+		y->left = x;
+		x->parent = y;
+	}
+
+	// rotate right at node x
+	template <class T,  class Compare, class Allocator>
+	void RBTree<T, Compare, Allocator>::rotate_right(node_ptr x)
+	{
+		node_ptr y = x->left;
+		x->left = y->right;
+		if (y->right != nil_node)
+			y->right->parent = x;
+		
+		y->parent = x->parent;
+		if (x->parent == NULL)
+			root = y;
+		else if (x == x->parent->right)
+			x->parent->right = y;
+		else
+			x->parent->left = y;
+		y->right = x;
+		x->parent = y;
 	}
 }

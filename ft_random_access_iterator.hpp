@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 17:45:10 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/26 18:39:22 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/05 10:20:21 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ namespace ft
 		reference				operator*(void)					const	{return (*_i);};
 		pointer					operator->(void)				const	{return(&(operator*()));};
 		random_access_iterator	operator++(int)							{random_access_iterator temp(*this); _i++; return(temp);}; //post-increment;
-		random_access_iterator	&operator++()							{_i++; return(*this);}; //post-increment;
-		random_access_iterator	operator--(int)							{random_access_iterator temp(*this); _i--; return(temp);}; //post-increment;
-		random_access_iterator	&operator--()							{_i--; return(*this);}; //post-decrement;
+		random_access_iterator	&operator++()							{_i++; return(*this);}; //pre-increment;
+		random_access_iterator	operator--(int)							{random_access_iterator temp(*this); _i--; return(temp);}; //post-decrement;
+		random_access_iterator	&operator--()							{_i--; return(*this);}; //pre-decrement;
 		random_access_iterator	operator+(difference_type n)	const	{return random_access_iterator(_i + n);}
 		random_access_iterator	&operator+=(difference_type n)			{_i += n; return (*this);}
 		random_access_iterator	operator-(difference_type n)	const	{return random_access_iterator(_i - n);}

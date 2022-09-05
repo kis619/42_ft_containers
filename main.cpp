@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:51:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/04 19:06:34 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/05 11:43:22 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include <map>
 #include "ft_map.hpp"
 #include <string>
-#include "ft_tree.hpp"
+// #include "ft_tree.hpp"
+#include "ft_rbt_iterator.hpp"
 
 int main(void)
 {
@@ -86,6 +87,7 @@ int main(void)
 	mappty.insert(one);
 	mappty.insert(two);
 	mappty.insert(three);
+	std::map<int, int>::iterator it = mappty.begin();
 	try
 	{
 		std::cout << mappty.at(0);
@@ -94,11 +96,16 @@ int main(void)
 	{
 		std::cerr << e.what() << '\n';
 	}
+	std::cout<< "Iterator at begin, first: " << (*it).first << std::endl;
+	std::cout<< "Iterator at begin, second: " << (*it).second << std::endl;
+	std::cout<< "Iterator at begin +1 , first: " << (*(++it)).first << std::endl;
+	std::cout<< "Iterator at begin +1, second: " << (*it++).second << std::endl;
+	std::cout<< "Iterator at begin +2, first: " << (*it).first << std::endl;
+	std::cout<< "Iterator at begin +2, second: " << (*(it)).second << std::endl;
+	// (*it) = *(mappty.end());
+	// std::cout << *it << std::endl;
 	
 	
-	mappty.erase(3);
-	// mappty.erase(two);
-
 	return (0);
 }
 

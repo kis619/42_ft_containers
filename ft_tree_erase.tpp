@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map_erase.tpp                                   :+:      :+:    :+:   */
+/*   ft_tree_erase.tpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/04 18:27:42 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/05 11:42:32 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_map.hpp"
+#include "ft_tree.hpp"
 
 namespace ft
 {
@@ -186,5 +186,13 @@ namespace ft
 		else
 			u->parent->right = v;
 		v->parent = u->parent;
+	}
+	
+	template <class T,  class Compare, class Allocator>
+	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::min(node_ptr node)
+	{
+		while(node->left != nil_node)
+			node = node->left;
+		return (node);
 	}
 }
