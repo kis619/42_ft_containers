@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/05 11:43:58 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/05 12:34:53 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 namespace ft
 {
 	template <	class Key, class T, class Compare = std::less<Key>,
-				class Allocator = std::allocator<std::pair<const Key, T> > >
+				class Allocator = std::allocator<ft::pair<const Key, T> > >
 	class map
 	{
 		public:
@@ -46,7 +46,7 @@ namespace ft
 		{
 			friend class map;
 
-			protected:
+			public: //should be protected
 				key_compare comp;
 				value_compare(key_compare c) : comp(c) {}
 			public:

@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/05 11:42:32 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/05 13:28:30 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ namespace ft
 	}
 	
 	template <class T,  class Compare, class Allocator>
-	void RBTree<T, Compare, Allocator>::erase(const value_type &val)
+	typename RBTree<T, Compare, Allocator>::size_type RBTree<T, Compare, Allocator>::erase(const value_type &val)
 	{
 		node_ptr found_node = find(val);
 		node_ptr x;
@@ -44,7 +44,7 @@ namespace ft
 		if (found_node == nil_node) //will adapt this later
 		{
 			std::cout << "No node\n";
-			return ;
+			return (_size);
 		}
 
 		//BST delete
@@ -58,9 +58,9 @@ namespace ft
 			//free found_note or simply root
 			#include <stdlib.h>
 			root = nil_node;
-			return ;
+			return (_size);
 		}
-		
+
 		if (found_node->left == nil_node)
 		{
 			x = found_node->right;
@@ -100,6 +100,7 @@ namespace ft
 		// while (temp1->right != this->nil_node)
 		// 	temp1 = temp1->right;
 		// this->nil_node->parent = temp1;
+		return(_size);
 	}
 
 	template <class T,  class Compare, class Allocator>

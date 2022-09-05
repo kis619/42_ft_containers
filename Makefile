@@ -6,7 +6,7 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 13:21:52 by kmilchev          #+#    #+#              #
-#    Updated: 2022/09/01 09:58:24 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/09/05 13:17:02 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,5 +43,8 @@ test_vector_logical_operators:
 test_pair_construction:
 	$(CC) -g tests/utils.cpp tests/test_pair_construction.cpp && ./a.out
 
+test_tree_methods:
+	$(CC) -g tests/utils.cpp tests/test_tree_methods.cpp && ./a.out
+	
 test:
 	sh run_tests.sh
