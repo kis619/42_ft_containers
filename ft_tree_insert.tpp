@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/05 11:47:18 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:38:37 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ namespace ft
 	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::insert(const value_type &val)
 	{
 		//Binary Search Insertion
-		node_ptr new_node	= node_alloc.allocate(sizeof(struct Node));
+		node_ptr new_node	= node_alloc.allocate(1);
 		node_ptr parent		= NULL;
 		node_ptr current	= root;
 
