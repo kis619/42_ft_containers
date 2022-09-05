@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/05 14:00:15 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:42:35 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,26 @@
 #include "utils.hpp"
 #include <map>
 
+typedef ft::RBTree< ft::pair<int, int> , ft::map<int, int>::value_compare, ft::map<int, int>::allocator_type > tree_type;
+
 void fill_array(ft::vector<ft::pair<int, int> > &arr)
 {
 	for (size_t i = 1; i < 11; i++)
 		arr.push_back(ft::make_pair(i, i + 10));
 }
 
-void fill_tree(ft::RBTree< ft::pair<int, int> , ft::map<int, int>::value_compare, ft::map<int, int>::allocator_type > &tree, ft::vector<ft::pair<int, int> > &arr)
+void fill_tree(tree_type &tree, ft::vector<ft::pair<int, int> > &arr)
 {
 	for (size_t i = 0; i < 10; i++)
 			tree.insert(arr[i]);	
 }
 int main(void)
 {
-	////////////////////Typedefs
-	typedef ft::pair<int, int> pair;
-	typedef ft::map<int, int>::value_compare value_compare;
-	typedef ft::map<int, int>::allocator_type allocator_type;
-	typedef ft::RBTree< ft::pair<int, int> , ft::map<int, int>::value_compare, ft::map<int, int>::allocator_type > tree_type;
-
-	
 	////////////////////Building blocks for the tree
 	std::allocator<ft::pair<const int, int> > alloc;
+	// std::less<int> comp = std::less<int>();
 	std::less<int> comp = std::less<int>();
+	
 	ft::vector<ft::pair<int, int> > pair_arr;
 	fill_array(pair_arr);
 	//1 - 11, 2 - 12, 3 - 13, 4 - 14, 5 - 15, 6 - 16, 7 - 17, 8 - 18, 9 - 19, 10 -20
@@ -54,7 +51,7 @@ int main(void)
 	
 	////////////////////Tests
 	{
-		test_name("Testing the insert method");
+		test_name("Testing the method insert");
 		for (size_t i = 0; i < 10; i++)
 		{
 			assert(pair_arr[i].first == tree.insert(pair_arr.at(i))->value.first);
@@ -65,12 +62,12 @@ int main(void)
 	}
 	
 	{
-		test_name("Testing the find method");
+		test_name("Testing the method find");
 		assert(pair_arr.size() == tree.size());
 	}
 	
 	{
-		test_name("Testing the erase method | existing nodes");
+		test_name("Testing the method erase | existing nodes");
 		for (size_t i = 0; i < 10; i++)
 		{
 			assert((10 - i - 1) == tree.erase(pair_arr.at(i)));
@@ -89,12 +86,12 @@ int main(void)
 	}
 
 	{
-		test_name("Testing the erase method | non-existing nodes");
+		test_name("Testing the method erase | non-existing nodes");
 		assert(tree.size() == tree.erase(ft::make_pair(14, 14)));
 	}
 
 	{
-		test_name("Testing the erase_unique method | existing nodes");
+		test_name("Testing the method erase_unique | existing nodes");
 		fill_array(pair_arr);
 		fill_tree(tree, pair_arr);
 		for (size_t i = 0; i < 10; i++)
@@ -113,7 +110,13 @@ int main(void)
 	}
 
 	{
-		test_name("Testing the erase_unique method | non-existing nodes");
+		test_name("Testing the method erase_unique | non-existing nodes");
 		assert(tree.size() == tree.erase_unique(1));
 	}
+
+	{
+		test_name("Testing the method empty");
+		assert(true == tree.empty());
+	}
+	
 }

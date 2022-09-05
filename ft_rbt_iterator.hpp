@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/05 10:46:27 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/05 15:12:11 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,20 @@
 
 namespace ft
 {
-	template< class Node>
-	class RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, Node>
+	template< class node_type>
+	class RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_type>
 	{
 		public:
 			typedef ft::bidirectional_iterator_tag				iterator_category;
-			typedef Node											value_type;
-			typedef Node*											pointer;
+			typedef node_type									value_type;
+			typedef node_type*									pointer;
 			// typedef 
 	
 		pointer ptr; //should be private
 
 		RBTreeIterator(void) : ptr(NULL) {};		
-		pointer operator++()
-		{
-			
-		}
+		pointer operator++();
+
 	};
 
 };
