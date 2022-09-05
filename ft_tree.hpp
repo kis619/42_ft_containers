@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/05 13:50:49 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:36:32 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class RBTree
 		typedef Compare											value_comp;
 		typedef size_t											size_type;
 		typedef Node*											node_ptr;
-	
+
 		struct Node
 		{
 			bool		colour;
@@ -62,9 +62,14 @@ class RBTree
 		root = nil_node;
 	}
 
-	~RBTree(void)
+	// ~RBTree(void)
+	// {
+	// 	node_alloc.deallocate(nil_node, 1);
+	// }
+
+	void clear_node(node_ptr node)
 	{
-		// node_alloc.deallocate(nil_node, sizeof(struct Node));
+		node_alloc.deallocate(node, 1);
 	}
 	
 	void initialise_RED_node(node_ptr new_node, const value_type &val)
