@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/05 13:28:30 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/05 14:35:55 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ namespace ft
 		//if there is only one node
 		if (found_node == root && (found_node->left == nil_node && found_node->right == nil_node)) //could use size == 0 here maybe
 		{
-			//free found_note or simply root
-			#include <stdlib.h>
+			clear_node(found_node);
 			root = nil_node;
 			return (_size);
 		}
@@ -89,7 +88,7 @@ namespace ft
 			y->left->parent = y;
 			y->colour = found_node->colour;
 		}
-		//free found_node;
+		clear_node(found_node);
 		if (y_og_colour == BLACK)
 		{
 			fix_erase(x);
