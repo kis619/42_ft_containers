@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/05 14:42:35 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/07 01:04:33 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,15 @@ int main(void)
 	{
 		test_name("Testing the method empty");
 		assert(true == tree.empty());
+	}
+
+	{
+		fill_array(pair_arr);
+		fill_tree(tree, pair_arr);
+		test_name("Testing the method min");
+		assert(1 == tree.min(tree.getRoot())->value.first);
+		test_name("Testing the method max");
+		assert(10 == tree.max(tree.getRoot())->value.first);
 	}
 	
 }

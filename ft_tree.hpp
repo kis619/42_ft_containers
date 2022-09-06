@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/05 14:50:08 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/07 01:37:11 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ class RBTree
 		typedef Compare											value_comp;
 		typedef size_t											size_type;
 		typedef Node*											node_ptr;
+		typedef RBTreeIterator<Node>							iterator;
 
 		struct Node
 		{
@@ -93,7 +94,6 @@ class RBTree
 	size_type	erase(const value_type &val);
 	void		fix_erase(node_ptr x);
 	void		rb_transplant(node_ptr u, node_ptr v); 	//util for erase
-	node_ptr	min(node_ptr node); //util for erase
 
 	///MISCELLANEOUS
 	void			print_tree(void) const;
@@ -106,11 +106,20 @@ class RBTree
 	allocator_type	get_allocator(void) const;
 	value_comp		get_comp(void);
 	void			clearNode(node_ptr n);
+	node_ptr		min(node_ptr node);
+	node_ptr		max(node_ptr node);
+
 	
 	///ITERATORS
-	RBTreeIterator<Node> test(void)
+	iterator begin(void)
 	{
-		return (RBTreeIterator<Node>(root));
+		return iterator(min(root), max(root));
+	}
+
+	///GETTERS
+	node_ptr getRoot(void)
+	{
+		return(root);
 	}
 };
 }
