@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/09 14:45:30 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:02:35 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ namespace ft
 			typedef node_type									value_type;
 			typedef node_type*									pointer;
 			typedef node_type&									reference;
-			// typedef typename node_type::pointer_val				pointer_v;
+			typedef typename node_type::key_value_pair					pointer_v;
 		
 		
 		RBTreeIterator(void) : ptr(NULL), tail(NULL) {};
@@ -54,11 +54,19 @@ namespace ft
 		}
 		
 		reference operator*() {return (*ptr);};
-		pointer operator->() {return (&(operator*().value));};
+		pointer_v operator->() {return (ptr->value);};
+		// pointer operator->() {return &(operator*());};
 
 		private: 
 			pointer ptr;
 			pointer tail;
+
+		public:
+		pointer_v test()
+		{
+			std::cout << "test\n";
+			return (ptr->value);
+		}
 	};
 
 };

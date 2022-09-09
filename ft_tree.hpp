@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/09 14:45:25 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:55:40 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class RBTree
 		typedef Node											node;
 		typedef Node*											node_ptr;
 		typedef RBTreeIterator<Node>							iterator;
+		
 		struct Node
 		{
 			bool		colour;
@@ -40,8 +41,10 @@ class RBTree
 			Node		*parent;
 			Node		*left;
 			Node		*right;
+			typedef value_type	key_value_pair;
 		};
-
+		
+		
 	private:
 		node_ptr				root;
 		node_ptr				nil_node;
