@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/07 01:38:08 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:23:35 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int main(void)
 	// std::cout << it.ptr << std::endl;
 
 	tree_type::iterator beginning;
-	beginning = tree.begin();
+	// beginning = tree.begin();
 	std::cout << tree.begin().operator*().value.first <<std::endl;
 	
 	

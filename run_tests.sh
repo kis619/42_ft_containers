@@ -6,7 +6,7 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/21 23:30:29 by kmilchev          #+#    #+#              #
-#    Updated: 2022/09/07 01:08:19 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/09/09 14:24:49 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,8 @@ c++ ./tests/utils.cpp ./tests/test_vector_logical_operators.cpp && leaks -atExit
 echo "${PURPLE}\ntest_pair_construction.cpp${NC}"
 c++ ./tests/utils.cpp ./tests/test_pair_construction.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
 
-echo "${PURPLE}\test_tree_methods.cpp${NC}"
-c++ ./tests/utils.cpp ./tests/test_tree_insert.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
+echo "${PURPLE}\ntest_tree_methods.cpp${NC}"
+c++ ./tests/utils.cpp ./tests/test_tree_methods.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
 
-echo "${PURPLE}\test_tree_iterator.cpp${NC}"
+echo "${PURPLE}\ntest_tree_iterator.cpp${NC}"
 c++ ./tests/utils.cpp ./tests/test_tree_iterator.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
