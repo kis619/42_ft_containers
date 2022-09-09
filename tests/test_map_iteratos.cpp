@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/09 14:23:39 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:38:19 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int main(void)
 	ft::map<int, int>::iterator it;
 	ft::map<int, int>::iterator it2;
 
-	// it = mappy.begin();
-	// std::cout << it->value->first << std::endl;
+	it = mappy.begin();
+	std::cout << it->value.first << std::endl;
 	// std::cout << it.operator++() << std::endl;
 	
 	// std::map<int, int> mapty;
