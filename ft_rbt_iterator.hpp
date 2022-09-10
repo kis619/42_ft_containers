@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/10 20:51:15 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/10 22:03:15 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,24 @@ namespace ft
 			typedef typename node_type::key_value_pair			pointer_v;
 		
 		
-		RBTreeIterator(void) : ptr(NULL), tail(NULL) {};
-		RBTreeIterator(pointer node_ptr, pointer last_element) : ptr(node_ptr), tail(last_element){};
-		RBTreeIterator(const RBTreeIterator &copy) : ptr(copy.ptr), tail(copy.tail) {};
+		RBTreeIterator(void) : ptr(NULL), nil_ptr(NULL) {};
+		RBTreeIterator(pointer node_ptr, pointer last_element) : ptr(node_ptr), nil_ptr(last_element){};
+		RBTreeIterator(const RBTreeIterator &copy) : ptr(copy.ptr), nil_ptr(copy.nil_ptr) {};
 		RBTreeIterator &operator=(const RBTreeIterator &other)
 		{
 		 	ptr = other.ptr;
-			tail = other.tail;
+			nil_ptr = other.nil_ptr;
 			return (*this);
 		}
 		RBTreeIterator &operator++()
 		{
-			std::cout << "++\n";
+			// std::cout << "++\n";
 			pointer temp = ptr;
-			if ((ptr->parent == NULL) || (ptr->right != tail))
+			if ((ptr->parent == NULL) || (ptr->right != nil_ptr))
 			{
-				std::cout << "SHOULD BE HERE\n";
+				// std::cout << "SHOULD BE HERE\n";
 				temp = ptr->right;
-				while(temp->left != tail && temp->left->value->first > ptr->value->first)
+				while(temp->left != nil_ptr && temp->left->value->first > ptr->value->first)
 					temp = temp->left;
 				ptr = temp;
 				return(*this);
@@ -55,27 +55,43 @@ namespace ft
 			ptr = ptr->parent;
 			return(*this);
 		}; //pre-increment
-		RBTreeIterator &operator--(); //pre-decrement
 		
-		// RBTreeIterator operator++(int) //post-increment
-		// {
-		// 	RBTreeIterator temp(*this);
-		// 	(*this)++;
-		// 	return (temp);
-		// }
-		// RBTreeIterator operator--(int) //post-decrement
-		// {
-		// 	RBTreeIterator temp(*this);
-		// 	(*this)--;
-		// 	return(temp);
-		// }
+		RBTreeIterator &operator--()
+		{
+			pointer temp = ptr;
+			if (ptr->right != nil_ptr && ptr->left != nil_ptr)
+			{
+				temp = ptr->left;
+				while(temp->right != nil_ptr && temp->right->value->first < ptr->value->first)
+					temp = temp->right;
+				ptr = temp;
+				return(*this);
+			}
+			while(ptr->parent->value->first > ptr->value->first)
+				ptr = ptr->parent;
+			ptr = ptr->parent;
+			return(*this);
+		}; //pre-decrement
+		
+		RBTreeIterator operator++(int) //post-increment
+		{
+			RBTreeIterator temp(*this);
+			++(*this);
+			return (temp);
+		}
+		RBTreeIterator operator--(int) //post-decrement
+		{
+			RBTreeIterator temp(*this);
+			--(*this);
+			return(temp);
+		}
 		
 		reference operator*() {return (*ptr);};
 		pointer_v operator->() {return (ptr->value);};
 
 		private: 
 			pointer ptr;
-			pointer tail;
+			pointer nil_ptr;
 
 	};
 

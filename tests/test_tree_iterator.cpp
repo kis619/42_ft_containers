@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/10 20:37:23 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/10 22:02:15 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,44 +55,45 @@ int main(void)
 	{
 		test_name("Testing operator++() pre-increment");
 		it = tree.begin();
-		std::cout << it->first << " ";
-		std::cout << it->second << std::endl;
-		++it;
-		std::cout << it->first << " ";
-		std::cout << it->second << std::endl;
-		++it;
-		std::cout << it->first << " ";
-		std::cout << it->second << std::endl;
-		++it;
-		std::cout << it->first << " ";
-		std::cout << it->second << std::endl;
-		++it;
-		std::cout << it->first << " ";
-		std::cout << it->second << std::endl;
-		++it;
-		std::cout << it->first << " ";
-		std::cout << it->second << std::endl;
-		++it;
-		std::cout << it->first << " ";
-		std::cout << it->second << std::endl;
-		++it;
-		std::cout << it->first << " ";
-		std::cout << it->second << std::endl;
-		++it;
-		std::cout << it->first << " ";
-		std::cout << it->second << std::endl;
-		++it;
-		std::cout << it->first << " ";
-		std::cout << it->second << std::endl;
-		++it;
-		std::cout << it->first << " ";
-		std::cout << it->second << std::endl;
-		++it;
-		std::cout << it->first << " ";
-		std::cout << it->second << std::endl;
-		++it;
-		std::cout << it->first << " ";
-		std::cout << it->second << std::endl;
+		for(size_t i = 1; i <= 12; i++)
+		{
+			assert(i == it->first);
+			++it;
+		}
+	}
+
+	{
+		test_name("Testing operator++(int) post-increment");
+		it = tree.begin();
+		for(size_t i = 1; i <= 12; i++)
+		{
+			assert(i == it->first);
+			it++;
+		}
+	}
+
+	{
+		test_name("Testing operator--() pre-decrement");
+		it = tree.begin();
+		for(size_t i = 1; i <= 11; i++)
+			it++;
+		for(size_t i = 1; i <= 11; i++)
+		{
+			assert(13 - i == it->first);
+			--it;
+		}
+	}
+
+	{
+		test_name("Testing operator--(int) post-decrement");
+		it = tree.begin();
+		for(size_t i = 1; i <= 11; i++)
+			it++;
+		for(size_t i = 1; i <= 11; i++)
+		{
+			assert(13 - i == it->first);
+			it--;
+		}
 	}
 	// {
 	// 	test_name("Testing .end()");
@@ -103,14 +104,15 @@ int main(void)
 	// std::map<int, int>::iterator it_m;
 
 	// mapty.insert(std::make_pair(1, 10));
-	// // std::cout << mapty.insert(std::make_pair(1, 1097813661364691)).first->second;
-	// // // mapty.insert(std::make_pair(2, 20));
-	// // // mapty.insert(std::make_pair(3, 30));
-	// // // mapty.insert(std::make_pair(4, 40));
-	// // std::cout << mapty.at(1) << std::endl;
-	// // std::cout << mapty.begin()->second << std::endl;
+	// // // std::cout << mapty.insert(std::make_pair(1, 1097813661364691)).first->second;
+	// mapty.insert(std::make_pair(2, 20));
+	// mapty.insert(std::make_pair(3, 30));
+	// mapty.insert(std::make_pair(4, 40));
+	// // // std::cout << mapty.at(1) << std::endl;
+	// // // std::cout << mapty.begin()->second << std::endl;
 
 	// it_m = mapty.begin();
+
 	// it_m++;
 	// // it_m++;
 	// std::cout << it_m->first << std::endl;
