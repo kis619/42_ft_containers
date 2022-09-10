@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/09 20:08:13 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/10 20:51:15 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 namespace ft
 {
-	template< class node_type>
+	template< class node_type> //if i add the tree, I can add the compare maybe
 	class RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_type>
 	{
 		public:
@@ -34,39 +34,49 @@ namespace ft
 		RBTreeIterator &operator=(const RBTreeIterator &other)
 		{
 		 	ptr = other.ptr;
-			tail = other.ptr;
+			tail = other.tail;
 			return (*this);
 		}
-		RBTreeIterator &operator++(); //pre-increment
+		RBTreeIterator &operator++()
+		{
+			std::cout << "++\n";
+			pointer temp = ptr;
+			if ((ptr->parent == NULL) || (ptr->right != tail))
+			{
+				std::cout << "SHOULD BE HERE\n";
+				temp = ptr->right;
+				while(temp->left != tail && temp->left->value->first > ptr->value->first)
+					temp = temp->left;
+				ptr = temp;
+				return(*this);
+			}
+			while(ptr->parent->value->first < ptr->value->first)
+				ptr = ptr->parent;
+			ptr = ptr->parent;
+			return(*this);
+		}; //pre-increment
 		RBTreeIterator &operator--(); //pre-decrement
 		
-		RBTreeIterator operator++(int) //post-increment
-		{
-			RBTreeIterator temp(*this);
-			(*this)++;
-			return (temp);
-		}
-		RBTreeIterator operator--(int) //post-decrement
-		{
-			RBTreeIterator temp(*this);
-			(*this)--;
-			return(temp);
-		}
+		// RBTreeIterator operator++(int) //post-increment
+		// {
+		// 	RBTreeIterator temp(*this);
+		// 	(*this)++;
+		// 	return (temp);
+		// }
+		// RBTreeIterator operator--(int) //post-decrement
+		// {
+		// 	RBTreeIterator temp(*this);
+		// 	(*this)--;
+		// 	return(temp);
+		// }
 		
 		reference operator*() {return (*ptr);};
 		pointer_v operator->() {return (ptr->value);};
-		// pointer operator->() {return &(operator*());};
 
 		private: 
 			pointer ptr;
 			pointer tail;
 
-		public:
-		pointer_v test()
-		{
-			std::cout << "test\n";
-			return (ptr->value);
-		}
 	};
 
 };

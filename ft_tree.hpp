@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/10 13:22:42 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:56:26 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,12 +117,12 @@ class RBTree
 	///ITERATORS
 	iterator begin(void)
 	{
-		return iterator(min(root), max(root));
+		return iterator(min(root), nil_node);
 	}
 	
 	iterator end(void)
 	{
-		return iterator(max(root), max(root));
+		return iterator(max(root), nil_node);
 	}
 
 	iterator insert(const value_type &val)

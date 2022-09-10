@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_map_iteratos.cpp                              :+:      :+:    :+:   */
+/*   test_map_iterators.cpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/10 14:25:52 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/10 20:31:58 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,15 @@ int main(void)
 		test_name("Testing the method .at()");
 		assert(11 == mappy.at(1));
 	}
+	it = mappy.begin();
+	std::cout << it->second << std::endl;
+	++it;
+	++it;
+	++it;
+	++it;
+	++it;
+	++it;
+	std::cout << it->second << std::endl;
 
 	// test_name("Testing the method .insert(): inserting at existing key");
 	// {
@@ -65,18 +74,18 @@ int main(void)
 	// std::cout << it->first << std::endl;
 	
 	// std::map<int, int> mapty;
-	// // std::map<int, int>::iterator it_m;
+	// std::map<int, int>::iterator it_m;
 
 	// mapty.insert(std::make_pair(1, 10));
-	// std::cout << mapty.insert(std::make_pair(1, 1097813661364691)).first->second;
-	// // mapty.insert(std::make_pair(2, 20));
-	// // mapty.insert(std::make_pair(3, 30));
-	// // mapty.insert(std::make_pair(4, 40));
-	// std::cout << mapty.at(1) << std::endl;
-	// std::cout << mapty.begin()->second << std::endl;
+	// // std::cout << mapty.insert(std::make_pair(1, 1097813661364691)).first->second;
+	// // // mapty.insert(std::make_pair(2, 20));
+	// // // mapty.insert(std::make_pair(3, 30));
+	// // // mapty.insert(std::make_pair(4, 40));
+	// // std::cout << mapty.at(1) << std::endl;
+	// // std::cout << mapty.begin()->second << std::endl;
 
 	// it_m = mapty.begin();
-	// it_m->
+	// it_m++;
 	// std::cout << it_m->first << std::endl;
 	return (0);
 }

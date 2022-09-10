@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/09 14:23:35 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/10 20:37:23 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,39 +20,101 @@
 #include "colours.h"
 #include "utils.hpp"
 #include <map>
+#include <vector>
+#include "string"
 
-typedef ft::RBTree< ft::pair<int, int> , ft::map<int, int>::value_compare, ft::map<int, int>::allocator_type > tree_type;
+typedef ft::RBTree< ft::pair<int, std::string> , ft::map<int, std::string>::value_compare, ft::map<int, std::string>::allocator_type > tree_type;
 
 int main(void)
 {
-	std::allocator<ft::pair<const int, int> > alloc;
+	///////////////////Setting up///////////////////
+	std::allocator<ft::pair<const int, std::string> > alloc;
 	std::less<int> comp = std::less<int>();
 	tree_type tree(comp, alloc);
-	tree_type::iterator *it;
-	tree_type::iterator *it2;
-	tree_type::iterator *it3(it2);
+	ft::map<int, std::string> mappy;
+	std::string months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+	for(size_t i = 1; i <= 12; i++)
+		tree.insert(ft::make_pair(i, months[i - 1]));
+	///////////////////////////////////////////////
 
+	test_name("Testing the default constructor");
+	tree_type::iterator it;
+	tree_type::iterator it3;
+	test_name("Testing the copy constructor");
+	tree_type::iterator it2(it);
+	test_name("Testing the assignment operator");
+	it3 = it;
+	test_name("Testing the two-node constructor");
+	tree_type::iterator it4(tree.insert_test(ft::make_pair(13, "Confusion")), 	tree.insert_test(ft::make_pair(2, "Feb")));
+	
 	{
-		test_name("Testing the copy constructor");
-		assert(it2 == it3);
+		test_name("Testing .begin()");
+		assert("January" == tree.begin()->second);
 	}
+	
+	{
+		test_name("Testing operator++() pre-increment");
+		it = tree.begin();
+		std::cout << it->first << " ";
+		std::cout << it->second << std::endl;
+		++it;
+		std::cout << it->first << " ";
+		std::cout << it->second << std::endl;
+		++it;
+		std::cout << it->first << " ";
+		std::cout << it->second << std::endl;
+		++it;
+		std::cout << it->first << " ";
+		std::cout << it->second << std::endl;
+		++it;
+		std::cout << it->first << " ";
+		std::cout << it->second << std::endl;
+		++it;
+		std::cout << it->first << " ";
+		std::cout << it->second << std::endl;
+		++it;
+		std::cout << it->first << " ";
+		std::cout << it->second << std::endl;
+		++it;
+		std::cout << it->first << " ";
+		std::cout << it->second << std::endl;
+		++it;
+		std::cout << it->first << " ";
+		std::cout << it->second << std::endl;
+		++it;
+		std::cout << it->first << " ";
+		std::cout << it->second << std::endl;
+		++it;
+		std::cout << it->first << " ";
+		std::cout << it->second << std::endl;
+		++it;
+		std::cout << it->first << " ";
+		std::cout << it->second << std::endl;
+		++it;
+		std::cout << it->first << " ";
+		std::cout << it->second << std::endl;
+	}
+	// {
+	// 	test_name("Testing .end()");
+	// 	assert("December" == tree.end()->second);
+	// }
 
-	test_name("Testing operator*");
-	assert((it3->operator*()).value.first == (it2->operator*()).value.first);
+	// std::map<int, int> mapty;
+	// std::map<int, int>::iterator it_m;
 
-	
-	test_name("Testing operator->");
-	assert(it3->operator->() == it2->operator->());
-	// (it) = (it2);
-	// std::cout << (*it) << std::endl;
-	// std::cout << (it)->ptr << std::endl;
-	// std::cout << it.ptr << std::endl;
+	// mapty.insert(std::make_pair(1, 10));
+	// // std::cout << mapty.insert(std::make_pair(1, 1097813661364691)).first->second;
+	// // // mapty.insert(std::make_pair(2, 20));
+	// // // mapty.insert(std::make_pair(3, 30));
+	// // // mapty.insert(std::make_pair(4, 40));
+	// // std::cout << mapty.at(1) << std::endl;
+	// // std::cout << mapty.begin()->second << std::endl;
 
-	tree_type::iterator beginning;
-	// beginning = tree.begin();
-	std::cout << tree.begin().operator*().value.first <<std::endl;
+	// it_m = mapty.begin();
+	// it_m++;
+	// // it_m++;
+	// std::cout << it_m->first << std::endl;
 	
-	
-	
+
 	return (0);
 }

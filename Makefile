@@ -6,7 +6,7 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 13:21:52 by kmilchev          #+#    #+#              #
-#    Updated: 2022/09/07 01:07:46 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/09/10 17:31:57 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,9 @@ test_tree_methods:
 
 test_tree_iterator:
 	$(CC) -g tests/utils.cpp tests/test_tree_iterator.cpp && ./a.out
+
+test_map_iterators:
+	$(CC) -g tests/utils.cpp tests/test_map_iterators.cpp && ./a.out
 	
 test:
 	sh run_tests.sh
