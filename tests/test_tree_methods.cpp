@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/07 01:04:33 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/09 22:01:06 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void fill_array(ft::vector<ft::pair<int, int> > &arr)
 void fill_tree(tree_type &tree, ft::vector<ft::pair<int, int> > &arr)
 {
 	for (size_t i = 0; i < 10; i++)
-			tree.insert(arr[i]);	
+			tree.insert_test(arr[i]);	
 }
 int main(void)
 {
@@ -54,15 +54,14 @@ int main(void)
 		test_name("Testing the method insert");
 		for (size_t i = 0; i < 10; i++)
 		{
-			assert(pair_arr[i].first == tree.insert(pair_arr.at(i))->value.first);
-			assert(pair_arr[i].second == tree.insert(pair_arr.at(i))->value.second);
+			assert(pair_arr[i].first == tree.insert(pair_arr.at(i))->first);
 		}
 		std::cout << COLOUR_GREEN;
 		tree.print_tree();
 	}
 	
 	{
-		test_name("Testing the method find");
+		test_name("Testing the method size");
 		assert(pair_arr.size() == tree.size());
 	}
 	
@@ -123,9 +122,9 @@ int main(void)
 		fill_array(pair_arr);
 		fill_tree(tree, pair_arr);
 		test_name("Testing the method min");
-		assert(1 == tree.min(tree.getRoot())->value.first);
+		assert(1 == tree.min(tree.getRoot())->value->first);
 		test_name("Testing the method max");
-		assert(10 == tree.max(tree.getRoot())->value.first);
+		assert(10 == tree.max(tree.getRoot())->value->first);
 	}
 	
 }

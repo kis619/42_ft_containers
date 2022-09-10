@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/05 14:38:37 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/09 21:07:10 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,26 @@
 namespace ft
 {
 	template <class T,  class Compare, class Allocator>
-	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::insert(const value_type &val)
+	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::insert_test(const value_type &val)
 	{
 		//Binary Search Insertion
 		node_ptr new_node	= node_alloc.allocate(1);
 		node_ptr parent		= NULL;
 		node_ptr current	= root;
 
-		initialise_RED_node(new_node, val);
+		// initialise_RED_node(new_node, val);
+		new_node->parent	= NULL;
+		new_node->left		= nil_node;
+		new_node->right		= nil_node;
+		new_node->colour	= RED;
+		new_node->value		= alloc.allocate(1);
+		alloc.construct(new_node->value, val);
 		while(current != nil_node)
 		{
 			parent = current;
-			if (comp(new_node->value, current->value))
+			if (comp(*new_node->value, *current->value))
 				current = current->left;
-			else if (comp(current->value, new_node->value))
+			else if (comp(*current->value, *new_node->value))
 				current = current->right;
 			else
 				return (current);
@@ -38,7 +44,7 @@ namespace ft
 		new_node->parent = parent;
 		if (parent == NULL)
 			root = new_node;
-		else if (comp(new_node->value, parent->value))
+		else if (comp(*new_node->value, *parent->value))
 			parent->left = new_node;
 		else
 			parent->right = new_node;

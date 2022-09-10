@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/07 00:54:41 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/09 17:54:08 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ namespace ft
 
 		while(node != nil_node)
 		{
-			if (node->value.first == key)
+			if (node->value->first == key)
 				break ;
-			if (key < node->value.first)
+			if (key < node->value->first)
 				node = node->left;
-			else if (key > node->value.first)
+			else if (key > node->value->first)
 				node = node->right;
 		}
 		
-		erase(node->value);
+		erase(*node->value);
 		return(_size);
 	}
 	

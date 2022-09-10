@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/09 14:30:05 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/09 20:20:11 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ namespace ft
 		{};
 
 		private:
-			typedef ft::RBTree< value_type, value_compare, allocator_type>		tree_type;
+			typedef ft::RBTree< const value_type, value_compare, allocator_type>		tree_type;
 
 		public:
 			typedef RBTreeIterator<typename tree_type::node>					iterator;
@@ -88,8 +88,41 @@ namespace ft
 		///Iterators
 		iterator begin()
 		{
-			return(tree.begin());
+			if (tree.size())
+				return(tree.begin());
+			else
+				return(tree.end());
+		}
+
+		iterator end()
+		{
+			return(tree.end());
+		}
+
+		// std::pair<iterator, bool> insert( const value_type& value )
+		// {
+		// 	// typename tree_type::node_ptr n = tree.find(value);
+		// // 	// if (n != tree.getNil())
+		// // 	// 	return(ft::make_pair(tree.insert(value), true));
+				
+		// 	return(ft::make_pair(tree.insert(value)), false);
+		// }
+
+		iterator insert(const value_type &val)
+		{
+			return(tree.insert(val));
 		}
 	};
 };
 #endif //MAP_HPP
+
+
+
+// 'ft::RBTree<ft::pair<const int, int>, ft::map<int, int, std::__1::less<int>, std::__1::allocator<ft::pair<const int, int> > >::value_compare, std::__1::allocator<ft::pair<const int, int> > >::node_ptr'
+// 'ft::map<int, int, std::__1::less<int>, std::__1::allocator<ft::pair<const int, int> > >::iterator' 
+
+
+// ft::RBTree<ft::pair<const int, int>, ft::map<int, int, std::__1::less<int>, std::__1::allocator<ft::pair<const int, int> > >::value_compare, std::__1::allocator<ft::pair<const int, int> > >::Node
+
+// RBTreeIterator<ft::RBTree<ft::pair<const int, int>, ft::map<int, int,
+// std::__1::less<int>, std::__1::allocator<ft::pair<const int, int> > >::value_compare, std::__1::allocator<ft::pair<const int, int> > >::Node>

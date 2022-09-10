@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/09 14:55:40 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/09 20:19:13 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,16 @@ class RBTree
 		typedef Node											node;
 		typedef Node*											node_ptr;
 		typedef RBTreeIterator<Node>							iterator;
+		typedef typename allocator_type::pointer				pointer;
 		
 		struct Node
 		{
 			bool		colour;
-			value_type	value;
+			pointer		value;
 			Node		*parent;
 			Node		*left;
 			Node		*right;
-			typedef value_type	key_value_pair;
+			typedef pointer	key_value_pair;
 		};
 		
 		
@@ -61,7 +62,6 @@ class RBTree
 		nil_node->parent = NULL;
 		nil_node->left = nil_node;
 		nil_node->right = nil_node;
-		// nil_node->value = NULL;
 		root = nil_node;
 	}
 
@@ -81,12 +81,13 @@ class RBTree
 		new_node->left		= nil_node;
 		new_node->right		= nil_node;
 		new_node->colour	= RED;
-		new_node->value		= val;
+		new_node->value		= alloc.allocate(1);
+		alloc.construct(new_node->value, val);
 	}
 
 
 	///INSERT
-	node_ptr	insert(const value_type &val);
+	node_ptr	insert_test(const value_type &val);
 	void 		fix_insert(node_ptr child);
 	void 		rotate_left(node_ptr x); //util for insert and erase
 	void 		rotate_right(node_ptr x); //util for insert and erase
@@ -118,11 +119,26 @@ class RBTree
 	{
 		return iterator(min(root), max(root));
 	}
+	
+	iterator end(void)
+	{
+		return iterator(max(root), max(root));
+	}
+
+	iterator insert(const value_type &val)
+	{
+		return iterator(insert_test(val), nil_node);
+	}
 
 	///GETTERS
 	node_ptr getRoot(void)
 	{
 		return(root);
+	}
+
+	node_ptr getNil(void)
+	{
+		return(nil_node);
 	}
 };
 }

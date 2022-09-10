@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/07 01:00:02 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/09 18:15:37 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ namespace ft
 			std::cout << (isLeft ? "├──" : "└──" );
 
 			// print the value of the node
-			std::cout << n->value.first << std::endl;
+			std::cout << n->value->first << std::endl;
 
 			// enter the next tree level - left and right branch
 			_printHelper(prefix + (isLeft ? "│   " : "    "), n->left, true);
@@ -45,11 +45,11 @@ namespace ft
 
 		while(node != nil_node)
 		{
-			if (!comp(val, node->value) && !comp(node->value, val))
+			if (!comp(val, *node->value) && !comp(*node->value, val))
 				return (node);
-			if (comp(val, node->value))
+			if (comp(val, *node->value))
 				node = node->left;
-			else if (comp(node->value, val))
+			else if (comp(*node->value, val))
 				node = node->right;
 		}
 		return (node);
@@ -63,11 +63,11 @@ namespace ft
 
 		while(node != nil_node)
 		{
-			if (node->value.first == key)
+			if (node->value->first == key)
 				return (node->value);
-			if (key < node->value.first)
+			if (key < node->value->first)
 				node = node->left;
-			else if (key > node->value.first)
+			else if (key > node->value->first)
 				node = node->right;
 		}
 		return (value_type());
