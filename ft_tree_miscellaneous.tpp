@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/09 18:15:37 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/10 13:21:16 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,20 @@ namespace ft
 	
 	template <class T,  class Compare, class Allocator>
 	template<class Key>
-	typename RBTree<T, Compare, Allocator>::value_type RBTree<T, Compare, Allocator>::find_by_only_key(const Key &key)
+	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::find_by_only_key(const Key &key)
 	{
 		node_ptr node = root;
 
 		while(node != nil_node)
 		{
 			if (node->value->first == key)
-				return (node->value);
+				return (node);
 			if (key < node->value->first)
 				node = node->left;
 			else if (key > node->value->first)
 				node = node->right;
 		}
-		return (value_type());
+		return (node);
 	}
 	
 	template <class T,  class Compare, class Allocator>
