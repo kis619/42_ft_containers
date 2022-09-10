@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/10 19:56:26 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/10 23:24:40 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class RBTree
 		typedef Node											node;
 		typedef Node*											node_ptr;
 		typedef RBTreeIterator<Node>							iterator;
+		typedef const_RBTreeIterator<Node>						const_iterator;
 		typedef typename allocator_type::pointer				pointer;
 		
 		struct Node

@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/10 19:53:41 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/10 23:23:58 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ namespace ft
 			typedef typename allocator_type::const_pointer			const_pointer;
 			typedef typename allocator_type::size_type				size_type;
 			typedef typename allocator_type::difference_type		difference_type;
-			// typedef RBTreeIterator<value_type>						iterator;
 		
 		class value_compare : public std::binary_function<value_type, value_type, bool>
 		{
@@ -63,6 +62,7 @@ namespace ft
 
 		public:
 			typedef RBTreeIterator<typename tree_type::node>					iterator;
+			typedef const_RBTreeIterator<typename tree_type::node>				const_iterator;
 		public: //should be private
 			tree_type	tree;
 

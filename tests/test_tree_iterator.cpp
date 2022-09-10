@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/10 22:02:15 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/10 23:39:48 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,15 @@ int main(void)
 	test_name("Testing the assignment operator");
 	it3 = it;
 	test_name("Testing the two-node constructor");
-	tree_type::iterator it4(tree.insert_test(ft::make_pair(13, "Confusion")), 	tree.insert_test(ft::make_pair(2, "Feb")));
+	tree_type::iterator it4(tree.insert_test(ft::make_pair(13, "Confusion")),	tree.insert_test(ft::make_pair(2, "Feb")));
 	
 	{
 		test_name("Testing .begin()");
 		assert("January" == tree.begin()->second);
 	}
+	test_name("Testing the assignment operator with const");
+	tree_type::const_iterator const_it;
+	const_it = it;
 	
 	{
 		test_name("Testing operator++() pre-increment");
@@ -95,24 +98,36 @@ int main(void)
 			it--;
 		}
 	}
-	// {
-	// 	test_name("Testing .end()");
-	// 	assert("December" == tree.end()->second);
-	// }
 
-	// std::map<int, int> mapty;
-	// std::map<int, int>::iterator it_m;
+	{
+		test_name("Testing operator==");
+		it = tree.begin();
+		it2 = tree.begin();
+		assert(it == it2);
+		
+		test_name("Testing operator!=");
+		it2++;
+		assert(it != it2);
+	}
+
+
+	
+	std::map<int, int> mapty;
+	std::map<int, int>::iterator it_m;
+	std::map<int, int>::const_iterator it_m2;
+
+
+	// it_m = it_m2;
+	it_m2 = it_m;
 
 	// mapty.insert(std::make_pair(1, 10));
-	// // // std::cout << mapty.insert(std::make_pair(1, 1097813661364691)).first->second;
 	// mapty.insert(std::make_pair(2, 20));
 	// mapty.insert(std::make_pair(3, 30));
 	// mapty.insert(std::make_pair(4, 40));
-	// // // std::cout << mapty.at(1) << std::endl;
-	// // // std::cout << mapty.begin()->second << std::endl;
 
 	// it_m = mapty.begin();
-
+	// if (it_m >= it_m2)
+	// 	std::cout << "whatevs\n";
 	// it_m++;
 	// // it_m++;
 	// std::cout << it_m->first << std::endl;
