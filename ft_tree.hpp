@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/09 20:19:13 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/10 13:22:42 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ class RBTree
 	void			_printHelper(const std::string& prefix, const node_ptr n, bool isLeft) const;
 	node_ptr		find(const value_type &val);
 	template<class Key>
-	value_type		find_by_only_key(const Key &key);
+	node_ptr		find_by_only_key(const Key &key);
 	size_type		size(void);
 	bool			empty(void);
 	allocator_type	get_allocator(void) const;
