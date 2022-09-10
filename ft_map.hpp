@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/09 20:20:11 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/10 14:19:57 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ namespace ft
 		///Element access
 		mapped_type at(const Key &key)
 		{
-			mapped_type val = tree.find_by_only_key(key).first;
-			if (val)
-				return (val);
+			typename tree_type::node_ptr n = tree.find_by_only_key(key);
+			if (n != tree.getNil())
+				return(n->value->second);
 			throw std::out_of_range("key not found");
 		}
 
@@ -99,19 +99,18 @@ namespace ft
 			return(tree.end());
 		}
 
-		// std::pair<iterator, bool> insert( const value_type& value )
-		// {
-		// 	// typename tree_type::node_ptr n = tree.find(value);
-		// // 	// if (n != tree.getNil())
-		// // 	// 	return(ft::make_pair(tree.insert(value), true));
-				
-		// 	return(ft::make_pair(tree.insert(value)), false);
-		// }
-
-		iterator insert(const value_type &val)
+		ft::pair<iterator, bool> insert( const value_type& value )
 		{
-			return(tree.insert(val));
+			typename tree_type::node_ptr n = tree.find(value);
+			if (n == tree.getNil())
+				return(ft::make_pair(tree.insert(value), true));
+			return(ft::make_pair(tree.insert(value), false));
 		}
+
+		// iterator insert(const value_type &val)
+		// {
+		// 	return(tree.insert(val));
+		// }
 	};
 };
 #endif //MAP_HPP
