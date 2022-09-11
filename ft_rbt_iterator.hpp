@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/10 23:37:44 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/11 20:06:03 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,9 @@ class RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_type>
 	///Operators - Increment|Decrement
 	RBTreeIterator &operator++()	//pre-increment
 	{
-		// std::cout << "++\n";
 		pointer temp = ptr;
 		if ((ptr->parent == NULL) || (ptr->right != nil_ptr))
 		{
-			// std::cout << "SHOULD BE HERE\n";
 			temp = ptr->right;
 			while(temp->left != nil_ptr && temp->left->value->first > ptr->value->first)
 				temp = temp->left;
@@ -70,7 +68,7 @@ class RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_type>
 			ptr = temp;
 			return(*this);
 		}
-		while(ptr->parent->value->first > ptr->value->first)
+		while(ptr != nil_ptr && ptr->parent->value->first > ptr->value->first)
 			ptr = ptr->parent;
 		ptr = ptr->parent;
 		return(*this);
@@ -126,7 +124,7 @@ class const_RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_t
 	///Operators - Increment|Decrement
 	const_RBTreeIterator &operator++()	//pre-increment
 	{
-		// std::cout << "++\n";
+		std::cout << "++\n";
 		pointer temp = ptr;
 		if ((ptr->parent == NULL) || (ptr->right != nil_ptr))
 		{
@@ -154,7 +152,7 @@ class const_RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_t
 			ptr = temp;
 			return(*this);
 		}
-		while(ptr->parent->value->first > ptr->value->first)
+		while(ptr != nil_ptr && ptr->parent->value->first > ptr->value->first)
 			ptr = ptr->parent;
 		ptr = ptr->parent;
 		return(*this);

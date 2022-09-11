@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/09 21:07:10 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/11 14:06:48 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ namespace ft
 			else
 				return (current);
 		}
-		_size++;
 		// Set the parent and insert the new node
 		new_node->parent = parent;
 		if (parent == NULL)
@@ -48,6 +47,15 @@ namespace ft
 			parent->left = new_node;
 		else
 			parent->right = new_node;
+		_size++;
+		
+		//for method .end()
+		node_ptr temp = root;
+		///make temp the biggest element
+		while(temp->right != nil_node)
+			temp = temp->right;
+		///attach a nil node to it
+		this->nil_node->parent = temp;
 		
 		// if new_node is the root node, recolour it to black and end
 		if (new_node->parent == NULL)

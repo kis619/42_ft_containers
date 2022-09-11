@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/10 23:24:40 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/11 20:02:31 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ class RBTree
 
 	void clear_node(node_ptr node)
 	{
+		alloc.deallocate(node->value, 1);
 		node_alloc.deallocate(node, 1);
 	}
 	
@@ -111,8 +112,8 @@ class RBTree
 	allocator_type	get_allocator(void) const;
 	value_comp		get_comp(void);
 	void			clearNode(node_ptr n);
-	node_ptr		min(node_ptr node);
-	node_ptr		max(node_ptr node);
+	node_ptr		min(node_ptr node)	const;
+	node_ptr		max(node_ptr node)	const;
 
 	
 	///ITERATORS
@@ -121,9 +122,15 @@ class RBTree
 		return iterator(min(root), nil_node);
 	}
 	
+	const_iterator begin(void) const
+	{
+		return const_iterator(min(root), nil_node);
+	}
+	
 	iterator end(void)
 	{
-		return iterator(max(root), nil_node);
+		iterator it =  iterator(nil_node, nil_node);
+		return (it);
 	}
 
 	iterator insert(const value_type &val)

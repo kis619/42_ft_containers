@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/10 13:21:16 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/11 12:10:20 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ namespace ft
 	}
 
 	template <class T,  class Compare, class Allocator>
-	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::min(node_ptr node)
+	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::min(node_ptr node) const
 	{
 		while(node->left != nil_node)
 			node = node->left;
@@ -112,7 +112,7 @@ namespace ft
 	}
 
 	template <class T,  class Compare, class Allocator>
-	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::max(node_ptr node)
+	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::max(node_ptr node) const
 	{
 		while(node->right != nil_node)
 			node = node->right;

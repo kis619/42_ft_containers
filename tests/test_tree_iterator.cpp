@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/10 23:39:48 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/11 19:59:35 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ int main(void)
 	tree_type::iterator it2(it);
 	test_name("Testing the assignment operator");
 	it3 = it;
+	test_name("Testing the assignment operator with const");
+	tree_type::const_iterator const_it;
+	const_it = tree.begin();
 	test_name("Testing the two-node constructor");
 	tree_type::iterator it4(tree.insert_test(ft::make_pair(13, "Confusion")),	tree.insert_test(ft::make_pair(2, "Feb")));
 	
@@ -51,17 +54,24 @@ int main(void)
 		test_name("Testing .begin()");
 		assert("January" == tree.begin()->second);
 	}
-	test_name("Testing the assignment operator with const");
-	tree_type::const_iterator const_it;
-	const_it = it;
+	
+	{
+		test_name("Testing .end()");
+		it = tree.end();
+		for(size_t i = 1; i <= 13; i++)
+		{
+			it--;
+			assert(14 - i == it->first);
+		}
+	}
 	
 	{
 		test_name("Testing operator++() pre-increment");
 		it = tree.begin();
 		for(size_t i = 1; i <= 12; i++)
 		{
-			assert(i == it->first);
 			++it;
+			assert(i + 1 == it->first);
 		}
 	}
 
@@ -112,25 +122,33 @@ int main(void)
 
 
 	
-	std::map<int, int> mapty;
-	std::map<int, int>::iterator it_m;
-	std::map<int, int>::const_iterator it_m2;
+	// std::map<int, float> mapty;
+	// std::map<int, float>::iterator it_m;
 
 
-	// it_m = it_m2;
-	it_m2 = it_m;
-
-	// mapty.insert(std::make_pair(1, 10));
-	// mapty.insert(std::make_pair(2, 20));
-	// mapty.insert(std::make_pair(3, 30));
-	// mapty.insert(std::make_pair(4, 40));
+	// mapty.insert(std::make_pair(1, 0.4));
+	// mapty.insert(std::make_pair(2, 0.5));
+	// mapty.insert(std::make_pair(3, 0.6));
+	// mapty.insert(std::make_pair(4, 0.7));
 
 	// it_m = mapty.begin();
-	// if (it_m >= it_m2)
-	// 	std::cout << "whatevs\n";
+	// // if (it_m >= it_m2)
+	// // 	std::cout << "whatevs\n";
+	// // it_m++;
+	// // // it_m++;
+	// // it_m--;
+	// // it_m++;
+	// // std::cout << it_m->first << std::endl;
+	// // it_m--;
+	// // std::cout << it_m->first << std::endl;
+	// // it_m--;
 	// it_m++;
+	// it_m++;
+	// it_m++;
+	// it_m--;
 	// // it_m++;
 	// std::cout << it_m->first << std::endl;
+	// std::cout << it_m->second << std::endl;
 	
 
 	return (0);
