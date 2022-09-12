@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/11 20:06:03 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/12 22:52:38 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ class RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_type>
 			ptr = temp;
 			return(*this);
 		}
-		while(ptr->parent->value->first < ptr->value->first)
+		while(ptr != nil_ptr && ptr->parent != NULL && ptr->parent->value->first < ptr->value->first)
 			ptr = ptr->parent;
 		ptr = ptr->parent;
 		return(*this);
@@ -68,7 +68,7 @@ class RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_type>
 			ptr = temp;
 			return(*this);
 		}
-		while(ptr != nil_ptr && ptr->parent->value->first > ptr->value->first)
+		while(ptr != nil_ptr && ptr->parent != NULL && ptr->parent->value->first > ptr->value->first)
 			ptr = ptr->parent;
 		ptr = ptr->parent;
 		return(*this);
@@ -135,7 +135,7 @@ class const_RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_t
 			ptr = temp;
 			return(*this);
 		}
-		while(ptr->parent->value->first < ptr->value->first)
+		while(ptr != nil_ptr && ptr->parent != NULL && ptr->parent->value->first < ptr->value->first)
 			ptr = ptr->parent;
 		ptr = ptr->parent;
 		return(*this);
@@ -152,7 +152,7 @@ class const_RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_t
 			ptr = temp;
 			return(*this);
 		}
-		while(ptr != nil_ptr && ptr->parent->value->first > ptr->value->first)
+		while(ptr != nil_ptr && ptr->parent != NULL && ptr->parent->value->first > ptr->value->first)
 			ptr = ptr->parent;
 		ptr = ptr->parent;
 		return(*this);
