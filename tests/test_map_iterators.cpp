@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/10 20:31:58 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/12 14:45:24 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int main(void)
 	ft::map<int, int>::iterator it;
 	ft::map<int, int>::iterator it2;
 
-	
 	{
 		test_name("Testing the method .insert(). Return is pair<iterator, bool>");
 		for (size_t i = 1; i <= 10; i++)
@@ -52,15 +51,21 @@ int main(void)
 		test_name("Testing the method .at()");
 		assert(11 == mappy.at(1));
 	}
-	it = mappy.begin();
-	std::cout << it->second << std::endl;
-	++it;
-	++it;
-	++it;
-	++it;
-	++it;
-	++it;
-	std::cout << it->second << std::endl;
+
+	{
+		test_name("testing the operator[]");
+		std::map<int, std::string> og_map;
+		ft::map<int, std::string> my_map;
+		std::string months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+		for(size_t i = 1; i <= 12; i++)
+		{
+			my_map.insert(ft::make_pair(i, months[i - 1]));
+			og_map.insert(std::make_pair(i, months[i - 1]));
+		}
+		for (size_t i = 1; i <=13; i++)
+			assert(og_map[i] == my_map[i]);
+		
+	}
 
 	// test_name("Testing the method .insert(): inserting at existing key");
 	// {

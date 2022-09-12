@@ -6,10 +6,12 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 18:40:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/26 14:28:01 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/11 20:49:43 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef REVERSE_ITERATOR_HPP
+# define REVERSE_ITERATOR_HPP
 #include "ft_random_access_iterator.hpp"
 
 namespace ft
@@ -86,3 +88,5 @@ namespace ft
 	reverse_iterator<Iterator> operator+(typename reverse_iterator<Iterator>::difference_type n, const reverse_iterator<Iterator>& x)
 		{return (reverse_iterator<Iterator>(x.base() - n));}
 }
+
+#endif

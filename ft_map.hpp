@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/10 23:23:58 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/12 14:42:09 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "ft_tree.hpp"
 #include <stdexcept>
 #include "tests/colours.h"
+#include "ft_reverse_iterator.hpp"
 #include "ft_rbt_iterator.hpp"
 
 namespace ft
@@ -63,6 +64,9 @@ namespace ft
 		public:
 			typedef RBTreeIterator<typename tree_type::node>					iterator;
 			typedef const_RBTreeIterator<typename tree_type::node>				const_iterator;
+			typedef ft::reverse_iterator<iterator>								reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator>						const_reverse_iterator;
+			
 		public: //should be private
 			tree_type	tree;
 
@@ -85,6 +89,14 @@ namespace ft
 			throw std::out_of_range("key not found");
 		}
 
+		mapped_type &operator[](const Key &key)
+		{
+			typename tree_type::node_ptr n = tree.find_by_only_key(key);
+			if (n == tree.getNil())
+				return insert(ft::make_pair(key, T())).first->second;
+			return (n->value->second);
+		}
+		
 		///Iterators
 		iterator begin()
 		{
