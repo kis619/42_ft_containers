@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/12 18:18:53 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:20:10 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int main(void)
 	}
 	
 	test_name("Testing the method .max_size()");
-	std::cout << my_map.max_size() << std::endl;
+	std::cout << COLOUR_GREEN << my_map.max_size() << COLOUR_DEFAULT << std::endl;
 
 
 	
