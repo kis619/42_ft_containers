@@ -6,7 +6,7 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 13:21:52 by kmilchev          #+#    #+#              #
-#    Updated: 2022/09/12 14:51:10 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/09/12 15:33:59 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,9 @@ test_map_iterators:
 
 test_map_element_access:
 	$(CC) -g tests/utils.cpp tests/test_map_element_access.cpp && ./a.out
+
+test_map_capacity:
+	$(CC) -g tests/utils.cpp tests/test_map_capacity.cpp && ./a.out
 	
 test:
 	sh run_tests.sh

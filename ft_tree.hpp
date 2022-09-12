@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/11 20:02:31 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:41:31 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ class RBTree
 	template<class Key>
 	node_ptr		find_by_only_key(const Key &key);
 	size_type		size(void);
-	bool			empty(void);
+	bool			empty(void) const; 
 	allocator_type	get_allocator(void) const;
 	value_comp		get_comp(void);
 	void			clearNode(node_ptr n);
@@ -129,8 +129,12 @@ class RBTree
 	
 	iterator end(void)
 	{
-		iterator it =  iterator(nil_node, nil_node);
-		return (it);
+		return iterator(nil_node, nil_node);
+	}
+	
+	const_iterator end(void) const
+	{
+		return const_iterator(nil_node, nil_node);
 	}
 
 	iterator insert(const value_type &val)

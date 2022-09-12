@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/11 12:10:20 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:40:57 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ namespace ft
 	}
 	
 	template <class T,  class Compare, class Allocator>
-	bool RBTree<T, Compare, Allocator>::empty(void)
+	bool RBTree<T, Compare, Allocator>::empty(void) const
 	{
 		return (_size == 0);
 	}
