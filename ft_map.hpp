@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 00:58:40 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 01:09:40 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,7 @@ class map
 	public: //should be private
 		tree_type	tree;
 
-	size_type erase(key_type key)
-	{
-		return(tree.erase_unique(key));
-	}
+
 	
 	allocator_type get_allocator(void) const
 	{
@@ -158,6 +155,12 @@ class map
 	{
 		for (; first != last; first++)
 			tree.insert(*(first.getPtr()->value));
+	}
+
+	///Erase
+	size_type erase(key_type key)
+	{
+		return(tree.erase_unique(key));
 	}
 };
 };
