@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/12 17:38:48 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 00:36:38 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,8 @@ class map
 		return(tree.max_size());
 	}
 
+
+	///Insert
 	ft::pair<iterator, bool> insert( const value_type& value )
 	{
 		typename tree_type::node_ptr n = tree.find(value);
@@ -145,11 +147,18 @@ class map
 			return(ft::make_pair(tree.insert(value), true));
 		return(ft::make_pair(tree.insert(value), false));
 	}
-
-	// iterator insert(const value_type &val)
+	
+	// iterator insert (iterator position, const value_type& val)
 	// {
-	// 	return(tree.insert(val));
+	// 	position.
 	// }
+
+	template< class InputIt >
+	void insert( InputIt first, InputIt last, typename enable_if<!is_integral<InputIt>::value>::type* = nullptr )
+	{
+		for (; first != last; first++)
+			tree.insert(*(first.getPtr()->value));
+	}
 };
 };
 #endif //MAP_HPP

@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/12 18:17:45 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/12 23:00:42 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,8 @@ class RBTree
 	
 	iterator end(void)
 	{
-		return iterator(nil_node, nil_node);
+		iterator it = iterator(nil_node, nil_node);
+		return it;
 	}
 	
 	const_iterator end(void) const
