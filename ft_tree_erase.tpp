@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/09 17:54:08 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 01:25:31 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ namespace ft
 				node = node->right;
 		}
 		
-		erase(*node->value);
-		return(_size);
+;
+		return(erase(*node->value));
 	}
 	
 	template <class T,  class Compare, class Allocator>
@@ -44,7 +44,7 @@ namespace ft
 		if (found_node == nil_node) //will adapt this later
 		{
 			std::cout << "No node\n";
-			return (_size);
+			return (0);
 		}
 
 		//BST delete
@@ -57,7 +57,7 @@ namespace ft
 		{
 			clear_node(found_node);
 			root = nil_node;
-			return (_size);
+			return (1);
 		}
 
 		if (found_node->left == nil_node)
@@ -99,7 +99,7 @@ namespace ft
 		// while (temp1->right != this->nil_node)
 		// 	temp1 = temp1->right;
 		// this->nil_node->parent = temp1;
-		return(_size);
+		return(1);
 	}
 
 	template <class T,  class Compare, class Allocator>
