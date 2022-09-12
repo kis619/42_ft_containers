@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 00:36:38 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 00:58:40 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,10 +148,10 @@ class map
 		return(ft::make_pair(tree.insert(value), false));
 	}
 	
-	// iterator insert (iterator position, const value_type& val)
-	// {
-	// 	position.
-	// }
+	iterator insert (iterator position, const value_type& value)
+	{
+		return (tree.insert(value)); //maybe do this one
+	}
 
 	template< class InputIt >
 	void insert( InputIt first, InputIt last, typename enable_if<!is_integral<InputIt>::value>::type* = nullptr )
