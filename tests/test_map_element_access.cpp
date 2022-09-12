@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_map_iterators.cpp                             :+:      :+:    :+:   */
+/*   test_map_element_access.cpp                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/12 15:02:59 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:03:44 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,9 @@
 
 int main(void)
 {
-	ft::map<int, std::string> my_map;
 	std::map<int, std::string> og_map;
-	ft::map<int, std::string>::iterator my_iter;
-	std::map<int, std::string>::iterator og_iter;
-	std::string months[12] = {	
-								"January",
-								"February",
-								"March",
-								"April",
-								"May",
-								"June",
-								"July",
-								"August",
-								"September",
-								"October",
-								"November",
-								"December"
-							};
+	ft::map<int, std::string> my_map;
+	std::string months[12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 		
 
 	for(size_t i = 1; i <= 12; i++)
@@ -50,29 +35,30 @@ int main(void)
 	}
 	
 	{
-		test_name("Testing the method .begin()");
-		my_iter = my_map.begin();
-		og_iter = og_map.begin();
-		assert(og_iter->first == my_iter->first);
-		my_iter++;
-		og_iter++;
-		assert(og_iter->first == my_iter->first);
+		test_name("Testing the method .at()");
+		for (size_t i = 1; i <=13; i++)
+			assert(og_map[i] == my_map[i]);
+	}
+
+	{
+		test_name("Testing the method .at() non-existent key");
+		try
+		{
+			std::cerr << "Expecting an error: ";
+			my_map.at(13);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
 	}
 	
 	{
-		test_name("Testing the method .end()");
-		my_iter = my_map.end();
-		og_iter = og_map.end();
-		my_iter--;
-		og_iter--;
-		assert(og_iter->first == my_iter->first);
-		my_iter--;
-		og_iter--;
-		my_iter--;
-		og_iter--;
-		my_iter++;
-		og_iter++;
-		assert(og_iter->first == my_iter->first);
+		test_name("testing the operator[]");
+		for (size_t i = 1; i <=13; i++)
+			assert(og_map[i] == my_map[i]);
+		
 	}
+
 	return (0);
 }
