@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/12 15:02:59 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 00:16:30 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,12 @@ int main(void)
 		my_iter++;
 		og_iter++;
 		assert(og_iter->first == my_iter->first);
+
+		my_iter = my_map.end();
+		ft::map<int, std::string>::iterator my_it = my_map.begin();
+		std::map<int, std::string>::iterator og_it = og_map.begin();
+		for(; my_iter != my_iter; my_it++, og_it++)
+			assert(my_it->first == og_it->first);
 	}
 	return (0);
 }
