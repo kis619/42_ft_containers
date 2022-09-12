@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/12 15:37:17 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:44:39 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,11 @@ class map
 	{
 		//return (begin() == end());
 		return(tree.empty());
+	}
+
+	size_type size(void) const
+	{
+		return(tree.size());
 	}
 
 

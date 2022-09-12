@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/12 15:42:02 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:52:19 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,20 @@ int main(void)
 
 	test_name("Testing the method .empty()");
 	assert(og_map.empty() == my_map.empty());
+
+	test_name("Testing the method .size()");
+	{
+		assert(og_map.size() == og_map.size());
+		my_map.insert(ft::make_pair(1, months[0]));
+		og_map.insert(std::make_pair(1, months[0]));
+		assert(og_map.size() == og_map.size());
+		for (size_t i = 1; i <=12; i++)
+		{
+			my_map.insert(ft::make_pair(i, months[i - 1]));
+			og_map.insert(std::make_pair(i, months[i - 1]));
+		}
+		assert(og_map.size() == og_map.size());
+	}
 
 	return(0);		
 }
