@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/12 15:40:57 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:17:52 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,15 @@ namespace ft
 	}
 	
 	template <class T,  class Compare, class Allocator>
-	typename RBTree<T, Compare, Allocator>::size_type RBTree<T, Compare, Allocator>::size(void)
+	typename RBTree<T, Compare, Allocator>::size_type RBTree<T, Compare, Allocator>::size(void) const
 	{
 		return (_size);
+	}
+	
+	template <class T,  class Compare, class Allocator>
+	typename RBTree<T, Compare, Allocator>::size_type RBTree<T, Compare, Allocator>::max_size(void) const
+	{
+		return (node_alloc.max_size());
 	}
 	
 	template <class T,  class Compare, class Allocator>

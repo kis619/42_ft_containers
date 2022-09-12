@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/12 15:44:39 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/12 17:38:48 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,9 +133,11 @@ class map
 		return(tree.size());
 	}
 
+	size_type max_size(void) const
+	{
+		return(tree.max_size());
+	}
 
-
-	
 	ft::pair<iterator, bool> insert( const value_type& value )
 	{
 		typename tree_type::node_ptr n = tree.find(value);

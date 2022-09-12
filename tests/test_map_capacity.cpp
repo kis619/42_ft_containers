@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/12 15:52:19 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:18:53 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "colours.h"
 #include "utils.hpp"
 #include <map>
+#include <limits>
 
 int main(void)
 {
@@ -30,8 +31,8 @@ int main(void)
 	test_name("Testing the method .empty()");
 	assert(og_map.empty() == my_map.empty());
 
-	test_name("Testing the method .size()");
 	{
+	test_name("Testing the method .size()");
 		assert(og_map.size() == og_map.size());
 		my_map.insert(ft::make_pair(1, months[0]));
 		og_map.insert(std::make_pair(1, months[0]));
@@ -43,6 +44,11 @@ int main(void)
 		}
 		assert(og_map.size() == og_map.size());
 	}
+	
+	test_name("Testing the method .max_size()");
+	std::cout << my_map.max_size() << std::endl;
 
+
+	
 	return(0);		
 }
