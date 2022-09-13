@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 01:09:40 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 01:57:41 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,20 @@ class map
 	size_type erase(key_type key)
 	{
 		return(tree.erase_unique(key));
+	}
+
+	void erase( iterator pos )
+	{
+		tree.erase(*(pos.getPtr()->value));
+	}
+
+	void erase( iterator first, iterator last )
+	{
+		while(first != last)
+		{
+			tree.erase(*(first.getPtr()->value));
+			first++;
+		}
 	}
 };
 };

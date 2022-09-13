@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 01:25:31 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 02:01:28 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ namespace ft
 
 		if (found_node == nil_node) //will adapt this later
 		{
-			std::cout << "No node\n";
+			// std::cout << "No node\n";
 			return (0);
 		}
 

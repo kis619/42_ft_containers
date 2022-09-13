@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 01:26:52 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 02:05:27 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,30 @@ int main(void)
 			assert(og_map.size() == my_map.size());
 			
 		}
-		std::cout << my_map.size() << std::endl;
+
+		test_name("Testing method single-element erase(iterator)");
+		og_map.erase(og_map.begin());
+		my_map.erase(my_map.begin());
+		for (size_t i = 1; i <= 12; i++)
+		{
+			if (i != 7 && i != 1)
+				assert(og_map.at(i) == my_map.at(i));
+			assert(og_map.size() == my_map.size());
+			
+		}
+
+		test_name("Testing method range erase");
+		ft::map<int, std::string>::iterator my_start_it = my_map.begin();
+		ft::map<int, std::string>::iterator my_end_it = my_map.end();
+		std::map<int, std::string>::iterator og_start_it = og_map.begin();
+		std::map<int, std::string>::iterator og_end_it = og_map.end();
+		
+		my_map.erase(my_start_it, my_end_it);
+		og_map.erase(og_start_it, og_end_it);
+		assert(og_map.size() == my_map.size());
+
+		test_name("Testing method single-element erase(key) - no element");
+		my_map.erase(22);
+		og_map.erase(22);
 	}
 }
