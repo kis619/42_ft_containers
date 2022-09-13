@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 15:37:12 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:16:48 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,18 +146,15 @@ int main(void)
 		og_map.erase(22);
 	}
 
-	// {
-	// 	test_name("Testing method clear()");
-	// 	for (size_t i = 1; i <= 12; i++)
-	// 	{
-	// 		my_map.insert(ft::make_pair(i, months[i - 1]));
-	// 		og_map.insert(std::make_pair(i, months[i - 1]));
-	// 	}	
-	// 	std::cout << "Map size: " << og_map.size() << std::endl;
-	// 	std::cout << "My_Map size: " << my_map.size() << std::endl;
-	// 	og_map.clear();
-	// 	my_map.clear();
-	// 	std::cout << "Map size after clear: " << og_map.size() << std::endl;
-	// 	std::cout << "My_Map size after clear: " << my_map.size() << std::endl;
-	// }
+	{
+		test_name("Testing method clear()");
+		for (size_t i = 1; i <= 12; i++)
+		{
+			my_map.insert(ft::make_pair(i, months[i - 1]));
+			og_map.insert(std::make_pair(i, months[i - 1]));
+		}
+		og_map.clear();
+		my_map.clear();
+		assert(og_map.size() == my_map.size());
+	}
 }
