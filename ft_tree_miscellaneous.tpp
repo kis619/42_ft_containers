@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/12 18:17:52 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 19:04:37 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ namespace ft
 	}
 
 	template <class T,  class Compare, class Allocator>
-	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::find(const value_type &val)
+	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::find(const value_type &val) const
 	{
 		node_ptr node = root;
 
@@ -57,7 +57,7 @@ namespace ft
 	
 	template <class T,  class Compare, class Allocator>
 	template<class Key>
-	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::find_by_only_key(const Key &key)
+	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::find_by_only_key(const Key &key) const
 	{
 		node_ptr node = root;
 
