@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 16:38:18 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 17:24:57 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,11 @@ class RBTree
 	node_ptr getNil(void)
 	{
 		return(nil_node);
+	}
+
+	value_comp getComp(void) const
+	{
+		return(comp);
 	}
 };
 }
