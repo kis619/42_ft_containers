@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 18:52:34 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 19:12:50 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,12 @@ class map
 	}
 
 	///Lookup
+	size_type count( const Key& key ) const
+	{
+		if (tree.find_by_only_key(key) == tree.getNil())
+			return (0);
+		return (1);
+	}
 };
 };
 #endif //MAP_HPP
