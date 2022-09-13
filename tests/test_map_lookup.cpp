@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 19:45:05 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 20:25:55 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int main(void)
 	}
 	
 	{
-		test_name("Testing method .count()");
+	test_name("Testing method .count()");
 		for (size_t i = 5; i <= 20; i++)
 		{
 			assert(og_map.count(i) == my_map.count(i));
@@ -43,7 +43,7 @@ int main(void)
 	}
 
 	{	
-		test_name("Testing method .find()");
+	test_name("Testing method .find()");
 		
 		ft::map<int, std::string>::iterator my_iter;
 		std::map<int, std::string>::iterator og_iter;
@@ -54,6 +54,18 @@ int main(void)
 		my_iter--;
 		og_iter--;
 		assert(og_iter->second == my_iter->second);
+	}
+	
+	{
+	test_name("Testing method .count()");
+
+		ft::map<int, std::string>::iterator my_iter;
+		std::map<int, std::string>::iterator og_iter;
+		
+		og_map.insert(std::make_pair(17, "Confusion"));
+		og_map.insert(std::make_pair(16, "16Confusion"));
+		og_iter = og_map.lower_bound(13);
+		std::cout << og_iter->second << std::endl;
 	}
 	return (0);
 }

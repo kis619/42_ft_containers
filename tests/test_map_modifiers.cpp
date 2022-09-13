@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 16:44:59 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 20:42:56 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,10 @@ int main(void)
 		std::map<int, std::string>::iterator og_end_it;
 		ft::map<int, std::string> my_second_map;
 		std::map<int, std::string> og_second_map;
-		int i = 13;
-		for(std::string month : imaginary_months)
+		for(int i = 13; i < 17; i++)
 		{
-			og_second_map.insert(std::make_pair(i, month));
-			my_second_map.insert(ft::make_pair(i, month));
-			i++;
+			og_second_map.insert(std::make_pair(i, imaginary_months[16 - i]));
+			my_second_map.insert(ft::make_pair(i, imaginary_months[16 - i]));
 		}
 		my_it = my_second_map.begin();
 		og_it = og_second_map.begin();
@@ -167,12 +165,10 @@ int main(void)
 		ft::map<int, std::string> my_second_map;
 		std::map<int, std::string> og_second_map;
 		
-		int i = 1;
-		for(std::string month : imaginary_months)
+		for(int i = 1; i < 5; i++)
 		{
-			og_second_map.insert(std::make_pair(i, month));
-			my_second_map.insert(ft::make_pair(i, month));
-			i++;
+			og_second_map.insert(std::make_pair(i, imaginary_months[i - 1]));
+			my_second_map.insert(ft::make_pair(i, imaginary_months[i - 1]));
 		}
 		for (size_t i = 1; i <= 12; i++)
 		{
