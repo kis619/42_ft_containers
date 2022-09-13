@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 13:20:36 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:38:18 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ class RBTree
 		root = nil_node;
 	}
 
-	~RBTree(void)
+	void deallocateNil(void)
 	{
 		node_alloc.deallocate(nil_node, 1);
 	}
