@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 02:01:28 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 15:51:07 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ namespace ft
 	{
 		node_ptr node = root;
 
+		if (node == nil_node)
+			return (0);
 		while(node != nil_node)
 		{
 			if (node->value->first == key)
