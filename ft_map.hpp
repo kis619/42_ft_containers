@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 19:34:56 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 19:54:29 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,11 @@ class map
 	}
 
 	iterator find (const key_type& key)
+	{
+		return (tree.find_iterator(key));
+	}
+
+	const_iterator find (const key_type& key) const
 	{
 		return (tree.find_iterator(key));
 	}
