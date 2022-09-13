@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 19:13:12 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 19:40:23 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,15 @@ class RBTree
 	iterator insert(const value_type &val)
 	{
 		return iterator(insert_test(val), nil_node);
+	}
+	
+	template<class Key>
+	iterator find_iterator(const Key &key)
+	{
+		node_ptr n = find_by_only_key(key);
+		if (n == nil_node)
+			return end();
+		return iterator(find_by_only_key(key), nil_node);
 	}
 
 	///GETTERS
