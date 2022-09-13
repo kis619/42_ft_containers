@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 21:54:45 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 21:57:52 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,10 +231,28 @@ class map
 		return (it);
 	}
 
+	const_iterator lower_bound (const key_type& key) const
+	{
+		const_iterator it = tree.begin();
+		const_iterator end = tree.end();
+		while(it != end && key_comp()(it->first, key))
+			it++;
+		return (it);
+	}
+
 	iterator upper_bound (const key_type& key)
 	{
 		iterator it = tree.begin();
 		iterator end = tree.end();
+		while(it != end && key_comp()(key, it->first))
+			it++;
+		return (it);
+	}
+
+	const_iterator upper_bound (const key_type& key) const
+	{
+		const_iterator it = tree.begin();
+		const_iterator end = tree.end();
 		while(it != end && key_comp()(key, it->first))
 			it++;
 		return (it);
