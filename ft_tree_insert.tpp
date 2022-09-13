@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/11 14:06:48 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 15:00:22 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ namespace ft
 		node_ptr parent		= NULL;
 		node_ptr current	= root;
 
-		// initialise_RED_node(new_node, val);
-		new_node->parent	= NULL;
-		new_node->left		= nil_node;
-		new_node->right		= nil_node;
-		new_node->colour	= RED;
-		new_node->value		= alloc.allocate(1);
-		alloc.construct(new_node->value, val);
+		initialise_RED_node(new_node, val);
+		// new_node->parent	= NULL;
+		// new_node->left		= nil_node;
+		// new_node->right		= nil_node;
+		// new_node->colour	= RED;
+		// new_node->value		= alloc.allocate(1);
+		// alloc.construct(new_node->value, val);
 		while(current != nil_node)
 		{
 			parent = current;
@@ -37,7 +37,10 @@ namespace ft
 			else if (comp(*current->value, *new_node->value))
 				current = current->right;
 			else
+			{
+				clear_node(new_node);
 				return (current);
+			}
 		}
 		// Set the parent and insert the new node
 		new_node->parent = parent;

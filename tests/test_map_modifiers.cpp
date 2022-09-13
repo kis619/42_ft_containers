@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 02:05:27 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 15:37:12 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,9 @@ int main(void)
 			assert(og_map.size() == my_map.size());
 			
 		}
-
+	}
+	
+	{
 		test_name("Testing method single-element erase(iterator)");
 		og_map.erase(og_map.begin());
 		my_map.erase(my_map.begin());
@@ -124,7 +126,9 @@ int main(void)
 			assert(og_map.size() == my_map.size());
 			
 		}
+	}
 
+	{
 		test_name("Testing method range erase");
 		ft::map<int, std::string>::iterator my_start_it = my_map.begin();
 		ft::map<int, std::string>::iterator my_end_it = my_map.end();
@@ -134,9 +138,26 @@ int main(void)
 		my_map.erase(my_start_it, my_end_it);
 		og_map.erase(og_start_it, og_end_it);
 		assert(og_map.size() == my_map.size());
+	}
 
+	{
 		test_name("Testing method single-element erase(key) - no element");
 		my_map.erase(22);
 		og_map.erase(22);
 	}
+
+	// {
+	// 	test_name("Testing method clear()");
+	// 	for (size_t i = 1; i <= 12; i++)
+	// 	{
+	// 		my_map.insert(ft::make_pair(i, months[i - 1]));
+	// 		og_map.insert(std::make_pair(i, months[i - 1]));
+	// 	}	
+	// 	std::cout << "Map size: " << og_map.size() << std::endl;
+	// 	std::cout << "My_Map size: " << my_map.size() << std::endl;
+	// 	og_map.clear();
+	// 	my_map.clear();
+	// 	std::cout << "Map size after clear: " << og_map.size() << std::endl;
+	// 	std::cout << "My_Map size after clear: " << my_map.size() << std::endl;
+	// }
 }

@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 01:57:41 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:21:46 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ class map
 	// map(void);
 	explicit map (const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type()) : tree(comp, alloc)
 	{};
-
+	~map(void)
+	{
+		clear();
+	}
 	private:
 		typedef ft::RBTree< const value_type, value_compare, allocator_type>		tree_type;
 
@@ -135,7 +138,11 @@ class map
 		return(tree.max_size());
 	}
 
-
+	///Modifiers
+	void clear(void)
+	{
+		erase(tree.begin(), tree.end());
+	}
 	///Insert
 	ft::pair<iterator, bool> insert( const value_type& value )
 	{
