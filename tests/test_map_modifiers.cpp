@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 16:16:48 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:44:59 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,5 +156,34 @@ int main(void)
 		og_map.clear();
 		my_map.clear();
 		assert(og_map.size() == my_map.size());
+	}
+
+	{
+		test_name("Testing method swap()");
+		std::string imaginary_months[4] ={	"Confusion",
+											"More Confusion",
+											"Endless Confusion",
+											"Confusion Ended"};
+		ft::map<int, std::string> my_second_map;
+		std::map<int, std::string> og_second_map;
+		
+		int i = 1;
+		for(std::string month : imaginary_months)
+		{
+			og_second_map.insert(std::make_pair(i, month));
+			my_second_map.insert(ft::make_pair(i, month));
+			i++;
+		}
+		for (size_t i = 1; i <= 12; i++)
+		{
+			my_map.insert(ft::make_pair(i, months[i - 1]));
+			og_map.insert(std::make_pair(i, months[i - 1]));
+		}
+		og_map.swap(og_second_map);
+		my_map.swap(my_second_map);
+		assert(og_map.at(1) == my_map.at(1));
+		assert(og_map.at(4) == my_map.at(4));
+		assert(og_second_map.at(1) == my_second_map.at(1));
+		assert(og_second_map.at(8) == my_second_map.at(8));
 	}
 }
