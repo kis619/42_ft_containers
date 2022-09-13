@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 17:24:57 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/13 19:13:12 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ class RBTree
 	///MISCELLANEOUS
 	void			print_tree(void) const;
 	void			_printHelper(const std::string& prefix, const node_ptr n, bool isLeft) const;
-	node_ptr		find(const value_type &val);
+	node_ptr		find(const value_type &val) const;
 	template<class Key>
-	node_ptr		find_by_only_key(const Key &key);
+	node_ptr		find_by_only_key(const Key &key) const;
 	size_type		size(void) const;
 	size_type		max_size(void) const;
 	bool			empty(void) const; 
@@ -145,12 +145,12 @@ class RBTree
 	}
 
 	///GETTERS
-	node_ptr getRoot(void)
+	node_ptr getRoot(void) const
 	{
 		return(root);
 	}
 
-	node_ptr getNil(void)
+	node_ptr getNil(void) const
 	{
 		return(nil_node);
 	}
