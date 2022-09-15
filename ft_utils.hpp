@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:19:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/15 18:17:50 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:54:43 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ namespace ft
 	template< class T1, class T2 >
 	bool operator==(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
 	{
-		if (lhs.first == rhs.first && lhs.first == rhs.first)
+		if (lhs.first == rhs.first && lhs.second == rhs.second)
 			return (true);
 		return (false);
 	}
