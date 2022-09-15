@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/26 15:29:24 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/15 14:19:33 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,8 +140,11 @@ namespace ft
 			size_type pos = end() - position;
 			if(size() + n > _capacity)
 					adjust_capacity(size() + n);
-			for(size_type i = 0; i <= pos; i++)
-					_alloc.construct(_end - i + n, *(_end - i));
+			if (pos != 0)
+			{
+				for(size_type i = 0; i <= pos; i++)
+						_alloc.construct(_end - i + n, *(_end - i));
+			}
 			while (first != last)
 			{
 				_alloc.construct(_end - (pos), *(first.base()));
