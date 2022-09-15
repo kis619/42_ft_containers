@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/15 11:35:50 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/15 21:25:34 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,42 @@ class map
 				{return comp(lhs.first, rhs.first);}
 	};
 	
-	// map(void);
-	explicit map (const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type()) : tree(comp, alloc)
-	{};
+	explicit map (const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type()) : tree(comp, alloc) {};
+	map (const map& x) : tree(x.tree)
+	{
+			// std::cout << "Copy\n";
+		*this = x;
+	}
+	template <class InputIterator>
+	map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : tree(comp, alloc)
+	{
+		
+		while(first != last)
+		{
+			tree.insert(*(first.getPtr()->value));
+			first++;
+		}
+	}
+	
+	map &operator=(const map& other)
+	{
+		// std::cout << "here\n";
+		clear();
+		const_iterator it_begin = other.begin();
+		const_iterator it_end = other.end();
+		while(it_begin != it_end)
+		{
+			// std::cout << COLOUR_GREEN << "Value: " << (*(it_begin.getPtr()->value)).first << COLOUR_DEFAULT<< std::endl;
+			tree.insert(*(it_begin.getPtr()->value));
+			it_begin++;
+		}
+		return(*this);
+	}
+	
 	~map(void)
 	{
 		clear();
-		tree.deallocateNil();
+		// tree.deallocateNil();
 	}
 	private:
 		typedef ft::RBTree< const value_type, value_compare, allocator_type>		tree_type;
@@ -268,6 +297,20 @@ class map
 		return (make_pair(lower_bound(key), upper_bound(key)));
 	}
 };
+
+	template <class Key, class T, class Compare, class Allocator>
+	bool operator ==(	const map<Key, T, Compare, Allocator>& x,
+						const map<Key, T, Compare, Allocator>& y)
+	{
+		return(x.size() == y.size() && equal(x.begin(), x.end(), y.begin()));
+	}
+
+	template <class Key, class T, class Compare, class Allocator>
+	bool operator !=(	const map<Key, T, Compare, Allocator>& x,
+						const map<Key, T, Compare, Allocator>& y)
+	{
+		return!(x == y);
+	}
 };	
 #endif //MAP_HPP
 

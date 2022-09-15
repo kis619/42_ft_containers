@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 19:55:11 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/15 21:10:41 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ class RBTree
 			Node		*right;
 			typedef pointer	key_value_pair;
 		};
-		
+	
 		
 	private:
 		node_ptr				root;
@@ -178,6 +178,13 @@ class RBTree
 		return(comp);
 	}
 };
+	template<typename whatever>
+	bool operator==(const whatever lhs, const whatever rhs)
+	{
+		return (lhs.value->first == rhs.value->first &&
+				lhs.value->second == rhs.value->second
+		);
+	}
 }
 
 #include "ft_tree_erase.tpp"

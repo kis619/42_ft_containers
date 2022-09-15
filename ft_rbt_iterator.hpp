@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/12 23:28:05 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/15 20:47:20 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ class const_RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_t
 	///Operators - Increment|Decrement
 	const_RBTreeIterator &operator++()	//pre-increment
 	{
-		std::cout << "++\n";
+		// std::cout << "++\n";
 		pointer temp = ptr;
 		if ((ptr->parent == NULL) || (ptr->right != nil_ptr))
 		{
@@ -213,3 +213,7 @@ class const_RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_t
 };
 
 #endif
+
+
+// 'RBTreeIterator<ft::RBTree<const ft::pair<const int, int>, ft::map<int, int, std::__1::plus<int>, std::__1::allocator<ft::pair<const int, int> > >::value_compare, std::__1::allocator<ft::pair<const int, int> > >::Node>'
+// 'RBTreeIterator<ft::RBTree<const ft::pair<const int, int>, ft::map<int, int, std::__1::less<int>, std::__1::allocator<ft::pair<const int, int> > >::value_compare, std::__1::allocator<ft::pair<const int, int> > >::Node>'
