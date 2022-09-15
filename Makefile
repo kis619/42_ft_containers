@@ -6,7 +6,7 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 13:21:52 by kmilchev          #+#    #+#              #
-#    Updated: 2022/09/15 17:20:18 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/09/15 22:15:45 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,9 @@ test_map_observers:
 test_map_lookup:
 	$(CC) -g tests/utils.cpp tests/test_map_lookup.cpp -g && ./a.out
 	
+test_map_construction:
+	$(CC) -g tests/utils.cpp tests/test_map_construction.cpp -g && ./a.out
+	
 test:
 	sh run_tests.sh
 
@@ -75,4 +78,4 @@ tests:	test_iterator_class test_reverse_iterator test_vector_capacity test_vecto
 		test_pair_construction test_tree_methods test_tree_iterator test_map_element_access test_map_capacity test_map_modifiers \
 		test_map_observers test_map_lookup
 
-map_tests: test_map_element_access test_map_capacity test_map_modifiers test_map_observers test_map_lookup
+map_tests: test_map_element_access test_map_capacity test_map_modifiers test_map_observers test_map_lookup test_map_construction
