@@ -32,3 +32,5 @@
 *.app
 
 *.dSYM
+
+ft_containers-unit-test
