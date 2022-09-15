@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/15 21:25:34 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/15 22:44:40 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,8 @@ class map
 	};
 	
 	explicit map (const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type()) : tree(comp, alloc) {};
-	map (const map& x) : tree(x.tree)
+	map (const map& x) : tree(x.value_comp(), x.get_allocator())
 	{
-			// std::cout << "Copy\n";
 		*this = x;
 	}
 	template <class InputIterator>
@@ -88,8 +87,8 @@ class map
 	
 	~map(void)
 	{
-		clear();
-		// tree.deallocateNil();
+		// clear();
+		tree.deallocateNil();
 	}
 	private:
 		typedef ft::RBTree< const value_type, value_compare, allocator_type>		tree_type;
