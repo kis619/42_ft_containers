@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 21:55:09 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/15 11:50:19 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,16 +82,42 @@ int main(void)
 		ft::map<int, std::string>::iterator my_iter;
 		std::map<int, std::string>::iterator og_iter;
 		
-		og_iter = og_map.lower_bound(0);
-		my_iter = my_map.lower_bound(0);
+		og_iter = og_map.upper_bound(0);
+		my_iter = my_map.upper_bound(0);
 		assert(og_iter->second == my_iter->second);
 		og_map.insert(std::make_pair(17, "Confusion"));
 		og_map.insert(std::make_pair(16, "16Confusion"));
 		my_map.insert(ft::make_pair(17, "Confusion"));
 		my_map.insert(ft::make_pair(16, "16Confusion"));
-		og_iter = og_map.lower_bound(13);
-		my_iter = my_map.lower_bound(13);
+		og_iter = og_map.upper_bound(13);
+		my_iter = my_map.upper_bound(13);
 		assert(og_iter->second == my_iter->second);
+	}
+	
+	{
+	test_name("Testing method .equal_range()");
+
+		ft::map<int, std::string>::iterator my_iter;
+		std::map<int, std::string>::iterator og_iter;
+		
+		std::pair<std::map<int, std::string>::iterator, std::map<int, std::string>::iterator > og_range;
+		ft::pair<ft::map<int, std::string>::iterator, ft::map<int, std::string>::iterator > my_range;
+		og_range = og_map.equal_range(3);
+		my_range = my_map.equal_range(3);
+		assert(og_range.first->first == my_range.first->first);
+		assert(og_range.first->second == my_range.first->second);
+		assert(og_range.second->first == my_range.second->first);
+		assert(og_range.second->second == my_range.second->second);
+		og_range = og_map.equal_range(18);
+		my_range = my_map.equal_range(18);
+		og_range.first--;
+		og_range.second--;
+		my_range.first--;
+		my_range.second--;
+		assert(og_range.first->first == my_range.first->first);
+		assert(og_range.first->second == my_range.first->second);
+		assert(og_range.second->first == my_range.second->first);
+		assert(og_range.second->second == my_range.second->second);
 	}
 	return (0);
 }

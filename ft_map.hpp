@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 21:57:52 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/15 11:35:50 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,12 +153,12 @@ class map
 	}
 	
 	///Insert
-	ft::pair<iterator, bool> insert( const value_type& value )
+	pair<iterator, bool> insert( const value_type& value )
 	{
 		typename tree_type::node_ptr n = tree.find(value);
 		if (n == tree.getNil())
 			return(ft::make_pair(tree.insert(value), true));
-		return(ft::make_pair(tree.insert(value), false));
+		return(make_pair(tree.insert(value), false));
 	}
 	
 	iterator insert (iterator position, const value_type& value)
@@ -244,7 +244,7 @@ class map
 	{
 		iterator it = tree.begin();
 		iterator end = tree.end();
-		while(it != end && key_comp()(key, it->first))
+		while(it != end && !key_comp()(key, it->first))
 			it++;
 		return (it);
 	}
@@ -253,12 +253,22 @@ class map
 	{
 		const_iterator it = tree.begin();
 		const_iterator end = tree.end();
-		while(it != end && key_comp()(key, it->first))
+		while(it != end && !key_comp()(key, it->first))
 			it++;
 		return (it);
 	}
+
+	pair<iterator,iterator> equal_range (const key_type& key)
+	{
+		return (make_pair(lower_bound(key), upper_bound(key)));
+	}
+
+	pair<const_iterator,const_iterator> equal_range (const key_type& key) const
+	{
+		return (make_pair(lower_bound(key), upper_bound(key)));
+	}
 };
-};
+};	
 #endif //MAP_HPP
 
 
