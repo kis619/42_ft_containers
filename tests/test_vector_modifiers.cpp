@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 20:49:56 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/27 22:10:18 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:12:32 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@
 
 void test_capacity_size_values(ft::vector<int> &mine, std::vector<int> &original)
 {
+
 	assert(original.capacity() == mine.capacity());
 	assert(original.size() == mine.size());
 	for (int i = 0; i < original.size(); i++)
+	{
 		assert(original[i] == mine[i]);
+	}
 }
 
 int main(void)
@@ -133,15 +136,26 @@ int main(void)
 		test_capacity_size_values(my_new_v, og_new_v);
 	}
 	
-	std::vector<int> og_vec(2, 2);
-	ft::vector<int> my_vec(2, 2);
+	std::vector<int> og_vec;
+	ft::vector<int> my_vec;
 	
 	{
 		test_name("Testing method .insert() range");
-		og_new_v.assign(6, 0);
-		my_new_v.assign(6, 0);
+		std::vector<int> og_new_v;
+		ft::vector<int> my_new_v;
+		for (int i = 0; i < 6; i++)
+		{
+			og_new_v.push_back(i);
+			my_new_v.push_back(i);
+			og_vec.push_back(7);
+			my_vec.push_back(7);
+		}
 		og_vec.insert(og_vec.begin(), og_new_v.begin(), og_new_v.end());
 		my_vec.insert(my_vec.begin(), my_new_v.begin(), my_new_v.end());
+		og_vec.insert(og_vec.end(), og_new_v.begin(), og_new_v.end());
+		my_vec.insert(my_vec.end(), my_new_v.begin(), my_new_v.end());
+		og_vec.insert(og_vec.end(), og_new_v.begin(), og_new_v.end());
+		my_vec.insert(my_vec.end(), my_new_v.begin(), my_new_v.end());
 		og_vec.insert(og_vec.end(), og_new_v.begin(), og_new_v.end());
 		my_vec.insert(my_vec.end(), my_new_v.begin(), my_new_v.end());
 		test_capacity_size_values(my_vec, og_vec);
