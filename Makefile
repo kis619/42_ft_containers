@@ -6,13 +6,13 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 13:21:52 by kmilchev          #+#    #+#              #
-#    Updated: 2022/09/15 23:31:32 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/09/16 17:37:33 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
 
-FLAGS = -fsanitize=address -g
+# FLAGS = -fsanitize=address -g
 
 test_iterator_class:
 	$(CC) -g tests/utils.cpp tests/test_iterator_class.cpp $(FLAGS) && ./a.out

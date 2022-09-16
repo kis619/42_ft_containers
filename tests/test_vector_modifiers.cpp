@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 20:49:56 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/15 17:12:32 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:17:31 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,4 +223,5 @@ int main(void)
 		assert(v2_copy.capacity() == v1.capacity());
 		assert(v2_copy.size() == v1.size());
 	}
+	std::cout << COLOUR_DEFAULT;
 }

@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 13:20:18 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/28 22:32:59 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:18:08 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,7 @@ int main(void)
 		my_new_empty = my_newer_empty;
 		assert(my_new_empty == my_newer_empty);
 	}
+	std::cout << COLOUR_DEFAULT;
 
-
-	
 	return (0);
 }

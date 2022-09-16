@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/15 20:47:20 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 17:47:43 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ class RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_type>
 	RBTreeIterator &operator++()	//pre-increment
 	{
 		pointer temp = ptr;
-		if ((ptr->parent == NULL) || (ptr->right != nil_ptr))
+		// std::cout << &(ptr->parent) << std::endl;
+		if (ptr != NULL && ((ptr->parent == NULL) || (ptr->right != nil_ptr)))
 		{
 			temp = ptr->right;
 			while(temp->left != nil_ptr && temp->left->value->first > ptr->value->first)
@@ -51,7 +52,7 @@ class RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_type>
 			ptr = temp;
 			return(*this);
 		}
-		while(ptr->parent->value->first < ptr->value->first)
+		while(ptr != nil_ptr && ptr->parent != NULL && ptr->value && ptr->parent->value->first < ptr->value->first)
 		{
 			ptr = ptr->parent;
 			if (ptr->parent == NULL)
@@ -67,18 +68,34 @@ class RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_type>
 	RBTreeIterator &operator--()	//pre-decrement
 	{
 		pointer temp = ptr;
-		if (ptr->right != nil_ptr && ptr->left != nil_ptr)
+		if (!temp->parent && temp->left == nil_ptr)
+			temp = temp->parent;
+		else if (temp == nil_ptr)
+			temp = nil_ptr->parent;
+		else if (temp->left != nil_ptr && temp->left)
 		{
-			temp = ptr->left;
-			while(temp->right != nil_ptr && temp->right->value->first < ptr->value->first)
+			temp = temp->left;
+			while (temp->right != nil_ptr)
+			{
 				temp = temp->right;
-			ptr = temp;
-			return(*this);
+			}
 		}
-		while(ptr != nil_ptr && ptr->parent != NULL && ptr->parent->value->first > ptr->value->first)
-			ptr = ptr->parent;
-		ptr = ptr->parent;
-		return(*this);
+		else if (temp->parent && temp == temp->parent->right)
+			temp = temp->parent;
+		else if (temp->parent && temp == temp->parent->left)
+		{
+			while (temp->parent && temp == temp->parent->left)
+				temp = temp->parent;
+			if (temp->parent)
+				temp = temp->parent;
+			else 
+				temp = nullptr;
+		}
+		else
+			temp = nil_ptr->parent;
+		_prev = ptr;
+		ptr = temp;
+		return (*this);
 	};
 	
 	RBTreeIterator operator++(int) {RBTreeIterator temp(*this); ++(*this); return (temp);} //post-increment
@@ -98,6 +115,7 @@ class RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_type>
 	private: 
 		pointer ptr;
 		pointer nil_ptr;
+		pointer _prev;
 };
 
 template< class node_type> //if i add the tree, I can add the compare maybe

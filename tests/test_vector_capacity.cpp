@@ -71,4 +71,5 @@ int main(void)
 		for (int i = 0; i < og_vec.size(); i++)
 			assert(og_vec[i] == my_vec[i]);
 	}
+	std::cout << COLOUR_DEFAULT;
 }

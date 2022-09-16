@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/15 23:27:27 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 17:58:46 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,11 @@ class RBTree
 
 	void clear_node(node_ptr node)
 	{
-		alloc.deallocate(node->value, 1);
+		if (node != nil_node)
+			alloc.deallocate(node->value, 1);
 		// alloc.destroy
 		node_alloc.deallocate(node, 1);
+		// node = NULL;
 	}
 	
 	void initialise_RED_node(node_ptr new_node, const value_type &val)

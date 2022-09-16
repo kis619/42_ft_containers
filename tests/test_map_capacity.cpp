@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 14:56:55 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:19:20 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ int main(void)
 	std::cout << COLOUR_GREEN << my_map.max_size() << COLOUR_DEFAULT << std::endl;
 
 
-	
+	std::cout << COLOUR_DEFAULT;
 	return(0);		
 }

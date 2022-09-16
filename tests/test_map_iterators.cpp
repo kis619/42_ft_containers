@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 00:16:30 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:18:53 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ int main(void)
 		for(; my_iter != my_iter; my_it++, og_it++)
 			assert(my_it->first == og_it->first);
 	}
+	std::cout << COLOUR_DEFAULT;
 	return (0);
 }

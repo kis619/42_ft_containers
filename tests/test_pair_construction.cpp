@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/01 10:53:54 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:18:35 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ int main(void)
 	test_name("Testing make_pair");
 	ft::pair<int, int> made_pair = ft::make_pair(1, 2);
 	assert(my_pair == made_pair);
+	std::cout << COLOUR_DEFAULT;
 	return(0);
 }

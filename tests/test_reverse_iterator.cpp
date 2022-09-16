@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 17:57:04 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/27 20:45:27 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:18:30 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ int main(void)
 	test_name("Testing the reverse_iterator. Checking if values are in reverse order");
 	for(int i = 0; i < nums.size(); i++)
 		assert(nums.size() - i - 1 == *(r  + i));// 9 8 7 6 5 4 3 2 1 0
+	std::cout << COLOUR_DEFAULT;
 }

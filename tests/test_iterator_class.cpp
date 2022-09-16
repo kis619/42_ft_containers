@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 21:08:48 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/27 20:44:19 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:17:21 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,6 @@ int main(void)
 		assert(false == (it5 >= it));
 		assert(true == (it5 <= it));
 	}
+	std::cout << COLOUR_DEFAULT;
 	return (0);
 }

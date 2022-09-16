@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 18:34:33 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/27 18:40:45 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:17:57 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ int main(void)
 		test_name("Testing const method .data()");
 		assert(4 == *(my_v_const.data()));
 	}
+	std::cout << COLOUR_DEFAULT;
 	return (0);
 }

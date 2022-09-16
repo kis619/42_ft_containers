@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 21:08:48 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/28 21:58:48 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:17:45 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ int main(void)
 	test_name("Testing logical operator >=");
 	assert(true == (nums >= nums2));
 	
+	std::cout << COLOUR_DEFAULT;
 }

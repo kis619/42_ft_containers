@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/11 19:59:35 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:18:24 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,6 @@ int main(void)
 	// std::cout << it_m->first << std::endl;
 	// std::cout << it_m->second << std::endl;
 	
-
+	std::cout << COLOUR_DEFAULT;
 	return (0);
 }

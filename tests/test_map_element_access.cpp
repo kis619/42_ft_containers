@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/12 15:03:44 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:19:06 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ int main(void)
 		
 	}
 
+	std::cout << COLOUR_DEFAULT;
 	return (0);
 }

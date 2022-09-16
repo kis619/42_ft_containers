@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/15 11:51:59 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:18:48 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,6 @@ int main(void)
 		assert(og_range.second->first == my_range.second->first);
 		assert(og_range.second->second == my_range.second->second);
 	}
+	std::cout << COLOUR_DEFAULT;
 	return (0);
 }

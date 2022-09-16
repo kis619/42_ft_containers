@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 13:20:18 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/27 19:04:38 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:17:51 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ int main(void)
 		test_name("const_rev_it(vector.rend())");
 		assert(*(og_r_it_const_end) == *(my_r_it_const_end));
 	}
+	std::cout << COLOUR_DEFAULT;
 	return (0);
 }

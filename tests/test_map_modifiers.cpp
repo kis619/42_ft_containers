@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 20:42:56 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:18:44 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,5 +181,6 @@ int main(void)
 		assert(og_map.at(4) == my_map.at(4));
 		assert(og_second_map.at(1) == my_second_map.at(1));
 		assert(og_second_map.at(8) == my_second_map.at(8));
+		std::cout << COLOUR_DEFAULT;
 	}
 }
