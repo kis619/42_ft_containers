@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/16 18:39:43 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:18:06 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,14 +170,14 @@ class map
 	///Modifiers
 	void clear(void)
 	{
-		// erase(tree.begin(), tree.end());
-		iterator it_begin = this->begin();
-		iterator it_end = this->end();
-		while(it_begin != it_end)
-		{
-			tree.erase(*(it_begin.getPtr()->value));
-			it_begin = begin();
-		}
+		erase(tree.begin(), tree.end());
+		// iterator it_begin = this->begin();
+		// iterator it_end = this->end();
+		// while(it_begin != it_end)
+		// {
+		// 	tree.erase(*(it_begin.getPtr()->value));
+		// 	it_begin = begin();
+		// }
 	}
 
 	void swap (map& x)
@@ -221,10 +221,11 @@ class map
 
 	void erase( iterator first, iterator last )
 	{
-		while(first != last)
+		iterator temp = first;
+		while(temp != last)
 		{
-			tree.erase(*(first.getPtr()->value));
-			first++;
+			temp = first++;
+			tree.erase(*(temp.getPtr()->value));
 		}
 	}
 
