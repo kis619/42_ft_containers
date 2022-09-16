@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/16 19:18:06 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:18:34 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,10 +222,11 @@ class map
 	void erase( iterator first, iterator last )
 	{
 		iterator temp = first;
-		while(temp != last)
+		while(first != last)
 		{
-			temp = first++;
+			first++;
 			tree.erase(*(temp.getPtr()->value));
+			temp = first;
 		}
 	}
 
