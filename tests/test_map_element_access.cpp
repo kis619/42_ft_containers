@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/16 18:19:06 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 18:24:43 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int main(void)
 		test_name("Testing the method .at() non-existent key");
 		try
 		{
-			std::cerr << "Expecting an error: ";
-			my_map.at(13);
+			my_map.at(14);
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << e.what() << '\n';
+			std::cerr << "map::at:  ";
+			std::cerr << e.what() << "\n";
 		}
 	}
 	
