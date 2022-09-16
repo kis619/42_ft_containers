@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/16 17:47:43 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/16 19:50:00 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 namespace ft
 {
 template< class node_type> //if i add the tree, I can add the compare maybe
-class RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_type>
+class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, node_type>
 {
 	public:
 		typedef ft::bidirectional_iterator_tag				iterator_category;
