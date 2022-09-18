@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/18 18:41:56 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/18 18:49:18 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int main(void)
 {
 	ft::map<int, int> my_map;
 	ft::map<int, int> my_empty_map;
+	ft::map<int, int> my_second_empty_map;
 	std::map<int, int> og_map;
 	std::map<int, int> og_empty_map;
 	
@@ -35,6 +36,19 @@ int main(void)
 	}
 	test_name("Testing operator!=");
 		assert(my_map != my_empty_map);
+	test_name("Testing operator==");
+		assert(my_empty_map == my_second_empty_map);
+	test_name("Testing operator<");
+		assert(my_empty_map < my_map);
+	test_name("Testing operator>");
+		assert(my_map > my_empty_map);
+	test_name("Testing operator>=");
+		assert(my_map >= my_empty_map); 				//>
+		assert(my_second_empty_map >= my_empty_map);	//==
+	test_name("Testing operator<=");
+		assert(my_empty_map <= my_map); 				//>
+		assert(my_second_empty_map <= my_empty_map);	//==
+
 
 	return (0);
 }

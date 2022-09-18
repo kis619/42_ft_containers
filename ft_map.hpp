@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/18 18:27:01 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/18 18:48:06 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -343,6 +343,35 @@ class map
 	{
 		return!(x == y);
 	}
+	
+	template <class Key, class T, class Compare, class Allocator>
+	bool operator <(	const map<Key, T, Compare, Allocator>& x,
+						const map<Key, T, Compare, Allocator>& y)
+	{
+		return(ft::lexicographical_compare(x.begin(), x.end(), y.begin(), y.end()));
+	}
+	
+	template <class Key, class T, class Compare, class Allocator>
+	bool operator >(	const map<Key, T, Compare, Allocator>& x,
+						const map<Key, T, Compare, Allocator>& y)
+	{
+		return(y < x);
+	}
+	
+	template <class Key, class T, class Compare, class Allocator>
+	bool operator >=(	const map<Key, T, Compare, Allocator>& x,
+						const map<Key, T, Compare, Allocator>& y)
+	{
+		return !(x < y);
+	}
+	
+	template <class Key, class T, class Compare, class Allocator>
+	bool operator <=(	const map<Key, T, Compare, Allocator>& x,
+						const map<Key, T, Compare, Allocator>& y)
+	{
+		return !(y < x);
+	}
+	
 };	
 #endif //MAP_HPP
 
