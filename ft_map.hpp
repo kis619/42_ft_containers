@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/18 15:50:33 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/18 18:27:01 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,18 +151,26 @@ class map
 	{
 		return const_iterator(tree.end());
 	}
-	
+
 	///Reverse iterators
 	reverse_iterator rbegin(void)
 	{
-		reverse_iterator temp(end());
-		return (temp);
+		return reverse_iterator(tree.end());
 	}
-	
+
+	const_reverse_iterator rbegin(void) const
+	{
+		return const_reverse_iterator(tree.end());
+	}
+
 	reverse_iterator rend(void)
 	{
-		reverse_iterator temp(begin());
-		return (temp);
+		return reverse_iterator(tree.begin());
+	}
+
+	const_reverse_iterator rend(void) const
+	{
+		return const_reverse_iterator(tree.begin());
 	}
 
 	

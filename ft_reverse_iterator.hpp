@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 18:40:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/17 23:12:38 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/18 17:53:27 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ namespace ft
 		
 		iterator_type		base(void)						const	{return(_it);}
 		reference			operator*(void)					const	{iterator_type tmp = current; return *--tmp;}
-		pointer				operator->(void)				const	{return (_it.operator->());}
-		// pointer				operator->(void)				const	{iterator_type tmp = current; return (&(tmp->first));}
+		pointer				operator->(void)				const	{return (&(operator*()));}
 		reverse_iterator	&operator++(void)						{current--; return(*this);}
 		reverse_iterator	operator++(int)							{reverse_iterator temp = *this; current--; return (temp);}
 		reverse_iterator	&operator--(void)						{current++; return(*this);}
