@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/16 18:19:18 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/18 18:30:07 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,23 @@
 
 int main(void)
 {
-	// test_name("Testing the default constructor");
-	// 	ft::map <int, int> my_mapty;
-	// 	// ft::map <int, int> mapty;
-	// test_name("Testing the copy constructor");
-	// 	ft::map <int, int> my_mapty2(my_mapty);
+	test_name("Testing the default constructor");
+		ft::map <int, int> my_mapty;
 
-	// my_mapty.insert(ft::make_pair(1, 2));
-	// my_mapty.insert(ft::make_pair(2, 2));
-	// my_mapty.insert(ft::make_pair(3, 2));
-	// my_mapty.insert(ft::make_pair(4, 2));		
+	test_name("Testing the copy constructor");
+		ft::map <int, int> my_mapty2(my_mapty);
 
-	// test_name("Testing the iterator constructor");
-	// ft::map<int, int> my_iter_map(my_mapty.begin(), my_mapty.end());
-	// assert(my_mapty == my_iter_map);
+	test_name("Testing the iterator constructor");
+	my_mapty.insert(ft::make_pair(1, 2));
+	my_mapty.insert(ft::make_pair(2, 2));
+	my_mapty.insert(ft::make_pair(3, 2));
+	my_mapty.insert(ft::make_pair(4, 2));
+	ft::map<int, int> my_iter_map(my_mapty.begin(), my_mapty.end());
+	assert(my_mapty == my_iter_map);
 	
-	std::map <int, int> og_mapty;
-	std::map <int, int> og_mapty2(og_mapty);
-	std::map <int, int> og_mapty3;
-
-	og_mapty.insert(std::make_pair(1, 2));
-	og_mapty.insert(std::make_pair(2, 2));
-	og_mapty.insert(std::make_pair(3, 2));
-	og_mapty.insert(std::make_pair(4, 2));
-
-	// std::map<int, int> you_wanna(og_mapty.begin(), og_mapty.end());
-	// assert(og_mapty == you_wanna);
-	
+	test_name("Testing the assignment operator");
+	my_mapty2 = my_iter_map;
+	assert(my_mapty == my_iter_map);
 	
 	std::cout << COLOUR_DEFAULT;
 	return (0);

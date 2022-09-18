@@ -6,7 +6,7 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/21 23:30:29 by kmilchev          #+#    #+#              #
-#    Updated: 2022/09/16 17:53:51 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/09/18 17:43:29 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,3 +66,6 @@ c++ ./tests/utils.cpp ./tests/test_map_lookup.cpp && leaks -atExit -- ./a.out  >
 
 echo "${PURPLE} \ntest_map_construction.cpp${NC}"
 c++ ./tests/utils.cpp ./tests/test_map_construction.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
+
+echo "${PURPLE} \ntest_map_reverse_iterators.cpp${NC}"
+c++ ./tests/utils.cpp ./tests/test_map_reverse_iterators.cpp && leaks -atExit -- ./a.out  > file1; <file1 grep "leaks for"; rm file1
