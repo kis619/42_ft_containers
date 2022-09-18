@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/16 19:18:34 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/18 15:50:33 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ class map
 		tree.deallocateNil();
 	}
 	private:
-		typedef ft::RBTree< const value_type, value_compare, allocator_type>		tree_type;
+		typedef ft::RBTree< value_type, value_compare, allocator_type>		tree_type;
 
 	public:
 		typedef RBTreeIterator<typename tree_type::node>					iterator;
@@ -122,7 +122,9 @@ class map
 	{
 		typename tree_type::node_ptr n = tree.find_by_only_key(key);
 		if (n == tree.getNil())
-			return insert(ft::make_pair(key, T())).first->second;
+			insert(ft::make_pair(key, T()));
+			// return insert(ft::make_pair(key, T())).first->second;
+		n = tree.find_by_only_key(key);
 		return (n->value->second);
 	}
 	
@@ -149,6 +151,20 @@ class map
 	{
 		return const_iterator(tree.end());
 	}
+	
+	///Reverse iterators
+	reverse_iterator rbegin(void)
+	{
+		reverse_iterator temp(end());
+		return (temp);
+	}
+	
+	reverse_iterator rend(void)
+	{
+		reverse_iterator temp(begin());
+		return (temp);
+	}
+
 	
 	///Capacity
 	bool empty(void) const

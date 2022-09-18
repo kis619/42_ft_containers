@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/16 17:58:46 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/18 00:16:16 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ class RBTree
 		
 		struct Node
 		{
+			typedef		const T	value_type;
 			bool		colour;
 			pointer		value;
 			Node		*parent;
 			Node		*left;
 			Node		*right;
-			typedef pointer	key_value_pair;
 		};
 	
 		

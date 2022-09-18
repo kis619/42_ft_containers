@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/16 19:50:00 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/18 16:15:55 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ template< class node_type> //if i add the tree, I can add the compare maybe
 class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, node_type>
 {
 	public:
-		typedef ft::bidirectional_iterator_tag				iterator_category;
-		typedef node_type									value_type;
-		typedef node_type*									pointer;
-		typedef node_type&									reference;
-		typedef typename node_type::key_value_pair			pointer_v;
-	
-	
+		typedef node_type *																				node_ptr;
+		typedef typename node_type::value_type															value_type;
+		typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::iterator_category	iterator_category;
+		typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::pointer				pointer;
+		typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::reference			reference;
+
+
 	///Constructors
-	RBTreeIterator(void) : ptr(NULL), nil_ptr(NULL) {};
-	RBTreeIterator(pointer node_ptr, pointer last_element) : ptr(node_ptr), nil_ptr(last_element){};
+	RBTreeIterator(node_ptr ptr = NULL) : ptr(ptr), nil_ptr(ptr) {};
+	RBTreeIterator(node_ptr ptr, node_ptr last_element) : ptr(ptr), nil_ptr(last_element){};
 	RBTreeIterator(const RBTreeIterator &copy) : ptr(copy.ptr), nil_ptr(copy.nil_ptr) {};
 	RBTreeIterator &operator=(const RBTreeIterator &other)
 	{
@@ -42,7 +42,7 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, node_
 	///Operators - Increment|Decrement
 	RBTreeIterator &operator++()	//pre-increment
 	{
-		pointer temp = ptr;
+		node_ptr temp = ptr;
 		// std::cout << &(ptr->parent) << std::endl;
 		if (ptr != NULL && ((ptr->parent == NULL) || (ptr->right != nil_ptr)))
 		{
@@ -64,10 +64,10 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, node_
 		ptr = ptr->parent;
 		return(*this);
 	};
-	
+
 	RBTreeIterator &operator--()	//pre-decrement
 	{
-		pointer temp = ptr;
+		node_ptr temp = ptr;
 		if (!temp->parent && temp->left == nil_ptr)
 			temp = temp->parent;
 		else if (temp == nil_ptr)
@@ -97,41 +97,46 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, node_
 		ptr = temp;
 		return (*this);
 	};
-	
+
 	RBTreeIterator operator++(int) {RBTreeIterator temp(*this); ++(*this); return (temp);} //post-increment
 	RBTreeIterator operator--(int) { RBTreeIterator temp(*this); --(*this); return(temp);} //post-derement
 	///Operators - (de)reference
-	reference operator*() {return (*ptr);};
-	pointer_v operator->() {return (ptr->value);};
-	
+	reference operator*(void) const
+	{
+		return *(ptr->value);
+	};
+	// ft::pair<const int, int> & operator*() const {return *(ptr->value);};
+	pointer operator->(void) const {return &(operator*());};
 
 
-	pointer getPtr(void) const
+
+	node_ptr getPtr(void) const
 		{return (ptr);}
 
-	pointer getNilPtr(void) const
+	node_ptr getNilPtr(void) const
 		{return (nil_ptr);}
-	
+
 	private: 
-		pointer ptr;
-		pointer nil_ptr;
-		pointer _prev;
+		node_ptr ptr;
+		node_ptr nil_ptr;
+		node_ptr _prev;
 };
 
 template< class node_type> //if i add the tree, I can add the compare maybe
 class const_RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_type>
 {
 	public:
-		typedef ft::bidirectional_iterator_tag				iterator_category;
-		typedef const node_type									value_type;
-		typedef node_type*									pointer;
-		typedef node_type&									reference;
-		typedef typename node_type::key_value_pair			pointer_v;
+		typedef node_type *																				node_ptr;
+		typedef const typename node_type::value_type													value_type;
+		typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::iterator_category	iterator_category;
+		typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::pointer				pointer;
+		typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::reference			reference;
+		
 	
 	
 	///Constructors
-	const_RBTreeIterator(void) : ptr(NULL), nil_ptr(NULL) {};
-	const_RBTreeIterator(pointer node_ptr, pointer last_element) : ptr(node_ptr), nil_ptr(last_element){};
+	const_RBTreeIterator(node_ptr ptr = NULL) : ptr(ptr), nil_ptr(ptr) {};
+	const_RBTreeIterator(node_ptr ptr, node_ptr last_element) : ptr(ptr), nil_ptr(last_element){};
 	const_RBTreeIterator(const const_RBTreeIterator &copy) : ptr(copy.ptr), nil_ptr(copy.nil_ptr) {};
 	const_RBTreeIterator &operator=(const const_RBTreeIterator &other)
 	{
@@ -150,7 +155,7 @@ class const_RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_t
 	const_RBTreeIterator &operator++()	//pre-increment
 	{
 		// std::cout << "++\n";
-		pointer temp = ptr;
+		node_ptr temp = ptr;
 		if ((ptr->parent == NULL) || (ptr->right != nil_ptr))
 		{
 			// std::cout << "SHOULD BE HERE\n";
@@ -175,7 +180,7 @@ class const_RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_t
 	
 	const_RBTreeIterator &operator--()	//pre-decrement
 	{
-		pointer temp = ptr;
+		node_ptr temp = ptr;
 		if (ptr->right != nil_ptr && ptr->left != nil_ptr)
 		{
 			temp = ptr->left;
@@ -193,17 +198,17 @@ class const_RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_t
 	const_RBTreeIterator operator++(int) {const_RBTreeIterator temp(*this); ++(*this); return (temp);} //post-increment
 	const_RBTreeIterator operator--(int) {const_RBTreeIterator temp(*this); --(*this); return(temp);} //post-derement
 	///Operators - (de)reference
-	reference operator*() {return (*ptr);};
-	pointer_v operator->() {return (ptr->value);};
+	reference operator*() {return *(ptr->value);};
+	pointer operator->(void) const {return &(operator*());};
 	
 
 
-	pointer getPtr(void) const
+	node_ptr getPtr(void) const
 		{return (ptr);}
 	
 	private: 
-		pointer ptr;
-		pointer nil_ptr;
+		node_ptr ptr;
+		node_ptr nil_ptr;
 };
 	///LOGICAL OPERATORS
 	template< class node_type>

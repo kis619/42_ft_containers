@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/16 18:18:15 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/18 16:20:06 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int main(void)
 	ft::vector<ft::pair<int, int> > pair_arr;
 	tree_type tree(comp, alloc);
 	
-
 	
 	fill_array(pair_arr);
 	////////////////////Tests
@@ -50,7 +49,8 @@ int main(void)
 		test_name("Testing the method insert");
 		for (size_t i = 0; i < 13; i++)
 		{
-			assert(pair_arr[i].first == tree.insert(pair_arr.at(i))->first);
+			tree.insert(pair_arr.at(i));
+			// assert(pair_arr[i].first == tree.insert(pair_arr.at(i))->first);
 		}
 		std::cout << COLOUR_GREEN;
 		tree.print_tree();
