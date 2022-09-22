@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/22 15:42:18 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:27:21 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,14 +194,14 @@ class map
 	///Modifiers
 	void clear(void)
 	{
-		erase(tree.begin(), tree.end());
-		// iterator it_begin = this->begin();
-		// iterator it_end = this->end();
-		// while(it_begin != it_end)
-		// {
-		// 	tree.erase(*(it_begin.getPtr()->value));
-		// 	it_begin = begin();
-		// }
+		// erase(tree.begin(), tree.end());
+		iterator it_begin = this->begin();
+		iterator it_end = this->end();
+		while(it_begin != it_end)
+		{
+			tree.erase(*(it_begin.getPtr()->value));
+			it_begin = begin();
+		}
 	}
 
 	void swap (map& x)
@@ -235,7 +235,8 @@ class map
 	///Erase
 	size_type erase(key_type key)
 	{
-		return(tree.erase_unique(key));
+		iterator n = find(key);
+		return(tree.erase(*(n.getPtr()->value)));
 	}
 
 	void erase( iterator pos )
@@ -273,15 +274,32 @@ class map
 		return (1);
 	}
 
-	iterator find (const key_type& key)
+	iterator find( const key_type& key )
 	{
-		return (tree.find_iterator(key));
+		typename tree_type::node_ptr current = tree.getRoot();
+
+		while (current != tree.getNil()) {
+			if (key == current->value->first)
+				return (current);
+			else
+				current = key_comp()(key, current->value->first) ? current->left : current->right;
+		}
+		return end();
 	}
 
-	const_iterator find (const key_type& key) const
-	{
-		return (tree.find_iterator(key));
-	}
+	
+	// const_iterator find (const key_type& key) const
+	// {
+	// 	typename tree_type::node_ptr current = tree.getRoot();
+
+	// 	while (current != tree.getNil()) {
+	// 		if (key == current->value->first)
+	// 			return (current);
+	// 		else
+	// 			current = key_comp()(key, current->value->first) ? current->left : current->right;
+	// 	}
+	// 	return end();
+	// }
 
 	iterator lower_bound (const key_type& key)
 	{
