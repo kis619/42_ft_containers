@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/13 15:51:07 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:57:12 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,9 @@ namespace ft
 	template<class Key>
 	typename RBTree<T, Compare, Allocator>::size_type RBTree<T, Compare, Allocator>::erase_unique(const Key &key)
 	{
-		node_ptr node = root;
-
+		node_ptr node = find_by_only_key(key);
 		if (node == nil_node)
 			return (0);
-		while(node != nil_node)
-		{
-			if (node->value->first == key)
-				break ;
-			if (key < node->value->first)
-				node = node->left;
-			else if (key > node->value->first)
-				node = node->right;
-		}
-		
-;
 		return(erase(*node->value));
 	}
 	

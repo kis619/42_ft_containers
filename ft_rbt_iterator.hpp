@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/22 14:29:42 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:36:38 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,7 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typen
 
 	RBTreeIterator operator++(int) {RBTreeIterator temp(*this); ++(*this); return (temp);}
 	RBTreeIterator operator--(int) { RBTreeIterator temp(*this); --(*this); return(temp);}
-	reference operator*(void) const
-	{
-		return *(ptr->value);
-	};
+	reference operator*(void) const {return *(ptr->value);};
 	pointer operator->(void) const {return ptr->value;};
 
 	node_ptr getPtr(void) const
@@ -118,14 +115,13 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typen
 };
 
 template< class node_type>
-class const_RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_type>
+class const_RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typename node_type::value_type>
 {
 	public:
 		typedef node_type *																				node_ptr;
 		typedef const typename node_type::value_type													value_type;
-		typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::iterator_category	iterator_category;
-		typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::pointer				pointer;
-		typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::reference			reference;
+		typedef typename node_type::value_type* 														pointer;
+		typedef typename node_type::value_type&															reference;
 		
 	
 	
@@ -194,13 +190,13 @@ class const_RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_t
 	const_RBTreeIterator operator--(int) {const_RBTreeIterator temp(*this); --(*this); return(temp);} //post-derement
 	///Operators - (de)reference
 	reference operator*() {return *(ptr->value);};
-	pointer operator->(void) const {return &(operator*());};
+	pointer operator->(void) const {return ptr->value;};
 	
-
-
 	node_ptr getPtr(void) const
 		{return (ptr);}
 	
+	node_ptr getNilPtr(void) const
+		{return (nil_ptr);}
 	private: 
 		node_ptr ptr;
 		node_ptr nil_ptr;

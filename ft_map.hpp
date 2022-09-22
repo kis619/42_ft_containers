@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/22 14:44:33 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:42:18 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -334,7 +334,7 @@ class map
 	bool operator ==(	const map<Key, T, Compare, Allocator>& x,
 						const map<Key, T, Compare, Allocator>& y)
 	{
-		return(x.size() == y.size() && equal(x.begin(), x.end(), y.begin()));
+		return(x.size() == y.size() && ft::equal(x.begin(), x.end(), y.begin()));
 	}
 
 	template <class Key, class T, class Compare, class Allocator>
