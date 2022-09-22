@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:19:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/03 22:56:38 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:49:54 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,19 @@ namespace ft
 	template <> struct is_integral<unsigned long int> : true_type {};
 	template <> struct is_integral<unsigned long long int> : true_type {};
 
+	template<class InputIt1, class InputIt2>
+	bool equal( InputIt1 first1, InputIt1 last1, 
+				InputIt2 first2)
+	{
+		for (; first1 != last1; ++first1, ++first2) 
+		{
+			if (!(*first1 == *first2))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 
 	//Checks if the first range [first1, last1) is lexicographically less than the second range [first2, last2).
 	template< class InputIt1, class InputIt2 >
@@ -86,10 +99,10 @@ namespace ft
 		//assignment operator
 		pair &operator=( const pair &other )
 		{
-			// first = other.first;
-			// second = other.second;
+			first = other.first;
+			second = other.second;
 			
-			new (this) pair(other.first, other.second); //placement new operator
+			// new (this) pair(other.first, other.second); //placement new operator
 			return (*this);
 		}
 		
@@ -98,7 +111,7 @@ namespace ft
 	template< class T1, class T2 >
 	bool operator==(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
 	{
-		if (lhs.first == rhs.first && lhs.first == rhs.first)
+		if (lhs.first == rhs.first && lhs.second == rhs.second)
 			return (true);
 		return (false);
 	}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tree.hpp                                        :+:      :+:    :+:   */
+/*   old_tree.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/22 14:40:41 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/21 13:49:51 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,37 +20,37 @@
 
 namespace ft
 {
-
-template <class val>
-struct Node
-{
-	typedef		val	value_type;
-	
-	bool		colour;
-	value_type	*value;
-	Node		*parent;
-	Node		*left;
-	Node		*right;
-};
-
 template <class T,  class Compare, class Allocator>
 class RBTree
 {
+	public:
+		struct Node;
 	public:
 		typedef T												value_type;
 		typedef Allocator										allocator_type;
 		typedef Compare											value_comp;
 		typedef size_t											size_type;
-		// typedef typename allocator_type::pointer				pointer;
-		typedef ft::Node<value_type>							node;
-		typedef ft::Node<value_type>*							node_ptr;
-		typedef RBTreeIterator<node>							iterator;
-		typedef const_RBTreeIterator<node>						const_iterator;
-
+		typedef Node											node;
+		typedef Node*											node_ptr;
+		typedef RBTreeIterator<Node>							iterator;
+		typedef const_RBTreeIterator<Node>						const_iterator;
+		typedef typename allocator_type::pointer				pointer;
+		
+		struct Node
+		{
+			typedef		const T	value_type;
+			bool		colour;
+			pointer		value;
+			Node		*parent;
+			Node		*left;
+			Node		*right;
+		};
+	
+		
 	private:
 		node_ptr				root;
 		node_ptr				nil_node;
-		std::allocator<node>	node_alloc;
+		std::allocator<Node>	node_alloc;
 		allocator_type			alloc;
 		value_comp				comp;
 		size_type				_size;
@@ -75,8 +75,21 @@ class RBTree
 	{
 		if (node != nil_node)
 			alloc.deallocate(node->value, 1);
+		// alloc.destroy
 		node_alloc.deallocate(node, 1);
+		// node = NULL;
 	}
+	
+	void initialise_RED_node(node_ptr new_node, const value_type &val)
+	{
+		new_node->parent	= NULL;
+		new_node->left		= nil_node;
+		new_node->right		= nil_node;
+		new_node->colour	= RED;
+		new_node->value		= alloc.allocate(1);
+		alloc.construct(new_node->value, val);
+	}
+
 
 	///INSERT
 	node_ptr	insert_test(const value_type &val);
