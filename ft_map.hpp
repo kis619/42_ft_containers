@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/22 17:27:21 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/22 21:51:44 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,7 +216,10 @@ class map
 	{
 		typename tree_type::node_ptr n = tree.find(value);
 		if (n == tree.getNil())
+		{
+		// std::cout << "VLaue: " << value.first << std::endl;
 			return(ft::make_pair(tree.insert(value), true));
+		}
 		return(ft::make_pair(tree.insert(value), false));
 	}
 	
@@ -236,6 +239,8 @@ class map
 	size_type erase(key_type key)
 	{
 		iterator n = find(key);
+		if (n.getPtr() == tree.getNil())
+			return (0);
 		return(tree.erase(*(n.getPtr()->value)));
 	}
 
