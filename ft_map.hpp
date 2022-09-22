@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/18 18:48:06 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:44:33 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,7 +217,7 @@ class map
 		typename tree_type::node_ptr n = tree.find(value);
 		if (n == tree.getNil())
 			return(ft::make_pair(tree.insert(value), true));
-		return(make_pair(tree.insert(value), false));
+		return(ft::make_pair(tree.insert(value), false));
 	}
 	
 	iterator insert (iterator position, const value_type& value)
@@ -321,12 +321,12 @@ class map
 
 	pair<iterator,iterator> equal_range (const key_type& key)
 	{
-		return (make_pair(lower_bound(key), upper_bound(key)));
+		return (ft::make_pair(lower_bound(key), upper_bound(key)));
 	}
 
 	pair<const_iterator,const_iterator> equal_range (const key_type& key) const
 	{
-		return (make_pair(lower_bound(key), upper_bound(key)));
+		return (ft::make_pair(lower_bound(key), upper_bound(key)));
 	}
 };
 

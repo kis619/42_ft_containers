@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/18 16:15:55 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:29:42 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,16 @@
 namespace ft
 {
 template< class node_type> //if i add the tree, I can add the compare maybe
-class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, node_type>
+class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typename node_type::value_type>
 {
 	public:
 		typedef node_type *																				node_ptr;
 		typedef typename node_type::value_type															value_type;
-		typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::iterator_category	iterator_category;
-		typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::pointer				pointer;
-		typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::reference			reference;
-
+		typedef typename node_type::value_type* 														pointer;
+		typedef typename node_type::value_type&															reference;
+		// typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::iterator_category	iterator_category;
+		// typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::pointer				pointer;
+		// typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::reference			reference;
 
 	///Constructors
 	RBTreeIterator(node_ptr ptr = NULL) : ptr(ptr), nil_ptr(ptr) {};
@@ -39,11 +40,9 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, node_
 		return (*this);
 	}
 
-	///Operators - Increment|Decrement
-	RBTreeIterator &operator++()	//pre-increment
+	RBTreeIterator &operator++()
 	{
 		node_ptr temp = ptr;
-		// std::cout << &(ptr->parent) << std::endl;
 		if (ptr != NULL && ((ptr->parent == NULL) || (ptr->right != nil_ptr)))
 		{
 			temp = ptr->right;
@@ -65,7 +64,7 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, node_
 		return(*this);
 	};
 
-	RBTreeIterator &operator--()	//pre-decrement
+	RBTreeIterator &operator--()
 	{
 		node_ptr temp = ptr;
 		if (!temp->parent && temp->left == nil_ptr)
@@ -98,17 +97,13 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, node_
 		return (*this);
 	};
 
-	RBTreeIterator operator++(int) {RBTreeIterator temp(*this); ++(*this); return (temp);} //post-increment
-	RBTreeIterator operator--(int) { RBTreeIterator temp(*this); --(*this); return(temp);} //post-derement
-	///Operators - (de)reference
+	RBTreeIterator operator++(int) {RBTreeIterator temp(*this); ++(*this); return (temp);}
+	RBTreeIterator operator--(int) { RBTreeIterator temp(*this); --(*this); return(temp);}
 	reference operator*(void) const
 	{
 		return *(ptr->value);
 	};
-	// ft::pair<const int, int> & operator*() const {return *(ptr->value);};
-	pointer operator->(void) const {return &(operator*());};
-
-
+	pointer operator->(void) const {return ptr->value;};
 
 	node_ptr getPtr(void) const
 		{return (ptr);}
@@ -122,7 +117,7 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, node_
 		node_ptr _prev;
 };
 
-template< class node_type> //if i add the tree, I can add the compare maybe
+template< class node_type>
 class const_RBTreeIterator : ft::iterator<ft::bidirectional_iterator_tag, node_type>
 {
 	public:

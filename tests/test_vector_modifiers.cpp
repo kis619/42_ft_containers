@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 20:49:56 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/16 18:17:31 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/21 11:10:22 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,8 @@ int main(void)
 		my_vec.insert(my_vec.end(), my_new_v.begin(), my_new_v.end());
 		og_vec.insert(og_vec.end(), og_new_v.begin(), og_new_v.end());
 		my_vec.insert(my_vec.end(), my_new_v.begin(), my_new_v.end());
+		std::cout << my_vec.capacity() << std::endl;
+		std::cout << og_vec.capacity() << std::endl;
 		test_capacity_size_values(my_vec, og_vec);
 	}
 	
