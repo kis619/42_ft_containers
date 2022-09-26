@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/22 15:57:12 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/26 15:02:26 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 namespace ft
 {
-	template <class T,  class Compare, class Allocator>
-	template<class Key>
-	typename RBTree<T, Compare, Allocator>::size_type RBTree<T, Compare, Allocator>::erase_unique(const Key &key)
-	{
-		node_ptr node = find_by_only_key(key);
-		if (node == nil_node)
-			return (0);
-		return(erase(*node->value));
-	}
+	// template <class T,  class Compare, class Allocator>
+	// template<class Key>
+	// typename RBTree<T, Compare, Allocator>::size_type RBTree<T, Compare, Allocator>::erase_unique(const Key &key)
+	// {
+	// 	node_ptr node = find_by_only_key(key);
+	// 	if (node == nil_node)
+	// 		return (0);
+	// 	return(erase(*node->value));
+	// }
 	
 	template <class T,  class Compare, class Allocator>
 	typename RBTree<T, Compare, Allocator>::size_type RBTree<T, Compare, Allocator>::erase(const value_type &val)
@@ -84,11 +84,10 @@ namespace ft
 			fix_erase(x);
 		}
 		
-		///saw it in Kacper's code // need to check with him what for
-		// Node *temp1 = this->root;
-		// while (temp1->right != this->nil_node)
-		// 	temp1 = temp1->right;
-		// this->nil_node->parent = temp1;
+		node_ptr temp = root;
+		while (temp->right != nil_node)
+			temp = temp->right;
+		nil_node->parent = temp;
 		return(1);
 	}
 

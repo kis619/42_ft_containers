@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/22 21:51:44 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/26 15:28:18 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ class map
 	
 	class value_compare : public std::binary_function<value_type, value_type, bool>
 	{
-		friend class map;
+		// friend class map;
 
 		public: //should be protected
 			key_compare comp;
@@ -255,6 +255,7 @@ class map
 		while(first != last)
 		{
 			first++;
+			// std::cout << (temp.getPtr()->value)->first << std::endl;
 			tree.erase(*(temp.getPtr()->value));
 			temp = first;
 		}

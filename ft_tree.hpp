@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/22 14:40:41 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/26 15:34:23 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ struct Node
 template <class T,  class Compare, class Allocator>
 class RBTree
 {
+	// friend class RBTreeIterator;
 	public:
 		typedef T												value_type;
 		typedef Allocator										allocator_type;
@@ -85,8 +86,6 @@ class RBTree
 	void 		rotate_right(node_ptr x); //util for insert and erase
 	
 	///ERASE
-	template<class Key>
-	size_type	erase_unique(const Key &key);
 	size_type	erase(const value_type &val);
 	void		fix_erase(node_ptr x);
 	void		rb_transplant(node_ptr u, node_ptr v); 	//util for erase
@@ -110,47 +109,47 @@ class RBTree
 	///ITERATORS
 	iterator begin(void)
 	{
-		return iterator(min(root), nil_node);
+		return iterator(min(root), min(root), nil_node);
 	}
 	
 	const_iterator begin(void) const
 	{
-		return const_iterator(min(root), nil_node);
+		return const_iterator(min(root), min(root), nil_node);
 	}
 	
 	iterator end(void)
 	{
-		iterator it = iterator(nil_node, nil_node);
+		iterator it = iterator(nil_node, min(root), nil_node);
 		return it;
 	}
 	
 	const_iterator end(void) const
 	{
-		return const_iterator(nil_node, nil_node);
+		return const_iterator(nil_node, min(root), nil_node);
 	}
 
 	iterator insert(const value_type &val)
 	{
-		return iterator(insert_test(val), nil_node);
+		return iterator(insert_test(val), min(root), nil_node);
 	}
 	
-	template<class Key>
-	iterator find_iterator(const Key &key)
-	{
-		node_ptr n = find_by_only_key(key);
-		if (n == nil_node)
-			return end();
-		return iterator(find_by_only_key(key), nil_node);
-	}
+	// template<class Key>
+	// iterator find_iterator(const Key &key)
+	// {
+	// 	node_ptr n = find_by_only_key(key);
+	// 	if (n == nil_node)
+	// 		return end();
+	// 	return iterator(find_by_only_key(key), nil_node);
+	// }
 	
-	template<class Key>
-	const_iterator find_iterator(const Key &key) const
-	{
-		node_ptr n = find_by_only_key(key);
-		if (n == nil_node)
-			return end();
-		return const_iterator(find_by_only_key(key), nil_node);
-	}
+	// template<class Key>
+	// const_iterator find_iterator(const Key &key) const
+	// {
+	// 	node_ptr n = find_by_only_key(key);
+	// 	if (n == nil_node)
+	// 		return end();
+	// 	return const_iterator(find_by_only_key(key), nil_node);
+	// }
 
 	///GETTERS
 	node_ptr getRoot(void) const

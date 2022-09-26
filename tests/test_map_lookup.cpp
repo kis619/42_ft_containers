@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/18 17:39:57 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:23:24 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,10 @@ int main(void)
 		og_map.insert(std::make_pair(16, "16Confusion"));
 		my_map.insert(ft::make_pair(17, "Confusion"));
 		my_map.insert(ft::make_pair(16, "16Confusion"));
-		og_iter = og_map.lower_bound(13);
-		my_iter = my_map.lower_bound(13);
+		og_iter = og_map.lower_bound(20);
+		my_iter = my_map.lower_bound(20);
+		og_iter--;
+		my_iter--;
 		assert(og_iter->second == my_iter->second);
 	}
 	
