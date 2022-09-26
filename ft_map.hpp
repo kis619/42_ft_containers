@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/26 15:28:18 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/26 15:39:30 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,14 +194,7 @@ class map
 	///Modifiers
 	void clear(void)
 	{
-		// erase(tree.begin(), tree.end());
-		iterator it_begin = this->begin();
-		iterator it_end = this->end();
-		while(it_begin != it_end)
-		{
-			tree.erase(*(it_begin.getPtr()->value));
-			it_begin = begin();
-		}
+		erase(tree.begin(), tree.end());
 	}
 
 	void swap (map& x)
