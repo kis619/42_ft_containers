@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/26 15:27:06 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/26 18:56:51 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,9 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typen
 	node_ptr getNilPtr(void) const
 		{return (nil_ptr);}
 
+	node_ptr getFirstPtr(void) const
+		{return (first_ptr);}
+
 	private: 
 		node_ptr ptr;
 		node_ptr nil_ptr;
@@ -164,50 +167,72 @@ class const_RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag,
 	{
 		ptr = other.getPtr();
 		nil_ptr = other.getNilPtr();
+		first_ptr = other.getFirstPtr();
 		return (*this);
 	}
 
 	///Operators - Increment|Decrement
 	const_RBTreeIterator &operator++()	//pre-increment
 	{
-		// std::cout << "++\n";
-		node_ptr temp = ptr;
-		if ((ptr->parent == NULL) || (ptr->right != nil_ptr))
+		if (ptr == nil_ptr && first_ptr != ptr)
+			ptr = first_ptr;
+		// else if (!node->right->NIL) 
+		else if (ptr->right != nil_ptr) 
 		{
-			// std::cout << "SHOULD BE HERE\n";
-			temp = ptr->right;
-			while(temp->left != nil_ptr)
-				temp = temp->left;
-			ptr = temp;
-			return(*this);
+			ptr = ptr->right;
+			// while (!node->left->NIL)
+			while (ptr->left != nil_ptr)
+				ptr = ptr->left;
 		}
-		while(ptr->parent)
+		else
 		{
+			node_ptr current = ptr;
+			node_ptr tmp = ptr;
+			if (ptr->parent == NULL) 
+			{ 
+				ptr = current->right;
+				return (*this);
+			}
 			ptr = ptr->parent;
-			if (ptr->parent == NULL)
+			while (ptr->left != tmp)
 			{
-				ptr = nil_ptr;
-				return(*this);
+				if (ptr->parent == NULL)
+				{ 
+					ptr = current->right;
+					break;
+				}
+				tmp = ptr;
+				ptr = ptr->parent;
 			}
 		}
-		ptr = ptr->parent;
 		return(*this);
 	};
 	
 	const_RBTreeIterator &operator--()	//pre-decrement
 	{
-		node_ptr temp = ptr;
-		if (ptr->right != nil_ptr && ptr->left != nil_ptr)
-		{
-			temp = ptr->left;
-			while(temp->right != nil_ptr && temp->right->value->first < ptr->value->first)
-				temp = temp->right;
-			ptr = temp;
-			return(*this);
-		}
-		while(ptr != nil_ptr && ptr->parent != NULL && ptr->parent->value->first > ptr->value->first)
+		if (ptr == nil_ptr) 
 			ptr = ptr->parent;
-		ptr = ptr->parent;
+		else if (ptr->left != nil_ptr)
+		{
+			ptr = ptr->left;
+			while (ptr->right != nil_ptr)
+				ptr = ptr->right;
+		} 
+		else 
+		{
+			node_ptr tmp = ptr;
+			ptr = ptr->parent;
+			while (ptr->right != tmp)
+			{
+				tmp = ptr;
+				if (ptr->parent == NULL)
+				{ 
+					ptr = tmp->left - 1;
+					break;
+				}
+				ptr = ptr->parent;
+			}
+		}
 		return(*this);
 	};
 	
