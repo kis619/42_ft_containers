@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/26 18:56:51 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/27 09:00:07 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 namespace ft
 {
-template< class node_type> //if i add the tree, I can add the compare maybe
+template< class node_type>
 class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typename node_type::value_type>
 {
 	public:
@@ -25,9 +25,6 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typen
 		typedef typename node_type::value_type															value_type;
 		typedef typename node_type::value_type* 														pointer;
 		typedef typename node_type::value_type&															reference;
-		// typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::iterator_category	iterator_category;
-		// typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::pointer				pointer;
-		// typedef typename ft::iterator<ft::bidirectional_iterator_tag, value_type>::reference			reference;
 
 	///Constructors
 	RBTreeIterator(node_ptr ptr = NULL) : ptr(ptr), nil_ptr(ptr), first_ptr(ptr) {};
@@ -43,14 +40,11 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typen
 
 	RBTreeIterator &operator++()
 	{
-		// node_ptr temp = ptr;
 		if (ptr == nil_ptr && first_ptr != ptr)
 			ptr = first_ptr;
-		// else if (!node->right->NIL) 
 		else if (ptr->right != nil_ptr) 
 		{
 			ptr = ptr->right;
-			// while (!node->left->NIL)
 			while (ptr->left != nil_ptr)
 				ptr = ptr->left;
 		}
@@ -76,18 +70,6 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typen
 			}
 		}
 		return(*this);
-
-		// else {
-		// 		T current = node;
-		// 		T tmp = node;
-		// 		node = node->parent;
-		// 		if (!node) { node = current->right; return; }
-		// 		while (node->left != tmp) {
-		// 			if (!node->parent) { node = current->right; break; }
-		// 			tmp = node;
-		// 			node = node->parent;
-		// 		}
-		// 	}
 	};
 
 	RBTreeIterator &operator--()
@@ -120,10 +102,7 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typen
 
 	RBTreeIterator operator++(int) {RBTreeIterator temp(*this); ++(*this); return (temp);}
 	RBTreeIterator operator--(int) { RBTreeIterator temp(*this); --(*this); return(temp);}
-	reference operator*(void) const
-	{
-		return *(ptr->value);
-	};
+	reference operator*(void) const {return *(ptr->value);};
 	pointer operator->(void) const {return ptr->value;};
 
 	node_ptr getPtr(void) const
