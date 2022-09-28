@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/27 09:00:07 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/28 06:52:31 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ class const_RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag,
 	const_RBTreeIterator(node_ptr ptr = NULL) : ptr(ptr), nil_ptr(ptr), first_ptr(ptr) {};
 	const_RBTreeIterator(node_ptr ptr, node_ptr first_element, node_ptr last_element) : ptr(ptr), nil_ptr(last_element), first_ptr(first_element){};
 	const_RBTreeIterator(const const_RBTreeIterator &copy) : ptr(copy.ptr), nil_ptr(copy.nil_ptr), first_ptr(copy.first_ptr) {};
+	const_RBTreeIterator(const ft::RBTreeIterator<node_type> &copy) : ptr(copy.getPtr()), nil_ptr(copy.getNilPtr()), first_ptr(copy.getFirstPtr()) {};
 	const_RBTreeIterator &operator=(const const_RBTreeIterator &other)
 	{
 		ptr = other.ptr;
@@ -142,7 +143,7 @@ class const_RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag,
 		first_ptr = other.first_ptr;
 		return (*this);
 	}
-	const_RBTreeIterator &operator=(const RBTreeIterator<node_type> &other)
+	const_RBTreeIterator &operator=(const ft::RBTreeIterator<node_type> &other)
 	{
 		ptr = other.getPtr();
 		nil_ptr = other.getNilPtr();
