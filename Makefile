@@ -6,7 +6,7 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 13:21:52 by kmilchev          #+#    #+#              #
-#    Updated: 2022/09/26 15:32:13 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/09/28 10:02:24 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,13 +77,17 @@ test_map_reverse_iterators:
 test_map_logical_operators:
 	$(CC) -g tests/utils.cpp tests/test_map_logical_operators.cpp -g $(FLAGS) && ./a.out
 	
+	
+test_stack:
+	$(CC) -g tests/utils.cpp tests/test_stack_constructor.cpp -g $(FLAGS) && ./a.out
+	
 test:
 	sh run_tests.sh
 
 tests:	test_iterator_class test_reverse_iterator test_vector_capacity test_vector_construction test_vector_element_access \
 		test_vector_iter_methods test_vector_modifiers test_vector_non_member_swap test_vector_logical_operators \
 		test_pair_construction test_tree_methods test_tree_iterator test_map_element_access test_map_capacity test_map_modifiers \
-		test_map_observers test_map_lookup test_map_reverse_iterators test_map_logical_operators
+		test_map_observers test_map_lookup test_map_reverse_iterators test_map_logical_operators test_stack
 
 map_tests: test_map_element_access test_map_capacity test_map_modifiers test_map_observers test_map_lookup test_map_construction test_map_reverse_iterators \
 			test_map_logical_operators
