@@ -6,12 +6,12 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 07:20:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/28 10:09:37 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/28 10:33:13 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_STACK
-# define FT_STACK
+#ifndef FT_stack
+# define FT_stack
 # include "ft_vector.hpp"
 namespace ft
 {
@@ -30,8 +30,9 @@ namespace ft
 		
 		public:
 			explicit stack(const Container & cont = Container()) : c(cont) {}
-			stack(const stack & other) : c(other.c) {}
-		
+			stack(const stack & copy) : c(copy.c) {}
+			~stack() {}
+			stack &operator=(const stack &other) {c = other.c; return(*this);}
 		///Element Access
 		reference top(void) {return c.back();}
 		const_reference top(void) const {return c.back();}
@@ -43,8 +44,16 @@ namespace ft
 		///Modifiers
 		void push(const value_type &val) {c.push_back(val);}
 		void pop(void) {c.pop_back();}
+
+		///Logical operators
+		friend bool operator==(const stack &lhs, const stack &rhs) 				{ return lhs.c == rhs.c; };
+		friend bool operator!=(const stack &lhs, const stack &rhs) 				{ return lhs.c != rhs.c; };
+		friend bool operator<=(const stack &lhs, const stack &rhs) 				{ return lhs.c <= rhs.c; };
+		friend bool operator>=(const stack &lhs, const stack &rhs) 				{ return lhs.c >= rhs.c; };
+		friend bool operator<(const stack &lhs, const stack &rhs) 				{ return lhs.c < rhs.c; };
+		friend bool operator>(const stack &lhs, const stack &rhs) 				{ return lhs.c > rhs.c; };
 	};
 }
 
 
-#endif //FT_STACK
+#endif //FT_stack
