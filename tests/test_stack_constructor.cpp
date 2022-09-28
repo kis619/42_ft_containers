@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 07:43:52 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/28 10:10:57 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/28 10:36:49 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,13 @@
 int main(void)
 {
 	std::stack<int, std::vector<int> > og_stack;
-	ft::stack<int, ft::vector<int> > my_stack;
+	test_name("Testing the default constructor");
+		ft::stack<int, ft::vector<int> > my_stack;
 
+	test_name("Testing the copy_constructor");
+		ft::stack<int, ft::vector<int> > my_second_stack(my_stack);
+		
+	
 	test_name("Testing .size()");
 		assert(og_stack.size() == my_stack.size());
 	test_name("Testing .empty()");
@@ -43,6 +48,11 @@ int main(void)
 			assert(og_stack.empty() == my_stack.empty());
 		}
 	
+	test_name("Testing the assignment operator");
+		ft::stack<int, ft::vector<int> > my_third_stack;
+		my_second_stack = my_stack;
+		assert(my_second_stack.size() == my_stack.size());
+		
 	test_name("Testing .top()");
 		assert(og_stack.top() == my_stack.top());
 		
@@ -54,6 +64,51 @@ int main(void)
 			assert(og_stack.size() == my_stack.size());
 			assert(og_stack.empty() == my_stack.empty());
 		}
+{
+	test_name("Testing operator==");
+		ft::stack<int> stack_1;
+		ft::stack<int> stack_2;
+		assert(stack_1 == stack_2);
+}
+
+{
+	test_name("Testing operator!=");
+		ft::stack<int> stack_1;
+		ft::stack<int> stack_2;
+		stack_1.push(8);
+		assert(stack_1 != stack_2);
+}	
+
+{
+	test_name("Testing operator>=");
+		ft::stack<int> stack_1;
+		ft::stack<int> stack_2;
+		stack_1.push(8);
+		assert(stack_1 >= stack_2);
+}	
+
+{
+	test_name("Testing operator>");
+		ft::stack<int> stack_1;
+		ft::stack<int> stack_2;
+		stack_1.push(8);
+		assert(stack_1 > stack_2);
+}
 	
+{
+	test_name("Testing operator<=");
+		ft::stack<int> stack_1;
+		ft::stack<int> stack_2;
+		stack_1.push(8);
+		assert(stack_2 <= stack_1);
+}	
+	
+{
+	test_name("Testing operator<");
+		ft::stack<int> stack_1;
+		ft::stack<int> stack_2;
+		stack_1.push(8);
+		assert(stack_2 < stack_1);
+}	
 	return (0);
 }
