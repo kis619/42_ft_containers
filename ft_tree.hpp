@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/26 15:34:23 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:49:27 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,13 +167,13 @@ class RBTree
 		return(comp);
 	}
 };
-	template<typename whatever>
-	bool operator==(const whatever lhs, const whatever rhs)
-	{
-		return (lhs.value->first == rhs.value->first &&
-				lhs.value->second == rhs.value->second
-		);
-	}
+	// template<typename whatever>
+	// bool operator==(const whatever lhs, const whatever rhs)
+	// {
+	// 	return (lhs.value->first == rhs.value->first &&
+	// 			lhs.value->second == rhs.value->second
+	// 	);
+	// }
 }
 
 #include "ft_tree_erase.tpp"
