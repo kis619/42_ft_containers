@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/30 20:59:51 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/30 21:39:30 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,17 +149,13 @@ namespace ft
 		}
 		else
 		{
-			size_type n_cap = (this->size() * 2);
-			pointer new_start = this->_alloc.allocate(this->size() * 2);
+			size_type n_cap = 1;
+			if (_capacity)
+				n_cap = _capacity * 2;
+			if (n + size() > 2 * _capacity)
+				n_cap = n + size();
+			pointer new_start = this->_alloc.allocate(n_cap);
 			pointer new_end = new_start + this->size() + n;
-			if (size_type(n_cap) < this->size() + n)
-			{
-				if (new_start)
-					this->_alloc.deallocate(new_start, n_cap);
-				new_start = this->_alloc.allocate(this->size() + n);
-				new_end = new_start + this->size() + n;
-				n_cap++;
-			}
 			for (int i = 0; i < &(*position) - _begin; i++)
 				this->_alloc.construct(new_start + i, *(_begin + i));
 			for (int j = 0; first != last; first++, j++)
