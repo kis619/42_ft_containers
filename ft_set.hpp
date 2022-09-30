@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:23:38 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/30 17:27:59 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:56:46 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,14 +116,24 @@ namespace ft
 			return (tree.end());
 		}
 
-		reverse_iterator rbegin(void)
-		{
-			return (tree.end());
-		}
-
 		reverse_iterator rend(void)
 		{
-			return (tree.begin());
+			return reverse_iterator(tree.begin());
+		}
+
+		const_reverse_iterator rend(void) const
+		{
+			return const_reverse_iterator(tree.begin());
+		}
+
+		reverse_iterator rbegin(void)
+		{
+			return reverse_iterator(tree.end());
+		}
+
+		const_reverse_iterator rbegin(void) const
+		{
+			return const_reverse_iterator(tree.end());
 		}
 		
 		///CAPACITY///
@@ -249,5 +259,47 @@ namespace ft
 		allocator_type get_allocator() const {return tree.get_allocator();};
 
 	};
+
+	template <class Key, class Compare, class Allocator>
+	bool operator ==(	const set<Key, Compare, Allocator>& x,
+						const set<Key, Compare, Allocator>& y)
+	{
+		return(x.size() == y.size() && ft::equal(x.begin(), x.end(), y.begin()));
+	}
+
+	template <class Key, class Compare, class Allocator>
+	bool operator !=(	const set<Key, Compare, Allocator>& x,
+						const set<Key, Compare, Allocator>& y)
+	{
+		return!(x == y);
+	}
+	
+	template <class Key, class Compare, class Allocator>
+	bool operator <(	const set<Key, Compare, Allocator>& x,
+						const set<Key, Compare, Allocator>& y)
+	{
+		return(ft::lexicographical_compare(x.begin(), x.end(), y.begin(), y.end()));
+	}
+	
+	template <class Key, class Compare, class Allocator>
+	bool operator >(	const set<Key, Compare, Allocator>& x,
+						const set<Key, Compare, Allocator>& y)
+	{
+		return(y < x);
+	}
+	
+	template <class Key, class Compare, class Allocator>
+	bool operator >=(	const set<Key, Compare, Allocator>& x,
+						const set<Key, Compare, Allocator>& y)
+	{
+		return !(x < y);
+	}
+	
+	template <class Key, class Compare, class Allocator>
+	bool operator <=(	const set<Key, Compare, Allocator>& x,
+						const set<Key, Compare, Allocator>& y)
+	{
+		return !(y < x);
+	}
 }
 #endif //SET_HPP
