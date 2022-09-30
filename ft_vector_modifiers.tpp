@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/15 14:19:33 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/30 20:59:51 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,22 +135,43 @@ namespace ft
 	void vector<T, Allocator>::insert (iterator position, InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type*)
 	{
 		size_type n = last - first;
-		if (n)
+		if (size_type(this->_capacity - size()) >= n)
 		{
-			size_type pos = end() - position;
-			if(size() + n > _capacity)
-					adjust_capacity(size() + n);
-			if (pos != 0)
-			{
-				for(size_type i = 0; i <= pos; i++)
-						_alloc.construct(_end - i + n, *(_end - i));
-			}
+			for (size_type i = 0; i < (this->size() - (&(*position) - _begin)); i++)
+				this->_alloc.construct(_end - i + n - 1, *(_end - i - 1));
+			_end += n;
 			while (first != last)
 			{
-				_alloc.construct(_end - (pos), *(first.base()));
+				this->_alloc.construct(&(*position), *first);
 				first++;
-				_end++;
+				position++;
 			}
+		}
+		else
+		{
+			size_type n_cap = (this->size() * 2);
+			pointer new_start = this->_alloc.allocate(this->size() * 2);
+			pointer new_end = new_start + this->size() + n;
+			if (size_type(n_cap) < this->size() + n)
+			{
+				if (new_start)
+					this->_alloc.deallocate(new_start, n_cap);
+				new_start = this->_alloc.allocate(this->size() + n);
+				new_end = new_start + this->size() + n;
+				n_cap++;
+			}
+			for (int i = 0; i < &(*position) - _begin; i++)
+				this->_alloc.construct(new_start + i, *(_begin + i));
+			for (int j = 0; first != last; first++, j++)
+				this->_alloc.construct(new_start + (&(*position) - _begin) + j, *first);
+			for (size_type k = 0; k < this->size() - (&(*position) - _begin); k++)
+				this->_alloc.construct(new_start + (&(*position) - _begin) + n + k, *(&(*position) + k));
+			for (size_type l = 0; l < this->size(); l++)
+				this->_alloc.destroy(_begin + l);
+			this->_alloc.deallocate(_begin, this->capacity());
+			_begin = new_start;
+			_end = new_end;
+			this->_capacity = n_cap;
 		}
 	}
 	
