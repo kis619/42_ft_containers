@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:23:38 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/30 16:47:07 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/30 17:27:59 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,38 @@ namespace ft
 		explicit set(const Compare& comp, const Allocator& alloc = Allocator()) : tree(comp, alloc) {};
 		
 		///Copy
-		set(const set &other) : tree(other.tree) {};
+		set(const set &copy) : tree(copy.value_comp(), copy.get_allocator()) {*this = copy;};
 		
 		///Range TBD
-		// template< class InputIt >
-		// set(InputIt first, InputIt last, const Compare& comp = Compare(), const Allocator& alloc = Allocator() )
-		// {
-		// 	// insert(first, last);
-		// };
+		template< class InputIt >
+		set(InputIt first, InputIt last, const Compare& comp = Compare(), const Allocator& alloc = Allocator()) : tree(comp, alloc)
+		{
+			while(first != last)
+			{
+				tree.insert(*first);
+				first++;
+			}
+		}
 
 		///Assignment operator TBD
-		
+		set & operator=(const set& other)
+		{
+			clear();
+			const_iterator begin	= other.begin();
+			const_iterator end		= other.end();
+			while(begin != end)
+			{
+				tree.insert(*begin);
+				begin++;
+			}
+			return (*this);
+		}
 		///Deconstruct TBD
+		~set(void)
+		{
+			clear();
+			tree.deallocateNil();
+		}
 
 		///ITERATORS///
 		iterator begin(void)
@@ -78,7 +98,20 @@ namespace ft
 				return(tree.end());
 		}
 		
+		const_iterator begin() const
+		{
+			if (tree.size())
+				return(tree.begin());
+			else
+				return(tree.end());
+		}
+		
 		iterator end(void)
+		{
+			return (tree.end());
+		}
+		
+		const_iterator end(void) const
 		{
 			return (tree.end());
 		}
@@ -153,6 +186,10 @@ namespace ft
 			return (ft::make_pair(lower_bound(key), upper_bound(key)));
 		}
 		///MODIFIERS///
+		void clear(void)
+		{
+			erase(tree.begin(), tree.end());
+		};
 
 		ft::pair<iterator,bool> insert( const value_type& value )
 		{
@@ -166,22 +203,36 @@ namespace ft
 			return tree.insert(value);
 		};
 
-		// template< class InputIt >
-		// void insert( InputIt first, InputIt last, typename ft::enable_if<!is_integral<InputIt>::value>::type* = nullptr  )
-		// {
-		// 	while(first != last)
-		// 	{
-		// 		tree.insert(*first);
-		// 		first++;
-		// 	}
-		// }
+		template< class InputIt >
+		void insert( InputIt first, InputIt last, typename ft::enable_if<!is_integral<InputIt>::value>::type* = nullptr  )
+		{
+			while(first != last)
+			{
+				tree.insert(*first);
+				first++;
+			}
+		}
 
-		// iterator erase( iterator pos );
-		// iterator erase( iterator first, iterator last );
-		// size_type erase( const Key& key )
-		// {
-		// 	return(t)
-		// }
+		void erase( iterator pos )
+		{
+			tree.erase(*pos);	
+		}
+		
+		void erase( iterator first, iterator last )
+		{
+			iterator temp = first;
+			while(first != last)
+			{
+				first++;
+				tree.erase(*temp);
+				temp = first;
+			}	
+		}
+		
+		size_type erase( const Key& key )
+		{
+			return(tree.erase(key));
+		}
 		
 		void swap (set& x)
 		{
@@ -191,8 +242,11 @@ namespace ft
 		}
 
 		///OBSERVERS///
-		key_compare key_comp(void) const {tree.getComp();};
-		value_compare value_comp(void) const {tree.getComp();};
+		key_compare key_comp(void) const {return tree.getComp();};
+		value_compare value_comp(void) const {return tree.getComp();};
+
+		///Miscellaneous
+		allocator_type get_allocator() const {return tree.get_allocator();};
 
 	};
 }
