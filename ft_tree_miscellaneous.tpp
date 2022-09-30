@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/22 17:13:11 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/30 13:00:16 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ namespace ft
 
 		while(node != nil_node)
 		{
-			if (!comp(val, *node->value) && !comp(*node->value, val))
+			if (!comp(val, *node->value) && !comp(*node->value, val) || (*node->value == val))
 				return (node);
 			if (comp(val, *node->value))
 				node = node->left;
