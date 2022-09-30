@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 18:40:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/18 17:53:27 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/30 18:36:18 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ namespace ft
 		template<typename U>
 		reverse_iterator	&operator=(const reverse_iterator<U> &other) {_it = current = other.base(); return (*this);}
 		
-		iterator_type		base(void)						const	{return(_it);}
+		iterator_type		base(void)						const	{return(current);}
 		reference			operator*(void)					const	{iterator_type tmp = current; return *--tmp;}
 		pointer				operator->(void)				const	{return (&(operator*()));}
 		reverse_iterator	&operator++(void)						{current--; return(*this);}
