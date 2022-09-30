@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:23:38 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/30 17:56:46 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/30 21:27:47 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,16 +153,16 @@ namespace ft
 		const_iterator find(const Key& key) const {return tree.find(key);};
 		iterator lower_bound (const Key& key)
 		{
-			iterator it = begin();
-			iterator end = end();
+			iterator it = tree.begin();
+			iterator end = tree.end();
 			while(it != end && key_comp()(*it, key))
 				it++;
 			return (it);
 		}
 		const_iterator lower_bound(const Key& key) const
 		{
-			const_iterator it = begin();
-			const_iterator end = end();
+			const_iterator it = tree.begin();
+			const_iterator end = tree.end();
 			while(it != end && key_comp()(*it, key))
 				it++;
 			return (it);
@@ -172,7 +172,7 @@ namespace ft
 		{
 			iterator it = tree.begin();
 			iterator end = tree.end();
-			while(it != end && !key_comp()(key, it->first))
+			while(it != end && !key_comp()(key, *it))
 				it++;
 			return (it);
 		}
@@ -181,7 +181,7 @@ namespace ft
 		{
 			const_iterator it = tree.begin();
 			const_iterator end = tree.end();
-			while(it != end && !key_comp()(key, it->first))
+			while(it != end && !key_comp()(key, *it))
 				it++;
 			return (it);
 		}
