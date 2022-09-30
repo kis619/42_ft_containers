@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 07:20:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/28 10:33:13 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:53:02 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ namespace ft
 	class stack
 	{
 		public:
-			typedef Container 						container_type;
+			typedef Container 							container_type;
 			typedef typename Container::value_type		value_type;
 			typedef typename Container::size_type		size_type;
 			typedef typename Container::reference		reference;
@@ -46,12 +46,12 @@ namespace ft
 		void pop(void) {c.pop_back();}
 
 		///Logical operators
-		friend bool operator==(const stack &lhs, const stack &rhs) 				{ return lhs.c == rhs.c; };
-		friend bool operator!=(const stack &lhs, const stack &rhs) 				{ return lhs.c != rhs.c; };
-		friend bool operator<=(const stack &lhs, const stack &rhs) 				{ return lhs.c <= rhs.c; };
-		friend bool operator>=(const stack &lhs, const stack &rhs) 				{ return lhs.c >= rhs.c; };
-		friend bool operator<(const stack &lhs, const stack &rhs) 				{ return lhs.c < rhs.c; };
-		friend bool operator>(const stack &lhs, const stack &rhs) 				{ return lhs.c > rhs.c; };
+		friend bool operator==(const stack &lhs, const stack &rhs)				{ return lhs.c == rhs.c; };
+		friend bool operator!=(const stack &lhs, const stack &rhs)				{ return lhs.c != rhs.c; };
+		friend bool operator<=(const stack &lhs, const stack &rhs)				{ return lhs.c <= rhs.c; };
+		friend bool operator>=(const stack &lhs, const stack &rhs)				{ return lhs.c >= rhs.c; };
+		friend bool operator<(const stack &lhs, const stack &rhs)				{ return lhs.c < rhs.c; };
+		friend bool operator>(const stack &lhs, const stack &rhs)				{ return lhs.c > rhs.c; };
 	};
 }
 
