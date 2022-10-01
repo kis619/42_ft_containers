@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/26 15:39:30 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 17:22:25 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
 #include <functional>
 #include <utility>
 #include <memory>
+#include <stdexcept>
 #include "ft_utils.hpp"
 #include "ft_tree.hpp"
-#include <stdexcept>
-#include "tests/colours.h"
 #include "ft_reverse_iterator.hpp"
 #include "ft_rbt_iterator.hpp"
 
@@ -41,55 +40,19 @@ class map
 		typedef typename allocator_type::const_pointer			const_pointer;
 		typedef typename allocator_type::size_type				size_type;
 		typedef typename allocator_type::difference_type		difference_type;
-	
+
 	class value_compare : public std::binary_function<value_type, value_type, bool>
 	{
-		// friend class map;
+		friend class map;
 
-		public: //should be protected
+		protected:
 			key_compare comp;
 			value_compare(key_compare c) : comp(c) {}
 		public:
 			bool operator()(const value_type &lhs, const value_type &rhs) const
 				{return comp(lhs.first, rhs.first);}
 	};
-	
-	explicit map (const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type()) : tree(comp, alloc) {};
-	map (const map& x) : tree(x.value_comp(), x.get_allocator())
-	{
-		*this = x;
-	}
-	template <class InputIterator>
-	map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : tree(comp, alloc)
-	{
-		
-		while(first != last)
-		{
-			tree.insert(*(first.getPtr()->value));
-			first++;
-		}
-	}
-	
-	map &operator=(const map& other)
-	{
-		// std::cout << "here\n";
-		clear();
-		const_iterator it_begin = other.begin();
-		const_iterator it_end = other.end();
-		while(it_begin != it_end)
-		{
-			// std::cout << COLOUR_GREEN << "Value: " << (*(it_begin.getPtr()->value)).first << COLOUR_DEFAULT<< std::endl;
-			tree.insert(*(it_begin.getPtr()->value));
-			it_begin++;
-		}
-		return(*this);
-	}
-	
-	~map(void)
-	{
-		clear();
-		tree.deallocateNil();
-	}
+
 	private:
 		typedef ft::RBTree< value_type, value_compare, allocator_type>		tree_type;
 
@@ -98,10 +61,50 @@ class map
 		typedef const_RBTreeIterator<typename tree_type::node>				const_iterator;
 		typedef ft::reverse_iterator<iterator>								reverse_iterator;
 		typedef ft::reverse_iterator<const_iterator>						const_reverse_iterator;
-		
-	public: //should be private
-		tree_type	tree;
+	
+	///CONSTRUCTION///
+	///Default
+	explicit map (const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type()) : tree(comp, alloc) {};
 
+	///Copy
+	map (const map& x) : tree(x.value_comp(), x.get_allocator())
+	{
+		*this = x;
+	}
+
+	///Range
+	template <class InputIterator>
+	map (InputIterator first, InputIterator last,
+		const key_compare& comp = key_compare(),
+		const allocator_type& alloc = allocator_type()) : tree(comp, alloc)
+	{
+		while(first != last)
+		{
+			tree.insert(*(first.getPtr()->value));
+			first++;
+		}
+	}
+
+	///Assignment operator
+	map &operator=(const map& other)
+	{
+		clear();
+		const_iterator it_begin = other.begin();
+		const_iterator it_end = other.end();
+		while(it_begin != it_end)
+		{
+			tree.insert(*(it_begin.getPtr()->value));
+			it_begin++;
+		}
+		return(*this);
+	}
+
+	///DECONSTRUCTION
+	~map(void)
+	{
+		clear();
+		tree.deallocateNil();
+	}
 
 	///Alocator
 	allocator_type get_allocator(void) const
@@ -109,7 +112,7 @@ class map
 		return (tree.get_allocator());
 	}
 
-	///Element access
+	///ELEMENT ACCESS
 	mapped_type at(const Key &key)
 	{
 		typename tree_type::node_ptr n = tree.find_by_only_key(key);
@@ -123,12 +126,11 @@ class map
 		typename tree_type::node_ptr n = tree.find_by_only_key(key);
 		if (n == tree.getNil())
 			insert(ft::make_pair(key, T()));
-			// return insert(ft::make_pair(key, T())).first->second;
 		n = tree.find_by_only_key(key);
 		return (n->value->second);
 	}
-	
-	///Iterators
+
+	///ITERATORS
 	iterator begin(void)
 	{
 		if (tree.size())
@@ -152,7 +154,7 @@ class map
 		return const_iterator(tree.end());
 	}
 
-	///Reverse iterators
+	///REVERSE ITERATORS
 	reverse_iterator rbegin(void)
 	{
 		return reverse_iterator(tree.end());
@@ -173,11 +175,9 @@ class map
 		return const_reverse_iterator(tree.begin());
 	}
 
-	
-	///Capacity
+	///CAPACITY
 	bool empty(void) const
 	{
-		//return (begin() == end());
 		return(tree.empty());
 	}
 
@@ -191,7 +191,7 @@ class map
 		return(tree.max_size());
 	}
 
-	///Modifiers
+	///MODIFIERS
 	void clear(void)
 	{
 		erase(tree.begin(), tree.end());
@@ -203,22 +203,19 @@ class map
 		x.tree = tree;
 		tree = temp_tree;
 	}
-	
+
 	///Insert
 	pair<iterator, bool> insert( const value_type& value )
 	{
 		typename tree_type::node_ptr n = tree.find(value);
 		if (n == tree.getNil())
-		{
-		// std::cout << "VLaue: " << value.first << std::endl;
 			return(ft::make_pair(tree.insert(value), true));
-		}
 		return(ft::make_pair(tree.insert(value), false));
 	}
-	
+
 	iterator insert (iterator position, const value_type& value)
 	{
-		return (tree.insert(value)); //maybe do this one
+		return (tree.insert(value));
 	}
 
 	template< class InputIt >
@@ -248,13 +245,12 @@ class map
 		while(first != last)
 		{
 			first++;
-			// std::cout << (temp.getPtr()->value)->first << std::endl;
 			tree.erase(*(temp.getPtr()->value));
 			temp = first;
 		}
 	}
 
-	///Observers
+	///OBSERVERS
 	value_compare value_comp() const
 	{
 		return value_compare(tree.getComp());
@@ -265,7 +261,7 @@ class map
 		return (tree.getComp().comp);
 	}
 
-	///Lookup
+	///LOOKUP
 	size_type count( const Key& key ) const
 	{
 		if (tree.find_by_only_key(key) == tree.getNil())
@@ -286,19 +282,18 @@ class map
 		return end();
 	}
 
-	
-	// const_iterator find (const key_type& key) const
-	// {
-	// 	typename tree_type::node_ptr current = tree.getRoot();
+	const_iterator find (const key_type& key) const
+	{
+		typename tree_type::node_ptr current = tree.getRoot();
 
-	// 	while (current != tree.getNil()) {
-	// 		if (key == current->value->first)
-	// 			return (current);
-	// 		else
-	// 			current = key_comp()(key, current->value->first) ? current->left : current->right;
-	// 	}
-	// 	return end();
-	// }
+		while (current != tree.getNil()) {
+			if (key == current->value->first)
+				return (current);
+			else
+				current = key_comp()(key, current->value->first) ? current->left : current->right;
+		}
+		return end();
+	}
 
 	iterator lower_bound (const key_type& key)
 	{
@@ -345,6 +340,9 @@ class map
 	{
 		return (ft::make_pair(lower_bound(key), upper_bound(key)));
 	}
+
+	private:
+		tree_type	tree;
 };
 
 	template <class Key, class T, class Compare, class Allocator>
@@ -360,36 +358,36 @@ class map
 	{
 		return!(x == y);
 	}
-	
+
 	template <class Key, class T, class Compare, class Allocator>
 	bool operator <(	const map<Key, T, Compare, Allocator>& x,
 						const map<Key, T, Compare, Allocator>& y)
 	{
 		return(ft::lexicographical_compare(x.begin(), x.end(), y.begin(), y.end()));
 	}
-	
+
 	template <class Key, class T, class Compare, class Allocator>
 	bool operator >(	const map<Key, T, Compare, Allocator>& x,
 						const map<Key, T, Compare, Allocator>& y)
 	{
 		return(y < x);
 	}
-	
+
 	template <class Key, class T, class Compare, class Allocator>
 	bool operator >=(	const map<Key, T, Compare, Allocator>& x,
 						const map<Key, T, Compare, Allocator>& y)
 	{
 		return !(x < y);
 	}
-	
+
 	template <class Key, class T, class Compare, class Allocator>
 	bool operator <=(	const map<Key, T, Compare, Allocator>& x,
 						const map<Key, T, Compare, Allocator>& y)
 	{
 		return !(y < x);
 	}
-	
-};	
+
+};
 #endif //MAP_HPP
 
 
