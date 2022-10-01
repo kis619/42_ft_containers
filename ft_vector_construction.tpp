@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 11:16:41 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/27 23:51:39 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 18:03:14 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ namespace ft
 	_end(NULL)
 	{
 	}
-	
+
 	//Fill constructor
 	template<typename T, typename Allocator>
 	vector<T, Allocator>::vector(size_type n, const value_type &val, const allocator_type &alloc) :
@@ -42,7 +42,7 @@ namespace ft
 			n--;
 		}
 	}
-	
+
 	// range constructor
 	template<typename T, typename Allocator>
 	template <class InputIterator>
@@ -67,7 +67,6 @@ namespace ft
 	template<typename T, typename Allocator>
 	vector<T, Allocator>::vector(const vector &x)
 	{
-		// std::cout << "copy\n";
 		_capacity = x.size();
 		_begin = _alloc.allocate(_capacity);
 		_end = _begin;
@@ -81,10 +80,7 @@ namespace ft
 	template<typename T, typename Allocator>
 	vector<T, Allocator> & vector<T, Allocator>::operator=(const vector &x)
 	{
-		// std::cout << "assignment\n";
 		this->~vector();
-
-		// new (this) vector(x); //ask Rene about this syntax || calls the copy constructor but new?? placement new operator
 		_capacity = x.size();
 		_begin = _alloc.allocate(_capacity);
 		_end = _begin;
@@ -95,7 +91,7 @@ namespace ft
 		}
 		return (*this);
 	}
-	
+
 	template<typename T, typename Allocator>
 	vector<T, Allocator>::~vector(void)
 	{
