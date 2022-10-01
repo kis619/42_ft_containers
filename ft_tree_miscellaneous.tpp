@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/01 17:44:35 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 17:53:15 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ namespace ft
 		}
 		return (node);
 	}
-	
+
 	template <class T,  class Compare, class Allocator>
 	template<class Key>
 	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::find_by_only_key(const Key &key) const
@@ -73,19 +73,19 @@ namespace ft
 		}
 		return (node);
 	}
-	
+
 	template <class T,  class Compare, class Allocator>
 	typename RBTree<T, Compare, Allocator>::size_type RBTree<T, Compare, Allocator>::size(void) const
 	{
 		return (_size);
 	}
-	
+
 	template <class T,  class Compare, class Allocator>
 	typename RBTree<T, Compare, Allocator>::size_type RBTree<T, Compare, Allocator>::max_size(void) const
 	{
 		return (node_alloc.max_size());
 	}
-	
+
 	template <class T,  class Compare, class Allocator>
 	bool RBTree<T, Compare, Allocator>::empty(void) const
 	{
@@ -103,12 +103,6 @@ namespace ft
 	{
 		return (comp);
 	}
-
-	// template <class T,  class Compare, class Allocator>
-	// void RBTree<T, Compare, Allocator>::clearNode(node_ptr n)
-	// {
-	// 	node_alloc.deallocate(n, 1);
-	// }
 
 	template <class T,  class Compare, class Allocator>
 	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::min(node_ptr node) const
