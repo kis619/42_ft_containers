@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/01 15:57:43 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 18:05:38 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ namespace ft
 			}
 		}
 	}
-	
+
 	template <typename T, typename Allocator>
 	void vector<T, Allocator>::assign(size_type n, const value_type &val)
 	{
@@ -60,14 +60,14 @@ namespace ft
 			}
 		}
 	}
-	
+
 	template <typename T, typename Allocator>
 	void vector<T, Allocator>::pop_back(void)
 	{
 		_alloc.destroy(&back());
 		_end--;
 	}
-	
+
 	template <typename T, typename Allocator>
 	void vector<T, Allocator>::push_back(const value_type &val)
 	{
@@ -77,7 +77,7 @@ namespace ft
 		_alloc.construct(_begin + old_size, val);
 		_end++;
 	}
-	
+
 	template <typename T, typename Allocator>
 	typename vector<T, Allocator>::iterator vector<T, Allocator>::insert (iterator position, const value_type &val)
 	{
@@ -92,7 +92,7 @@ namespace ft
 		_end++;
 		return(begin() + diff);
 	}
-	
+
 	template <typename T, typename Allocator>
 	void vector<T, Allocator>::insert (iterator position, size_type n, const value_type& val)
 	{
@@ -112,7 +112,7 @@ namespace ft
 			}
 		}
 	}
-	
+
 	template <typename T, typename Allocator>
 	template<class InputIterator>
 	void vector<T, Allocator>::insert (iterator position, InputIterator first, InputIterator last,
@@ -177,7 +177,7 @@ namespace ft
 			_capacity = n_cap;
 		}
 	}
-	
+
 	template <typename T, typename Allocator>
 	typename vector<T, Allocator>::iterator vector<T, Allocator>::erase(iterator position)
 	{
@@ -195,7 +195,7 @@ namespace ft
 		_end--;
 		return (iterator(p));
 	}
-	
+
 	template <typename T, typename Allocator>
 	typename vector<T, Allocator>::iterator vector<T, Allocator>::erase(iterator first, iterator last)
 	{
@@ -217,7 +217,7 @@ namespace ft
 		}
 		return (iterator(p));
 	}
-	
+
 	template <typename T, typename Allocator>
 	void vector<T, Allocator>::swap(vector &x)
 	{
@@ -241,7 +241,7 @@ namespace ft
 		x._end			=	temp_end;
 		x._capacity		=	temp_capacity;
 	}
-	
+
 	template <typename T, typename Allocator>
 	void vector<T, Allocator>::clear(void)
 	{
@@ -253,13 +253,13 @@ namespace ft
 			_alloc.destroy(_end);
 		}
 	}
-	
+
 	template <typename T, typename Allocator>
 	typename vector<T, Allocator>::allocator_type vector<T, Allocator>::get_allocator(void) const
 	{
 		return(_alloc);
 	}
-	
+
 	template <typename T, typename Allocator>
 	typename vector<T, Allocator>::size_type vector<T, Allocator>::adjust_capacity(int n)
 	{
