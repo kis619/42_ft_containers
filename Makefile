@@ -6,7 +6,7 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 13:21:52 by kmilchev          #+#    #+#              #
-#    Updated: 2022/09/30 15:13:48 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/10/01 11:36:35 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,6 +85,9 @@ test_set_construction:
 
 test_set_iterators:
 	$(CC) -g tests/utils.cpp tests/test_set_iterators.cpp -g $(FLAGS) && ./a.out
+
+test_set_capacity:
+	$(CC) -g tests/utils.cpp tests/test_set_capacity.cpp -g $(FLAGS) && ./a.out
 	
 test:
 	sh run_tests.sh
@@ -97,4 +100,4 @@ tests:	test_iterator_class test_reverse_iterator test_vector_capacity test_vecto
 map_tests: test_map_element_access test_map_capacity test_map_modifiers test_map_observers test_map_lookup test_map_construction test_map_reverse_iterators \
 			test_map_logical_operators
 
-set_tests: test_set_construction test_set_iterators
+set_tests: test_set_construction test_set_iterators test_set_capacity
