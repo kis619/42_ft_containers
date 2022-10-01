@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 17:45:10 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/01 17:33:47 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 17:35:09 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "ft_iterator_traits.hpp"
 # include "ft_reverse_iterator.hpp"
-# include <iostream>
 
 namespace ft
 {
