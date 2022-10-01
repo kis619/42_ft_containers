@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/01 11:43:47 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 11:47:35 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ int main (void)
 	test_name("Testing the method .max_size()");
 		assert(og_set.max_size() == my_set.max_size());
 
-
+	std::cout << COLOUR_DEFAULT;
 	return (0);
 }
