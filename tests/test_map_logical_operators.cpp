@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 09:56:37 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/18 18:49:18 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 16:08:37 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ int main(void)
 		assert(my_empty_map <= my_map); 				//>
 		assert(my_second_empty_map <= my_empty_map);	//==
 
-
+	std::cout << COLOUR_DEFAULT;
 	return (0);
 }
