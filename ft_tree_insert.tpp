@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/01 17:51:17 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 17:56:38 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 namespace ft
 {
 	template <class T,  class Compare, class Allocator>
-	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::insert_test(const value_type &val)
+	typename RBTree<T, Compare, Allocator>::node_ptr RBTree<T, Compare, Allocator>::insert_val(const value_type &val)
 	{
 		//Binary Search Insertion
 		node_ptr new_node	= node_alloc.allocate(1);

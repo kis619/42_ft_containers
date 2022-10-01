@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/30 17:49:27 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 17:57:44 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ class RBTree
 		typedef Allocator										allocator_type;
 		typedef Compare											value_comp;
 		typedef size_t											size_type;
-		// typedef typename allocator_type::pointer				pointer;
 		typedef ft::Node<value_type>							node;
 		typedef ft::Node<value_type>*							node_ptr;
 		typedef RBTreeIterator<node>							iterator;
@@ -55,7 +54,7 @@ class RBTree
 		allocator_type			alloc;
 		value_comp				comp;
 		size_type				_size;
-	
+
 	public:
 	RBTree(const value_comp &comp_, const allocator_type &alloc_) : comp(comp_), alloc(alloc_), _size(0)
 	{
@@ -80,7 +79,7 @@ class RBTree
 	}
 
 	///INSERT
-	node_ptr	insert_test(const value_type &val);
+	node_ptr	insert_val(const value_type &val);
 	void 		fix_insert(node_ptr child);
 	void 		rotate_left(node_ptr x); //util for insert and erase
 	void 		rotate_right(node_ptr x); //util for insert and erase
@@ -105,13 +104,11 @@ class RBTree
 	node_ptr		min(node_ptr node)	const;
 	node_ptr		max(node_ptr node)	const;
 
-	
 	///ITERATORS
 	iterator begin(void)
 	{
 		return iterator(min(root), min(root), nil_node);
 	}
-	
 	const_iterator begin(void) const
 	{
 		return const_iterator(min(root), min(root), nil_node);
@@ -130,26 +127,8 @@ class RBTree
 
 	iterator insert(const value_type &val)
 	{
-		return iterator(insert_test(val), min(root), nil_node);
+		return iterator(insert_val(val), min(root), nil_node);
 	}
-	
-	// template<class Key>
-	// iterator find_iterator(const Key &key)
-	// {
-	// 	node_ptr n = find_by_only_key(key);
-	// 	if (n == nil_node)
-	// 		return end();
-	// 	return iterator(find_by_only_key(key), nil_node);
-	// }
-	
-	// template<class Key>
-	// const_iterator find_iterator(const Key &key) const
-	// {
-	// 	node_ptr n = find_by_only_key(key);
-	// 	if (n == nil_node)
-	// 		return end();
-	// 	return const_iterator(find_by_only_key(key), nil_node);
-	// }
 
 	///GETTERS
 	node_ptr getRoot(void) const
@@ -167,13 +146,6 @@ class RBTree
 		return(comp);
 	}
 };
-	// template<typename whatever>
-	// bool operator==(const whatever lhs, const whatever rhs)
-	// {
-	// 	return (lhs.value->first == rhs.value->first &&
-	// 			lhs.value->second == rhs.value->second
-	// 	);
-	// }
 }
 
 #include "ft_tree_erase.tpp"
