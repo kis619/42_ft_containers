@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/08/28 22:56:19 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 18:07:48 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,30 @@ public:
 	typedef typename ft::reverse_iterator<const_iterator>			const_reverse_iterator;
 	typedef typename iterator_traits<iterator>::difference_type		difference_type;
 	typedef typename allocator_type::size_type						size_type;
-	
-//////////////////////////////////CONSTRUCTORS//////////////////
+
+///CONSTRUCTORS///
 //default constructor 
 	explicit vector (const allocator_type& alloc = allocator_type());
+
 //fill constructor
 	explicit vector (size_type n, const value_type& val = value_type(),
 					const allocator_type& alloc = allocator_type());
+
 //range constructor
 	template <class InputIterator>
 	vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(),
 			typename enable_if<!is_integral<InputIterator>::value>::type* = NULL);
+
 //copy constructor
 	vector (const vector& x);
 
 //assignment operator
 	vector &operator=(const vector& x);
-	
+
 //destructor
 	~vector(void);
 
-
-//////////////////////////////////ITERATORS//////////////////
+///ITERATORS///
 	iterator				begin(void);
 	const_iterator			begin(void) const;
 	iterator				end(void);
@@ -67,7 +69,7 @@ public:
 	reverse_iterator		rend(void);
 	const_reverse_iterator	rend(void) const;
 
-/////////////////////////////////CAPACITY//////////////////////
+///CAPACITY///
 	size_type				size(void) const;
 	size_type				max_size(void) const;
 	void					resize (size_type n, value_type val = value_type());
@@ -75,7 +77,7 @@ public:
 	bool					empty(void) const;
 	void					reserve (size_type n);
 
-/////////////////////////////////ELEMENT_ACCESS////////////////
+///ELEMENT_ACCESS///
 	reference				operator[](size_type n);
 	const_reference			operator[](size_type n) const;
 	reference				at(size_type n); 
@@ -87,7 +89,7 @@ public:
 	value_type*				data(void);
 	const value_type*		data(void) const;
 
-/////////////////////////////////MODIFIERS/////////////////////
+///MODIFIERS///
 	template <class InputIterator>
 	void					assign(InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type* = NULL);
 	void					assign(size_type n, const value_type& val);
@@ -102,13 +104,13 @@ public:
 	void					swap(vector &x);
 	void					clear(void);
 
-/////////////////////////////////ALLOCATOR/////////////////////
+///ALLOCATOR///
 	allocator_type			get_allocator(void) const;
 
-/////////////////////////////////MISCELANIOUS/////////////////////
+///MISCELANIOUS///
 	private:
-	size_type				adjust_capacity(int n = 0); //depending on size and capacity
-private:
+	size_type				adjust_capacity(int n = 0); 
+
 	allocator_type			_alloc;
 	size_type				_capacity;
 	pointer					_begin;
