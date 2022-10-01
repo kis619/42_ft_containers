@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/21 14:04:31 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 17:51:17 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ namespace ft
 		node_ptr parent		= NULL;
 		node_ptr current	= root;
 
-		// initialise_RED_node(new_node, val);
 		new_node->parent	= NULL;
 		new_node->left		= nil_node;
 		new_node->right		= nil_node;
 		new_node->colour	= RED;
 		new_node->value		= alloc.allocate(1);
 		alloc.construct(new_node->value, val);
+
 		while(current != nil_node)
 		{
 			parent = current;
@@ -42,6 +42,7 @@ namespace ft
 				return (current);
 			}
 		}
+
 		// Set the parent and insert the new node
 		new_node->parent = parent;
 		if (parent == NULL)
@@ -51,7 +52,7 @@ namespace ft
 		else
 			parent->right = new_node;
 		_size++;
-		
+
 		//for method .end()
 		node_ptr temp = root;
 		///make temp the biggest element
@@ -59,18 +60,18 @@ namespace ft
 			temp = temp->right;
 		///attach a nil node to it
 		this->nil_node->parent = temp;
-		
+
 		// if new_node is the root node, recolour it to black and end
 		if (new_node->parent == NULL)
 		{
 			new_node->colour = BLACK;
 			return (new_node);
 		}
-		
+
 		// if parent is root (grandparent is null) then end
 		if (new_node->parent->parent == NULL)
 			return (new_node);
-				
+
 		fix_insert(new_node);
 		return(new_node);
 	}
@@ -79,7 +80,7 @@ namespace ft
 	void RBTree<T, Compare, Allocator>::fix_insert(node_ptr child)
 	{
 		node_ptr uncle;
-		
+
 		while(child->parent->colour == RED)
 		{
 			if (child->parent == child->parent->parent->right)
@@ -103,7 +104,7 @@ namespace ft
 					child->parent->parent->colour = RED;
 					rotate_left(child->parent->parent);
 				}
-				
+
 			}
 			else
 			{
@@ -128,23 +129,23 @@ namespace ft
 					rotate_right(child->parent->parent);
 				}
 			}
-			
+
 			if (child == root)
 				break ;
 		}
 		root->colour = BLACK;
 	}
-	
+
 	// rotate left at node x
 	template <class T,  class Compare, class Allocator>
 	void RBTree<T, Compare, Allocator>::rotate_left(node_ptr x)
 	{
 		node_ptr y = x->right;
 		x->right = y->left;
-		
+
 		if (y->left != nil_node)
 			y->left->parent = x;
-		
+
 		y->parent = x->parent;
 		if (x->parent == NULL)
 			root = y;
@@ -164,7 +165,7 @@ namespace ft
 		x->left = y->right;
 		if (y->right != nil_node)
 			y->right->parent = x;
-		
+
 		y->parent = x->parent;
 		if (x->parent == NULL)
 			root = y;
