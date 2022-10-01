@@ -6,7 +6,7 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 13:21:52 by kmilchev          #+#    #+#              #
-#    Updated: 2022/10/01 11:46:56 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/10/01 12:40:09 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,6 +92,9 @@ test_set_capacity:
 test_set_lookup:
 	$(CC) -g tests/utils.cpp tests/test_set_lookup.cpp -g $(FLAGS) && ./a.out
 	
+test_set_modifiers:
+	$(CC) -g tests/utils.cpp tests/test_set_modifiers.cpp -g $(FLAGS) && ./a.out
+	
 test:
 	sh run_tests.sh
 
@@ -100,9 +103,9 @@ tests:	test_iterator_class test_reverse_iterator test_vector_capacity test_vecto
 		test_pair_construction test_tree_methods test_tree_iterator test_map_element_access test_map_capacity test_map_modifiers \
 		test_map_observers test_map_lookup test_map_reverse_iterators test_map_logical_operators \
 		test_stack \
-		test_set_construction test_set_iterators test_set_capacity test_set_lookup
+		test_set_construction test_set_iterators test_set_capacity test_set_lookup test_set_modifiers
 
 map_tests: test_map_element_access test_map_capacity test_map_modifiers test_map_observers test_map_lookup test_map_construction test_map_reverse_iterators \
 			test_map_logical_operators
 
-set_tests: test_set_construction test_set_iterators test_set_capacity test_set_lookup
+set_tests: test_set_construction test_set_iterators test_set_capacity test_set_lookup test_set_modifiers
