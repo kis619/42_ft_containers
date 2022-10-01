@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:23:38 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/30 21:27:47 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 10:58:06 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ namespace ft
 		///Copy
 		set(const set &copy) : tree(copy.value_comp(), copy.get_allocator()) {*this = copy;};
 		
-		///Range TBD
+		///Range
 		template< class InputIt >
 		set(InputIt first, InputIt last, const Compare& comp = Compare(), const Allocator& alloc = Allocator()) : tree(comp, alloc)
 		{
