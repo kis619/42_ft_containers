@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/28 06:52:31 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 10:50:35 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typen
 		typedef typename node_type::value_type															value_type;
 		typedef typename node_type::value_type* 														pointer;
 		typedef typename node_type::value_type&															reference;
+		typedef const typename node_type::value_type* 													const_pointer;
+		typedef const typename node_type::value_type&													const_reference;
 
 	///Constructors
 	RBTreeIterator(node_ptr ptr = NULL) : ptr(ptr), nil_ptr(ptr), first_ptr(ptr) {};
@@ -102,8 +104,10 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typen
 
 	RBTreeIterator operator++(int) {RBTreeIterator temp(*this); ++(*this); return (temp);}
 	RBTreeIterator operator--(int) { RBTreeIterator temp(*this); --(*this); return(temp);}
-	reference operator*(void) const {return *(ptr->value);};
-	pointer operator->(void) const {return ptr->value;};
+	reference operator*(void) {return *(ptr->value);};
+	pointer operator->(void) {return ptr->value;};
+	const_reference operator*(void) const {return *(ptr->value);};
+	const_pointer operator->(void) const {return ptr->value;};
 
 	node_ptr getPtr(void) const
 		{return (ptr);}
@@ -128,6 +132,8 @@ class const_RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag,
 		typedef const typename node_type::value_type													value_type;
 		typedef typename node_type::value_type* 														pointer;
 		typedef typename node_type::value_type&															reference;
+		typedef const typename node_type::value_type* 													const_pointer;
+		typedef const typename node_type::value_type&													const_reference;
 		
 	
 	
@@ -219,8 +225,10 @@ class const_RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag,
 	const_RBTreeIterator operator++(int) {const_RBTreeIterator temp(*this); ++(*this); return (temp);} //post-increment
 	const_RBTreeIterator operator--(int) {const_RBTreeIterator temp(*this); --(*this); return(temp);} //post-derement
 	///Operators - (de)reference
-	reference operator*() {return *(ptr->value);};
-	pointer operator->(void) const {return ptr->value;};
+	reference operator*(void) {return *(ptr->value);};
+	pointer operator->(void) {return ptr->value;};
+	const_reference operator*(void) const {return *(ptr->value);};
+	const_pointer operator->(void) const {return ptr->value;};
 	
 
 
