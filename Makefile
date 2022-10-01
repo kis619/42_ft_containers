@@ -6,13 +6,51 @@
 #    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 13:21:52 by kmilchev          #+#    #+#              #
-#    Updated: 2022/10/01 13:42:51 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/10/01 16:10:04 by kmilchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
 
 # FLAGS = -fsanitize=address -g
+
+test:
+	sh run_tests.sh
+
+tests:	test_iterator_class test_reverse_iterator test_pair_construction \
+		map_tests \
+		vector_tests \
+		set_tests \
+		test_stack
+
+
+map_tests:		test_map_element_access \
+				test_map_capacity \
+				test_map_modifiers \
+				test_map_observers \
+				test_map_lookup \
+				test_map_construction \
+				test_map_reverse_iterators \
+				test_map_logical_operators \
+				test_map_iterators
+
+vector_tests:	test_vector_capacity \
+				test_vector_construction \
+				test_vector_element_access \
+				test_vector_iter_methods \
+				test_vector_modifiers \
+				test_vector_non_member_swap \
+				test_vector_logical_operators
+
+set_tests:		test_set_construction \
+				test_set_iterators \
+				test_set_capacity \
+				test_set_lookup \
+				test_set_modifiers \
+				test_set_observers \
+				test_set_logical_operators
+
+set_tests:		test_stack
 
 test_iterator_class:
 	$(CC) -g tests/utils.cpp tests/test_iterator_class.cpp $(FLAGS) && ./a.out
@@ -43,12 +81,6 @@ test_vector_logical_operators:
 
 test_pair_construction:
 	$(CC) -g tests/utils.cpp tests/test_pair_construction.cpp $(FLAGS) && ./a.out
-
-test_tree_methods:
-	$(CC) -g tests/utils.cpp tests/test_tree_methods.cpp $(FLAGS) && ./a.out
-
-test_tree_iterator:
-	$(CC) -g tests/utils.cpp tests/test_tree_iterator.cpp $(FLAGS) && ./a.out
 
 test_map_iterators:
 	$(CC) -g tests/utils.cpp tests/test_map_iterators.cpp $(FLAGS) && ./a.out
@@ -101,17 +133,3 @@ test_set_observers:
 test_set_logical_operators:
 	$(CC) -g tests/utils.cpp tests/test_set_logical_operators.cpp -g $(FLAGS) && ./a.out
 	
-test:
-	sh run_tests.sh
-
-tests:	test_iterator_class test_reverse_iterator test_vector_capacity test_vector_construction test_vector_element_access \
-		test_vector_iter_methods test_vector_modifiers test_vector_non_member_swap test_vector_logical_operators \
-		test_pair_construction test_tree_methods test_tree_iterator test_map_element_access test_map_capacity test_map_modifiers \
-		test_map_observers test_map_lookup test_map_reverse_iterators test_map_logical_operators \
-		test_stack \
-		test_set_construction test_set_iterators test_set_capacity test_set_lookup test_set_modifiers test_set_observers test_set_logical_operators
-
-map_tests: test_map_element_access test_map_capacity test_map_modifiers test_map_observers test_map_lookup test_map_construction test_map_reverse_iterators \
-			test_map_logical_operators
-
-set_tests: test_set_construction test_set_iterators test_set_capacity test_set_lookup test_set_modifiers test_set_observers test_set_logical_operators
