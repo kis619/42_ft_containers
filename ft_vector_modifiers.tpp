@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/30 21:39:30 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 15:57:43 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ namespace ft
 {
 	template <typename T, typename Allocator>
 	template <class InputIterator>
-	void vector<T, Allocator>::assign (InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type*)
+	void vector<T, Allocator>::assign (InputIterator first, InputIterator last,
+										typename enable_if<!is_integral<InputIterator>::value>::type*)
 	{
 		clear();
 		difference_type n = last - first;
@@ -71,26 +72,8 @@ namespace ft
 	void vector<T, Allocator>::push_back(const value_type &val)
 	{
 		size_type old_size = size();
-		if (old_size + 1 >  _capacity)
-		{
-			size_type new_capacity = 1;
-			if (_capacity) 
-				new_capacity = _capacity * 2;
-			pointer tmp = _alloc.allocate(new_capacity);
-			for(unsigned int i = 0; i < old_size; i++)
-			{
-				_alloc.construct(tmp + i, _begin[i]);
-				_alloc.destroy(_begin + i);
-			}
-			_alloc.deallocate(_begin, _capacity);
-			_begin = tmp;
-			_end = _begin + old_size;
-			_capacity = new_capacity;
-		}
-		//OR//
-		// size_type old_size = size();
-		// if (old_size + 1 > _capacity)
-		// 	old_size = adjust_capacity();
+		if (old_size + 1 > _capacity)
+			old_size = adjust_capacity();
 		_alloc.construct(_begin + old_size, val);
 		_end++;
 	}
@@ -132,17 +115,18 @@ namespace ft
 	
 	template <typename T, typename Allocator>
 	template<class InputIterator>
-	void vector<T, Allocator>::insert (iterator position, InputIterator first, InputIterator last, typename enable_if<!is_integral<InputIterator>::value>::type*)
+	void vector<T, Allocator>::insert (iterator position, InputIterator first, InputIterator last,
+										typename enable_if<!is_integral<InputIterator>::value>::type*)
 	{
 		size_type n = last - first;
-		if (size_type(this->_capacity - size()) >= n)
+		if (size_type(_capacity - size()) >= n)
 		{
-			for (size_type i = 0; i < (this->size() - (&(*position) - _begin)); i++)
-				this->_alloc.construct(_end - i + n - 1, *(_end - i - 1));
+			for (size_type i = 0; i < (size() - (&(*position) - _begin)); i++)
+				_alloc.construct(_end - i + n - 1, *(_end - i - 1));
 			_end += n;
 			while (first != last)
 			{
-				this->_alloc.construct(&(*position), *first);
+				_alloc.construct(&(*position), *first);
 				first++;
 				position++;
 			}
@@ -154,20 +138,43 @@ namespace ft
 				n_cap = _capacity * 2;
 			if (n + size() > 2 * _capacity)
 				n_cap = n + size();
-			pointer new_start = this->_alloc.allocate(n_cap);
-			pointer new_end = new_start + this->size() + n;
-			for (int i = 0; i < &(*position) - _begin; i++)
-				this->_alloc.construct(new_start + i, *(_begin + i));
-			for (int j = 0; first != last; first++, j++)
-				this->_alloc.construct(new_start + (&(*position) - _begin) + j, *first);
-			for (size_type k = 0; k < this->size() - (&(*position) - _begin); k++)
-				this->_alloc.construct(new_start + (&(*position) - _begin) + n + k, *(&(*position) + k));
-			for (size_type l = 0; l < this->size(); l++)
-				this->_alloc.destroy(_begin + l);
-			this->_alloc.deallocate(_begin, this->capacity());
+			
+			pointer new_start = _alloc.allocate(n_cap);
+			pointer new_end = new_start;
+			try
+			{
+				for (int i = 0; i < &(*position) - _begin; i++)
+				{
+					_alloc.construct(new_start + i, *(_begin + i));
+					new_end++;
+				}
+				for (int j = 0; first != last; first++, j++)
+				{
+					_alloc.construct(new_start + (&(*position) - _begin) + j, *first);
+					new_end++;
+				}
+				for (size_type k = 0; k < size() - (&(*position) - _begin); k++)
+				{
+					_alloc.construct(new_start + (&(*position) - _begin) + n + k, *(&(*position) + k));
+					new_end++;
+				}
+			}
+			catch (...)
+			{
+				while (new_start != new_end)
+					_alloc.destroy(new_end--);
+				_alloc.destroy(new_end);
+				_alloc.deallocate(new_start, n_cap);
+				throw ;
+			}
+			for (size_type l = 0; l < size(); l++)
+			{
+				_alloc.destroy(_begin + l);
+			}
+			_alloc.deallocate(_begin, _capacity);
 			_begin = new_start;
 			_end = new_end;
-			this->_capacity = n_cap;
+			_capacity = n_cap;
 		}
 	}
 	
@@ -274,5 +281,4 @@ namespace ft
 		_capacity = new_capacity;
 		return (old_size);
 	}
-	
 };
