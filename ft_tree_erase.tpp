@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/26 15:02:26 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 17:49:25 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,6 @@
 
 namespace ft
 {
-	// template <class T,  class Compare, class Allocator>
-	// template<class Key>
-	// typename RBTree<T, Compare, Allocator>::size_type RBTree<T, Compare, Allocator>::erase_unique(const Key &key)
-	// {
-	// 	node_ptr node = find_by_only_key(key);
-	// 	if (node == nil_node)
-	// 		return (0);
-	// 	return(erase(*node->value));
-	// }
-	
 	template <class T,  class Compare, class Allocator>
 	typename RBTree<T, Compare, Allocator>::size_type RBTree<T, Compare, Allocator>::erase(const value_type &val)
 	{
@@ -31,11 +21,8 @@ namespace ft
 		node_ptr x;
 		node_ptr y;
 
-		if (found_node == nil_node) //will adapt this later
-		{
-			// std::cout << "No node\n";
+		if (found_node == nil_node)
 			return (0);
-		}
 
 		//BST delete
 		_size--;
@@ -43,7 +30,7 @@ namespace ft
 		bool y_og_colour = y->colour;
 
 		//if there is only one node
-		if (found_node == root && (found_node->left == nil_node && found_node->right == nil_node)) //could use size == 0 here maybe
+		if (found_node == root && size() == 0)
 		{
 			clear_node(found_node);
 			root = nil_node;
@@ -83,7 +70,7 @@ namespace ft
 		{
 			fix_erase(x);
 		}
-		
+
 		node_ptr temp = root;
 		while (temp->right != nil_node)
 			temp = temp->right;
@@ -107,7 +94,7 @@ namespace ft
 					rotate_left(x->parent);
 					s = x->parent->right;
 				}
-				
+
 				if (s->left->colour == BLACK && s->right->colour == BLACK)
 				{
 					s->colour = RED;
