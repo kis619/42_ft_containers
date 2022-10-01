@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/01 10:50:35 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 17:38:17 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typen
 		typedef const typename node_type::value_type* 													const_pointer;
 		typedef const typename node_type::value_type&													const_reference;
 
-	///Constructors
+	///CONSTRUCTION
 	RBTreeIterator(node_ptr ptr = NULL) : ptr(ptr), nil_ptr(ptr), first_ptr(ptr) {};
 	RBTreeIterator(node_ptr ptr, node_ptr first_element, node_ptr last_element) : ptr(ptr), nil_ptr(last_element), first_ptr(first_element){};
 	RBTreeIterator(const RBTreeIterator &copy) : ptr(copy.ptr), nil_ptr(copy.nil_ptr), first_ptr(copy.first_ptr) {};
@@ -40,7 +40,7 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typen
 		return (*this);
 	}
 
-	RBTreeIterator &operator++()
+	RBTreeIterator &operator++(void)//pre-increment
 	{
 		if (ptr == nil_ptr && first_ptr != ptr)
 			ptr = first_ptr;
@@ -74,7 +74,7 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typen
 		return(*this);
 	};
 
-	RBTreeIterator &operator--()
+	RBTreeIterator &operator--() //pre-decrement
 	{
 		if (ptr == nil_ptr) 
 			ptr = ptr->parent;
@@ -102,8 +102,8 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typen
 		return(*this);
 	};
 
-	RBTreeIterator operator++(int) {RBTreeIterator temp(*this); ++(*this); return (temp);}
-	RBTreeIterator operator--(int) { RBTreeIterator temp(*this); --(*this); return(temp);}
+	RBTreeIterator operator++(int) {RBTreeIterator temp(*this); ++(*this); return (temp);} //post-increment
+	RBTreeIterator operator--(int) { RBTreeIterator temp(*this); --(*this); return(temp);} //post-derement
 	reference operator*(void) {return *(ptr->value);};
 	pointer operator->(void) {return ptr->value;};
 	const_reference operator*(void) const {return *(ptr->value);};
@@ -137,7 +137,7 @@ class const_RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag,
 		
 	
 	
-	///Constructors
+	///CONSTRUCTION
 	const_RBTreeIterator(node_ptr ptr = NULL) : ptr(ptr), nil_ptr(ptr), first_ptr(ptr) {};
 	const_RBTreeIterator(node_ptr ptr, node_ptr first_element, node_ptr last_element) : ptr(ptr), nil_ptr(last_element), first_ptr(first_element){};
 	const_RBTreeIterator(const const_RBTreeIterator &copy) : ptr(copy.ptr), nil_ptr(copy.nil_ptr), first_ptr(copy.first_ptr) {};
@@ -157,16 +157,13 @@ class const_RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag,
 		return (*this);
 	}
 
-	///Operators - Increment|Decrement
-	const_RBTreeIterator &operator++()	//pre-increment
+	const_RBTreeIterator &operator++(void)	//pre-increment
 	{
 		if (ptr == nil_ptr && first_ptr != ptr)
 			ptr = first_ptr;
-		// else if (!node->right->NIL) 
 		else if (ptr->right != nil_ptr) 
 		{
 			ptr = ptr->right;
-			// while (!node->left->NIL)
 			while (ptr->left != nil_ptr)
 				ptr = ptr->left;
 		}
@@ -193,7 +190,7 @@ class const_RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag,
 		}
 		return(*this);
 	};
-	
+
 	const_RBTreeIterator &operator--()	//pre-decrement
 	{
 		if (ptr == nil_ptr) 
@@ -224,13 +221,10 @@ class const_RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag,
 	
 	const_RBTreeIterator operator++(int) {const_RBTreeIterator temp(*this); ++(*this); return (temp);} //post-increment
 	const_RBTreeIterator operator--(int) {const_RBTreeIterator temp(*this); --(*this); return(temp);} //post-derement
-	///Operators - (de)reference
 	reference operator*(void) {return *(ptr->value);};
 	pointer operator->(void) {return ptr->value;};
 	const_reference operator*(void) const {return *(ptr->value);};
 	const_pointer operator->(void) const {return ptr->value;};
-	
-
 
 	node_ptr getPtr(void) const
 		{return (ptr);}
@@ -260,6 +254,7 @@ class const_RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag,
 	template< class node_type>
 	bool operator!=(const const_RBTreeIterator<node_type> &it1, const const_RBTreeIterator<node_type> &it2)
 	{return (it1.getPtr() != it2.getPtr());}
+
 	template< class node_type>
 	bool operator!=(const RBTreeIterator<node_type> &it1, const const_RBTreeIterator<node_type> &it2)
 	{return (it1.getPtr() != it2.getPtr());}
