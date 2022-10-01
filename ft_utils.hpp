@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:19:53 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/22 13:49:54 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 17:58:29 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,10 @@ namespace ft
 		typedef integral_constant<T, v> type;
 		operator T() { return v; }
 	};
-	
-	
+
 	typedef integral_constant<bool, true> true_type;
 	typedef integral_constant<bool, false> false_type;
-	
+
 	template< class T >
 	struct is_integral : false_type{};
 
@@ -101,13 +100,12 @@ namespace ft
 		{
 			first = other.first;
 			second = other.second;
-			
 			// new (this) pair(other.first, other.second); //placement new operator
 			return (*this);
 		}
 		
 	};
-	
+
 	template< class T1, class T2 >
 	bool operator==(const pair<T1,T2>& lhs, const pair<T1,T2>& rhs)
 	{
@@ -149,6 +147,5 @@ namespace ft
 	{
 		return pair<T1,T2>(x ,y);
 	}
-	
 }
 #endif
