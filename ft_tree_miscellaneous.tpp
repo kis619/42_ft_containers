@@ -6,11 +6,12 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/30 13:00:16 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/01 17:44:35 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_tree.hpp"
+#include <iostream>
 
 namespace ft
 {
