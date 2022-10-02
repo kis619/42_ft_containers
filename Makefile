@@ -6,7 +6,7 @@
 #    By: zangelis <zangelis@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 13:21:52 by kmilchev          #+#    #+#              #
-#    Updated: 2022/10/03 00:43:58 by zangelis         ###   ########.fr        #
+#    Updated: 2022/10/03 00:51:55 by zangelis         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,10 @@ CC = c++
 
 FLAGS = -Wall -Werror -Wextra -g
 
-test:
+run:
 	sh run_tests.sh
 
-tests:	test_iterator_class test_reverse_iterator test_pair_construction \
+all:	test_iterator_class test_reverse_iterator test_pair_construction \
 		map_tests \
 		vector_tests \
 		set_tests \
@@ -134,4 +134,10 @@ test_set_observers:
 	
 test_set_logical_operators:
 	$(CC) -g tests/utils.cpp tests/test_set_logical_operators.cpp -g -o $(NAME) $(FLAGS) && ./$(NAME)
-	
+
+clean:
+	@rm -rf $(NAME) a.out
+
+fclean: clean
+
+re: clean
