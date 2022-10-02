@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_vector_non_member_swap.cpp                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: zangelis <zangelis@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 21:08:48 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/16 18:17:27 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/03 00:22:36 by zangelis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ int main(void)
 	{
 		test_name("Test swap");
 		//befor swap
-		for (int i = 0; i < v1.size(); i++)
+		for (size_t i = 0; i < v1.size(); i++)
 			assert(v1_copy[i] == v1[i]);
 			
 		ft::swap(v1, v2);
 		//after swap
-		for (int i = 0; i < v1_copy.size(); i++)
+		for (size_t i = 0; i < v1_copy.size(); i++)
 			assert(v1_copy[i] == v2[i]);
 		assert(v1_copy.capacity() == v2.capacity());
 		assert(v1_copy.size() == v2.size());
 		
-		for (int i = 0; i < v1.size(); i++)
+		for (size_t i = 0; i < v1.size(); i++)
 			assert(v2_copy[i] == v1[i]);
 		assert(v2_copy.capacity() == v1.capacity());
 		assert(v2_copy.size() == v1.size());

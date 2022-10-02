@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_vector_modifiers.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: zangelis <zangelis@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 20:49:56 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/01 16:22:17 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/03 00:22:02 by zangelis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void test_capacity_size_values(ft::vector<int> &mine, std::vector<int> &original
 
 	assert(original.capacity() == mine.capacity());
 	assert(original.size() == mine.size());
-	for (int i = 0; i < original.size(); i++)
+	for (size_t i = 0; i < original.size(); i++)
 	{
 		assert(original[i] == mine[i]);
 	}
@@ -52,7 +52,7 @@ int main(void)
 	
 	{
 		test_name("Testing method .push_back() with enough capacity");
-		for (int i = 0; i < my_v.capacity(); i++)
+		for (size_t i = 0; i < my_v.capacity(); i++)
 		{
 			og_v.push_back(i + 1);
 			my_v.push_back(i + 1);
@@ -62,7 +62,7 @@ int main(void)
 	
 	{
 		test_name("Testing method .push_back() with insufficient capacity");
-		for (int i = 0; i < 45; i++)
+		for (size_t i = 0; i < 45; i++)
 		{
 			my_v.push_back(78 + i);
 			og_v.push_back(78 + i);
@@ -74,10 +74,8 @@ int main(void)
 	ft::vector<int> my_new_v(1, 1);
 	std::vector<int>::iterator	og_it(og_v.begin());
 	std::vector<int>::iterator	og_it2(og_v.begin() + 10);
-	std::vector<int>::iterator	og_it3(og_v.begin() + 2);
 	ft::vector<int>::iterator	my_it(my_v.begin());
 	ft::vector<int>::iterator	my_it2(my_v.begin() + 10);
-	ft::vector<int>::iterator	my_it3(my_v.begin() + 2);
 	
 	{
 		test_name("Testing method .assign() range version with iterators");
@@ -102,7 +100,7 @@ int main(void)
 	
 	{
 		test_name("Testing method .insert() single element insufficient capacity");
-		for (int i = 0; i < 56; i++)
+		for (size_t i = 0; i < 56; i++)
 		{
 			og_new_v.insert(og_new_v.begin() + 2, 69);
 			my_new_v.insert(my_new_v.begin() + 2, 69);
@@ -143,7 +141,7 @@ int main(void)
 		test_name("Testing method .insert() range");
 		std::vector<int> og_new_v;
 		ft::vector<int> my_new_v;
-		for (int i = 0; i < 6; i++)
+		for (size_t i = 0; i < 6; i++)
 		{
 			og_new_v.push_back(i);
 			my_new_v.push_back(i);
@@ -183,7 +181,7 @@ int main(void)
 		test_name("Testing method .erase() range");
 		og_vec.assign(0, 0);
 		my_vec.assign(0, 0);
-		for (int i = 0; i < 10; i++)
+		for (size_t i = 0; i < 10; i++)
 		{
 			og_vec.push_back(i + 1);
 			my_vec.push_back(i + 1);
@@ -209,16 +207,16 @@ int main(void)
 		ft::vector<int> v2_copy(v2);
 
 		//befor swap
-		for (int i = 0; i < v1.size(); i++)
+		for (size_t i = 0; i < v1.size(); i++)
 			assert(v1_copy[i] == v1[i]);
 		v1.swap(v2);
 		//after swap
-		for (int i = 0; i < v1_copy.size(); i++)
+		for (size_t i = 0; i < v1_copy.size(); i++)
 			assert(v1_copy[i] == v2[i]);
 		assert(v1_copy.capacity() == v2.capacity());
 		assert(v1_copy.size() == v2.size());
 		
-		for (int i = 0; i < v1.size(); i++)
+		for (size_t i = 0; i < v1.size(); i++)
 			assert(v2_copy[i] == v1[i]);
 		assert(v2_copy.capacity() == v1.capacity());
 		assert(v2_copy.size() == v1.size());

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vector_capacity.tpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: zangelis <zangelis@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/01 17:59:35 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/03 00:05:17 by zangelis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ namespace ft
 		size_type old_size = size();
 		if (n < old_size)
 		{
-			for (int i = n; i != old_size; i++)
+			for (size_type i = n; i != old_size; i++)
 				_alloc.destroy(_begin + i);
 			_end = _begin + n;
 		}
@@ -40,7 +40,7 @@ namespace ft
 		{
 			if (n > _capacity)
 				adjust_capacity(n);
-			for (int i = old_size; i < n; i ++)
+			for (size_type i = old_size; i < n; i ++)
 				_alloc.construct(_end++, val);
 		}
 	}

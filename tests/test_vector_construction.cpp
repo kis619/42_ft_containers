@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_vector_construction.cpp                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: zangelis <zangelis@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 13:20:18 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/21 11:08:28 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/03 00:06:55 by zangelis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(void)
 	ft::vector<int> test1(4, 69);
 	assert(4 == test1.capacity());
 	assert(4 == test1.size());
-	for (int i = 0; i < test1.size(); i++)
+	for (size_t i = 0; i < test1.size(); i++)
 		assert(69 == *(test1.begin()));
 	
 	{
@@ -60,7 +60,7 @@ int main(void)
 		ft::vector<int> new_vec(my_numbers);
 		std::vector<int> new_vec_og(og_numbers);
 		
-		for (int i = 0; i < new_vec.size(); i++)
+		for (size_t i = 0; i < new_vec.size(); i++)
 			assert((new_vec[i] == og_numbers[i]) == (my_numbers[i] == new_vec_og[i]));
 		assert(my_numbers.size() == new_vec.capacity());
 		assert(og_numbers.size() == new_vec_og.capacity());

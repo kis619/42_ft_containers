@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+         #
+#    By: zangelis <zangelis@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 13:21:52 by kmilchev          #+#    #+#              #
-#    Updated: 2022/10/01 16:10:04 by kmilchev         ###   ########.fr        #
+#    Updated: 2022/10/03 00:22:10 by zangelis         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
 
-# FLAGS = -fsanitize=address -g
+FLAGS = -Wall -Werror -Wextra -g
 
 test:
 	sh run_tests.sh

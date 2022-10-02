@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vector_modifiers.tpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: zangelis <zangelis@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 12:44:55 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/01 18:05:38 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/03 00:09:24 by zangelis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ namespace ft
 										typename enable_if<!is_integral<InputIterator>::value>::type*)
 	{
 		clear();
-		difference_type n = last - first;
+		size_type n = last - first;
 		if (n)
 		{
 			if (n > _capacity)
@@ -247,7 +247,7 @@ namespace ft
 	{
 		size_type old_size = size();
 		
-		for(int i = 0; i < old_size; i++)
+		for(size_type i = 0; i < old_size; i++)
 		{
 			_end--;
 			_alloc.destroy(_end);
@@ -261,7 +261,7 @@ namespace ft
 	}
 
 	template <typename T, typename Allocator>
-	typename vector<T, Allocator>::size_type vector<T, Allocator>::adjust_capacity(int n)
+	typename vector<T, Allocator>::size_type vector<T, Allocator>::adjust_capacity(size_type n)
 	{
 		size_type old_size = size();
 		size_type new_capacity = 1;

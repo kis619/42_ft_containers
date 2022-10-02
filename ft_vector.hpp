@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vector.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: zangelis <zangelis@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 19:08:20 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/01 18:07:48 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/03 00:06:13 by zangelis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ public:
 
 ///MISCELANIOUS///
 	private:
-	size_type				adjust_capacity(int n = 0); 
+	size_type				adjust_capacity(size_type n = 0); 
 
 	allocator_type			_alloc;
 	size_type				_capacity;

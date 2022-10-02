@@ -54,7 +54,7 @@ int main(void)
 		my_newer_v.resize(78, 1);
 		assert(og_newer_v.capacity() == my_newer_v.capacity());
 		assert(og_newer_v.size() == my_newer_v.size());
-		for (int i = 0; i < og_newer_v.size(); i++)
+		for (size_t i = 0; i < og_newer_v.size(); i++)
 			assert(og_newer_v[i] == my_newer_v[i]);
 	}
 
@@ -68,7 +68,7 @@ int main(void)
 		og_vec.reserve(1);
 		my_vec.reserve(1);
 		assert(og_vec.capacity() == my_vec.capacity());
-		for (int i = 0; i < og_vec.size(); i++)
+		for (size_t i = 0; i < og_vec.size(); i++)
 			assert(og_vec[i] == my_vec[i]);
 	}
 	std::cout << COLOUR_DEFAULT;
