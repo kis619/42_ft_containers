@@ -6,7 +6,7 @@
 /*   By: zangelis <zangelis@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/03 00:01:32 by zangelis         ###   ########.fr       */
+/*   Updated: 2022/10/03 00:28:37 by zangelis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ class RBTree
 		size_type				_size;
 
 	public:
-	RBTree(const value_comp &comp_, const allocator_type &alloc_) : comp(comp_), alloc(alloc_), _size(0)
+	RBTree(const value_comp &comp_, const allocator_type &alloc_) : alloc(alloc_), comp(comp_), _size(0)
 	{
 		nil_node = node_alloc.allocate(1);
 		nil_node->colour = BLACK;

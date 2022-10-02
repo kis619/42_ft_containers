@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tree_miscellaneous.tpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: zangelis <zangelis@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:19:59 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/01 17:53:15 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/03 00:25:58 by zangelis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ namespace ft
 
 		while(node != nil_node)
 		{
-			if (!comp(val, *node->value) && !comp(*node->value, val) || (*node->value == val))
+			if ((!comp(val, *node->value) && !comp(*node->value, val)) || (*node->value == val))
 				return (node);
 			if (comp(val, *node->value))
 				node = node->left;

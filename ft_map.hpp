@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: zangelis <zangelis@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 23:01:26 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/01 17:22:25 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/03 00:27:32 by zangelis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,7 @@ class map
 
 	iterator insert (iterator position, const value_type& value)
 	{
+		static_cast<void>(position);
 		return (tree.insert(value));
 	}
 
