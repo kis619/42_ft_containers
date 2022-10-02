@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_set.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: zangelis <zangelis@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 13:23:38 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/01 17:43:00 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/03 00:33:11 by zangelis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,7 @@ namespace ft
 
 		iterator insert(iterator hint, const value_type& value)
 		{
+			static_cast<void>(hint);
 			return tree.insert(value);
 		};
 

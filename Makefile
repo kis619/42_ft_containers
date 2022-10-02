@@ -6,7 +6,7 @@
 #    By: zangelis <zangelis@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 13:21:52 by kmilchev          #+#    #+#              #
-#    Updated: 2022/10/03 00:22:10 by zangelis         ###   ########.fr        #
+#    Updated: 2022/10/03 00:31:35 by zangelis         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ set_tests:		test_set_construction \
 				test_set_observers \
 				test_set_logical_operators
 
-set_tests:		test_stack
+stack_tests:		test_stack
 
 test_iterator_class:
 	$(CC) -g tests/utils.cpp tests/test_iterator_class.cpp $(FLAGS) && ./a.out
