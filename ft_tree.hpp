@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/01 17:57:44 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/02 12:41:16 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ struct Node
 template <class T,  class Compare, class Allocator>
 class RBTree
 {
-	// friend class RBTreeIterator;
+	template <	class Key, class U, class Comp,class Alloc>
+	friend class map;
 	public:
 		typedef T												value_type;
 		typedef Allocator										allocator_type;
@@ -130,21 +131,22 @@ class RBTree
 		return iterator(insert_val(val), min(root), nil_node);
 	}
 
+	protected:
 	///GETTERS
-	node_ptr getRoot(void) const
-	{
-		return(root);
-	}
+		node_ptr getRoot(void) const
+		{
+			return(root);
+		}
 
-	node_ptr getNil(void) const
-	{
-		return(nil_node);
-	}
+		node_ptr getNil(void) const
+		{
+			return(nil_node);
+		}
 
-	value_comp getComp(void) const
-	{
-		return(comp);
-	}
+		value_comp getComp(void) const
+		{
+			return(comp);
+		}
 };
 }
 

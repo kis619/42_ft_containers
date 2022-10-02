@@ -6,7 +6,7 @@
 /*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:26:13 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/01 17:38:17 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/02 12:42:34 by kmilchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,16 @@ class RBTreeIterator : public ft::iterator<ft::bidirectional_iterator_tag, typen
 		typedef typename node_type::value_type&															reference;
 		typedef const typename node_type::value_type* 													const_pointer;
 		typedef const typename node_type::value_type&													const_reference;
+	
 
+	template <class T,  class Compare, class Allocator>
+	friend class RBTree;
 	///CONSTRUCTION
+	protected:
+		RBTreeIterator(node_ptr ptr, node_ptr first_element, node_ptr last_element) : ptr(ptr), nil_ptr(last_element), first_ptr(first_element){};
+	
+	public:
 	RBTreeIterator(node_ptr ptr = NULL) : ptr(ptr), nil_ptr(ptr), first_ptr(ptr) {};
-	RBTreeIterator(node_ptr ptr, node_ptr first_element, node_ptr last_element) : ptr(ptr), nil_ptr(last_element), first_ptr(first_element){};
 	RBTreeIterator(const RBTreeIterator &copy) : ptr(copy.ptr), nil_ptr(copy.nil_ptr), first_ptr(copy.first_ptr) {};
 	RBTreeIterator &operator=(const RBTreeIterator &other)
 	{
