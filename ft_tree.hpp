@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tree.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: zangelis <zangelis@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 09:27:27 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/10/02 12:41:16 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/03 00:01:32 by zangelis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ class RBTree
 {
 	template <	class Key, class U, class Comp,class Alloc>
 	friend class map;
+	template < class Key, class Comp, class Alloc>
+	friend class set;
+	
 	public:
 		typedef T												value_type;
 		typedef Allocator										allocator_type;
