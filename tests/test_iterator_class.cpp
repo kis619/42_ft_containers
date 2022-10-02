@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_iterator_class.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmilchev <kmilchev@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: zangelis <zangelis@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 21:08:48 by kmilchev          #+#    #+#             */
-/*   Updated: 2022/09/16 18:17:21 by kmilchev         ###   ########.fr       */
+/*   Updated: 2022/10/03 00:42:55 by zangelis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int main(void)
 	ft::vector<int>::iterator it0;
 	ft::vector<int>::iterator it(nums.begin());
 	ft::vector<int>::iterator it2 = nums2.begin();
-	ft::vector<int>::iterator *it3 = &it2;
 	ft::vector<int>::const_iterator it4;
 	ft::vector<int>::const_iterator it5;
 
